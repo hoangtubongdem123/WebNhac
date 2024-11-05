@@ -1,0 +1,551 @@
+﻿@{
+    
+
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>@ViewBag.Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+
+    <div class="playsong">
+
+
+        <img src="~/img/playsong/previous.png" id="previous" />
+        <img src="~/img/playsong/play.png" id="plays" />
+        <img src="~/img/playsong/pause.png" id="pause" />
+        <img src="~/img/playsong/next.png" id="nexts" />
+        <img src="~/img/playsong/reload.png" id="reloads" />
+        <img src="~/img/playsong/volume-up.png" id="volume-up" />
+        <img src="~/img/playsong/reloads2.png" id="reloads2" />
+
+
+
+        <input type="range" id="timeUpdate" min="0" max="100" step="1" value="0">
+
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.3">
+
+        <span id="currentTime">00:00</span>
+        <span id="songTime">00:00</span>
+
+        <div class="Infor"></div>
+        <div id="ImgOfSong"></div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <div class="toolbar">
+        <a href="#home">Home</a>
+        <a href="#yourPlaylist">Your Playlists</a>
+        <a href="#Songs">Songs </a>
+        <input type="text" name="name" placeholder=" Search" />
+
+    </div>
+
+
+
+    <style>
+        .playsong {
+            background-color: #000000;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 120px;
+        }
+
+
+        #previous {
+            width: 40px;
+            height: 30px;
+            float: left;
+            margin-left: 775px;
+            margin-top: 30px;
+            margin-right: 50px;
+        }
+
+        #plays {
+            width: 42px;
+            height: 42px;
+            float: left;
+            margin-top: 23px;
+            margin-right: 50px;
+        }
+
+        #pause {
+            width: 42px;
+            height: 42px;
+            float: left;
+            margin-top: 23px;
+            margin-right: 50px;
+            display: none;
+        }
+
+        #nexts {
+            width: 40px;
+            height: 30px;
+            float: left;
+            margin-top: 30px;
+            margin-right: 50px;
+        }
+
+        #reloads {
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 30px;
+            margin-right: 50px;
+        }
+
+        #reloads2 {
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 30px;
+            margin-right: 50px;
+            display: none;
+        }
+
+
+
+
+        #timeUpdate {
+            width: 45%;
+            height: 5px;
+            margin-left: 500px;
+            margin-top: 80px;
+            display: block;
+            border-radius: 5px;
+            background-color: #808080;
+            cursor: pointer;
+        }
+
+        #volume-up {
+            width: 30px;
+            height: 30px;
+            float: left;
+            position: absolute;
+            top: 30px;
+            left: 1130px;
+        }
+
+        #volume {
+            appearance: none;
+            background: #4d4d4d;
+            width: 60px;
+            height: 4px;
+            position: absolute;
+            top: 42px;
+            left: 1160px;
+        }
+        span {
+
+            color : white ;
+        }
+
+        #currentTime {
+            position: absolute;
+            top: 74px;
+            left: 450px;
+            color: white;
+           
+        }
+
+        #songTime {
+            position: absolute;
+            top: 74px;
+            left: 1330px;
+            color: white;
+        }
+
+
+
+        .Infor {
+            width: 200px;
+            height: 55px;
+            background-color: bisque;
+            position: relative ;
+            
+            display: block
+        }
+
+
+        #ImgOfSong {
+            width : 55px;
+            height : 55px;
+
+            background-color  : aliceblue;
+
+            position : absolute ;
+
+            top : 33px;
+            left:50px ;
+
+          
+
+
+        }
+
+
+
+
+
+
+
+
+
+        .toolbar {
+            background-color: #000000;
+            overflow: hidden;
+            top: 0;
+            position: fixed;
+            width: 100%;
+        }
+
+            .toolbar a {
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 30px 30px;
+                text-decoration: none;
+            }
+
+                .toolbar a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+            .toolbar input {
+                width: 500px;
+                height: 40px;
+                float: left;
+                margin-left: 50px;
+                margin-top: 20px;
+                border-radius: 10px;
+            }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <h1>?</h1>
+
+
+    @RenderBody()
+    
+
+   
+
+    <audio id="myAudio" >
+        <source src="" type="audio/mpeg" />
+
+
+    </audio>
+
+
+    <script>
+
+        var lengthPlaylist = 2;
+
+
+
+
+
+        var audio = document.getElementById("myAudio");
+        var play_bt = document.getElementById("plays");
+        var pause_bt = document.getElementById("pause");
+        var previous_bt = document.getElementById("previous");
+        var next_bt = document.getElementById("nexts");
+        var currentTime = document.getElementById("currentTime");
+        var songTime = document.getElementById("songTime");
+        var progressBar = document.getElementById("timeUpdate");
+        var loop = document.getElementById("reloads");
+        var loop2 = document.getElementById("reloads2");
+        var volume = document.getElementById("volume");
+
+
+        var check_loop = false;
+
+         const listsong = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ListSongs));
+
+        var index = 0;
+
+        function loadsong(index) {
+
+            audio.src =listsong[index].PathSongs
+            console.log(listsong[index].PathSongs)
+            audio.load();
+            audio.currentTime = 0.1;
+   
+        }
+        loadsong(0);
+
+        $(document).ready(function () {
+
+            $("#plays").click(function () {
+
+                audio.play();
+
+
+            });
+
+            $("#pause").click(function () {
+
+                audio.pause();
+
+
+            });
+
+            $('#timeUpdate').on('input', function () {
+                let value = progressBar.value;
+
+                console.log("Giá trị hiện tại:", value);
+
+                var x = (value * audio.duration) / 100
+
+                audio.currentTime = x;
+
+
+            });
+
+            $("#volume").on('input', function () {
+                let value = volume.value;
+
+                console.log("Giá trị hiện tại:", value);
+
+               
+
+                audio.volume = value;
+
+
+            });
+
+            $("#previous").click(function () {
+
+                index = index - 1;
+
+                if (index < 0) {
+
+                    if (audio.currentTime <= 1) {
+
+                        index = lengthPlaylist;
+                        loadsong(index);
+                        audio.play();
+                    }
+
+                    else {
+                        index = 0;
+                        loadsong(index);
+                        audio.play();
+                    }
+
+                    
+
+
+                }
+                else {
+                    if (audio.currentTime <= 1) {
+
+                       
+                        loadsong(index);
+                        audio.play();
+                    }
+
+                    else {
+                        index = index + 1;
+                        loadsong(index);
+                        audio.play();
+                    }
+
+
+                }
+
+
+            });
+
+            $("#nexts").click(function () {
+
+                index = index + 1;
+
+                if (index >= lengthPlaylist) {
+
+                    index = 0;
+                    loadsong(0);
+                    audio.play()
+
+                }
+                else {
+                    loadsong(index);
+                    audio.play();
+                }
+
+
+            });
+
+
+            $("#reloads").click(function () {
+
+             
+                    check_loop = true; console.log(check_loop)
+
+                    loop2.style.display = "block"; 
+                    loop.style.display = "none";
+
+
+            });
+
+            $("#reloads2").click(function () {
+
+
+                check_loop = false; console.log(check_loop)
+                
+                loop2.style.display = "none";
+                loop.style.display = "block";
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+        audio.onplay = function() {
+
+            play_bt.style.display ="none"
+
+
+
+
+            pause_bt.style.display = "block";
+
+
+        }
+
+        audio.onpause = function () {
+
+            pause_bt.style.display="none"
+
+            play_bt.style.display="block"
+        }
+
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            const formattedSecs = secs < 10 ? '0' + secs : secs;
+            return `${minutes}:${formattedSecs}`;
+        }
+
+
+
+
+
+        audio.ontimeupdate = function () {
+
+
+            currentTime.textContent = formatTime(audio.currentTime);
+
+            var percent = (audio.currentTime / audio.duration) * 100;
+            //console.log(percent + " %");
+            
+
+            progressBar.value = percent;
+
+
+        }
+
+        
+
+
+        audio.onloadedmetadata = function () {
+            songTime.textContent = formatTime(audio.duration);
+            //console.log(formatTime(audio.duration));
+        };
+
+
+        audio.onended = function () {
+
+
+            console.log("check_loop :"+ check_loop);
+            if (check_loop == true) {
+
+                loadsong(index);
+                audio.play();
+
+
+            }
+            else if (index >= lengthPlaylist) {
+                console.log(index);
+                index = 0;
+               
+
+                loadsong(index);
+                audio.play();
+
+            }
+
+
+            else {
+                index = index + 1;
+                loadsong(index);
+                audio.play();
+                console.log("index :" + index);
+
+            }
+
+
+
+        }   
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+    
+    
+
+
+
+</body>
+</html>
