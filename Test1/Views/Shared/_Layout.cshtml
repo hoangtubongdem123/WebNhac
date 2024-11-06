@@ -1,5 +1,5 @@
 ﻿@{
-    
+
 
 
 }
@@ -20,197 +20,168 @@
 
 
     <div class="playsong">
-
-
         <img src="~/img/playsong/previous.png" id="previous" />
         <img src="~/img/playsong/play.png" id="plays" />
         <img src="~/img/playsong/pause.png" id="pause" />
         <img src="~/img/playsong/next.png" id="nexts" />
-        <img src="~/img/playsong/reload.png" id="reloads" />
-        <img src="~/img/playsong/volume-up.png" id="volume-up" />
-        <img src="~/img/playsong/reloads2.png" id="reloads2" />
-
-
-
-        <input type="range" id="timeUpdate" min="0" max="100" step="1" value="0">
-
-        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.3">
-
-        <span id="currentTime">00:00</span>
-        <span id="songTime">00:00</span>
-
-        <div class="Infor"></div>
-        <div id="ImgOfSong"></div>
-
-
-
-
     </div>
 
+    <div class="songprogress">
+        <span id="currentTime">00:00</span>
+        <input type="range" id="timeUpdate" min="0" max="100" step="1" value="0">
+        <span id="songTime">00:00</span>
+    </div>
 
+    <div class="additional_1">
+        <img src="~/img/playsong/reload.png" id="reloads" />
+        <img src="~/img/playsong/reloads2.png" id="reloads2" />
+    </div>
 
+    <div class="additional_2">
+        <img src="~/img/playsong/volume-up.png" id="volume-up" />
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.3">
+    </div>
 
+    <div class="additional_3">
+        <div id="ImgOfSong"></div>
+        <div class="Infor"></div>
+    </div>
 
     <div class="toolbar">
         <a href="#home">Home</a>
         <a href="#yourPlaylist">Your Playlists</a>
         <a href="#Songs">Songs </a>
         <input type="text" name="name" placeholder=" Search" />
-
     </div>
-
-
 
     <style>
         .playsong {
+            padding-top: 0.8%;
             background-color: #000000;
-            overflow: hidden;
             position: fixed;
-            bottom: 0;
+            bottom: 4%;
             width: 100%;
-            height: 120px;
+            height: 6%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2%;
         }
-
 
         #previous {
-            width: 40px;
-            height: 30px;
-            float: left;
-            margin-left: 775px;
-            margin-top: 30px;
-            margin-right: 50px;
-        }
-
-        #plays {
-            width: 42px;
-            height: 42px;
-            float: left;
-            margin-top: 23px;
-            margin-right: 50px;
-        }
-
-        #pause {
-            width: 42px;
-            height: 42px;
-            float: left;
-            margin-top: 23px;
-            margin-right: 50px;
-            display: none;
+            height: 70%;
         }
 
         #nexts {
-            width: 40px;
-            height: 30px;
-            float: left;
-            margin-top: 30px;
-            margin-right: 50px;
+            height: 70%;
         }
 
-        #reloads {
-            width: 30px;
-            height: 30px;
-            float: left;
-            margin-top: 30px;
-            margin-right: 50px;
+        #plays {
+            height: 100%;
         }
 
-        #reloads2 {
-            width: 30px;
-            height: 30px;
-            float: left;
-            margin-top: 30px;
-            margin-right: 50px;
+        #pause {
+            height: 100%;
+        }
+
+        #hover {
+            right: 0%;
+        }
+
+        #pause {
             display: none;
         }
 
-
-
-
-        #timeUpdate {
-            width: 45%;
-            height: 5px;
-            margin-left: 500px;
-            margin-top: 80px;
-            display: block;
-            border-radius: 5px;
-            background-color: #808080;
-            cursor: pointer;
+        .songprogress {
+            background-color: #000000;
+            position: fixed;
+            bottom: 0%;
+            width: 100%;
+            height: 4%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1%
         }
 
-        #volume-up {
-            width: 30px;
-            height: 30px;
-            float: left;
-            position: absolute;
-            top: 30px;
-            left: 1130px;
+        span {
+            color: white;
+        }
+
+        #timeUpdate {
+            width: 50%
+        }
+
+
+        .additional_1 {
+            padding-top: 0.8%;
+            background-color: #000000;
+            position: fixed;
+            right: 38%;
+            bottom: 4%;
+            width: 6%;
+            height: 6%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #reloads {
+            height: 70%
+        }
+
+        #reloads2 {
+            height: 70%;
+            display: none;
+        }
+
+        .additional_2 {
+            padding-top: 0.8%;
+            background-color: #000000;
+            position: fixed;
+            right: 28%;
+            bottom: 5.5%;
+            width: 12%;
+            height: 3%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #volume {
-            appearance: none;
-            background: #4d4d4d;
-            width: 60px;
-            height: 4px;
-            position: absolute;
-            top: 42px;
-            left: 1160px;
-        }
-        span {
-
-            color : white ;
+            height: 25%;
+            width: 40%;
         }
 
-        #currentTime {
-            position: absolute;
-            top: 74px;
-            left: 450px;
-            color: white;
-           
+        #volume-up {
+            height: 130%;
         }
-
-        #songTime {
-            position: absolute;
-            top: 74px;
-            left: 1330px;
-            color: white;
-        }
-
-
-
-        .Infor {
-            width: 200px;
-            height: 55px;
-            background-color: bisque;
-            position: relative ;
+        .additional_3 {
             
+            background-color: black;
+            position: fixed;
+            bottom: 4%;
+            width: 30%;
+            left: 1.4%;
+            height: 6%;
+            display: flex;
+
+            align-items: center;
+            gap: 2%;
+        }
+       
+        #ImgOfSong {
+            width: 10%;
+            height: 100%;
+            background-color: blue;
+        }
+        .Infor {
+            width: 88%;
+            height: 100%;
+            background-color: yellow;
+            position: relative;
             display: block
         }
-
-
-        #ImgOfSong {
-            width : 55px;
-            height : 55px;
-
-            background-color  : aliceblue;
-
-            position : absolute ;
-
-            top : 33px;
-            left:50px ;
-
-          
-
-
-        }
-
-
-
-
-
-
-
-
-
         .toolbar {
             background-color: #000000;
             overflow: hidden;
@@ -238,9 +209,10 @@
                 height: 40px;
                 float: left;
                 margin-left: 50px;
-                margin-top: 20px;
+                margin-top: 15px;
                 border-radius: 10px;
             }
+
 
         body {
             font-family: Arial, sans-serif;
@@ -250,11 +222,11 @@
 
 
     @RenderBody()
-    
 
-   
 
-    <audio id="myAudio" >
+
+
+    <audio id="myAudio">
         <source src="" type="audio/mpeg" />
 
 
@@ -264,10 +236,6 @@
     <script>
 
         var lengthPlaylist = 2;
-
-
-
-
 
         var audio = document.getElementById("myAudio");
         var play_bt = document.getElementById("plays");
@@ -281,7 +249,6 @@
         var loop2 = document.getElementById("reloads2");
         var volume = document.getElementById("volume");
 
-
         var check_loop = false;
 
          const listsong = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ListSongs));
@@ -294,7 +261,7 @@
             console.log(listsong[index].PathSongs)
             audio.load();
             audio.currentTime = 0.1;
-   
+
         }
         loadsong(0);
 
@@ -303,7 +270,6 @@
             $("#plays").click(function () {
 
                 audio.play();
-
 
             });
 
@@ -323,7 +289,6 @@
 
                 audio.currentTime = x;
 
-
             });
 
             $("#volume").on('input', function () {
@@ -331,7 +296,7 @@
 
                 console.log("Giá trị hiện tại:", value);
 
-               
+
 
                 audio.volume = value;
 
@@ -357,14 +322,14 @@
                         audio.play();
                     }
 
-                    
+
 
 
                 }
                 else {
                     if (audio.currentTime <= 1) {
 
-                       
+
                         loadsong(index);
                         audio.play();
                     }
@@ -403,10 +368,10 @@
 
             $("#reloads").click(function () {
 
-             
+
                     check_loop = true; console.log(check_loop)
 
-                    loop2.style.display = "block"; 
+                    loop2.style.display = "block";
                     loop.style.display = "none";
 
 
@@ -416,7 +381,7 @@
 
 
                 check_loop = false; console.log(check_loop)
-                
+
                 loop2.style.display = "none";
                 loop.style.display = "block";
 
@@ -476,14 +441,14 @@
 
             var percent = (audio.currentTime / audio.duration) * 100;
             //console.log(percent + " %");
-            
+
 
             progressBar.value = percent;
 
 
         }
 
-        
+
 
 
         audio.onloadedmetadata = function () {
@@ -506,7 +471,7 @@
             else if (index >= lengthPlaylist) {
                 console.log(index);
                 index = 0;
-               
+
 
                 loadsong(index);
                 audio.play();
@@ -524,12 +489,12 @@
 
 
 
-        }   
+        }
 
 
 
 
-        
+
 
 
 
@@ -542,8 +507,8 @@
 
     </script>
 
-    
-    
+
+
 
 
 
