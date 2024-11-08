@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebNgheNhacModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Playlists">
+    <Key>
+      <PropertyRef Name="ID_Playlist" />
+    </Key>
+    <Property Name="ID_Playlist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Playlist" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_User" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Playlist__ID_Use__628FA481" FromRole="Playlists" ToRole="Users" />
+    <NavigationProperty Name="Songs" Relationship="Self.Playlist_Songs" FromRole="Playlists" ToRole="Songs" />
+  </EntityType>
+  <EntityType Name="Singers">
+    <Key>
+      <PropertyRef Name="ID_Singer" />
+    </Key>
+    <Property Name="ID_Singer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Singers" ToRole="Songs" />
+  </EntityType>
+  <EntityType Name="Songs">
+    <Key>
+      <PropertyRef Name="ID_Song" />
+    </Key>
+    <Property Name="ID_Song" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Singer" Type="Int32" />
+    <Property Name="Path_Song" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Path_BackGround" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Singers" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Songs" ToRole="Singers" />
+    <NavigationProperty Name="Type1" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Songs" ToRole="Type" />
+    <NavigationProperty Name="Playlists" Relationship="Self.Playlist_Songs" FromRole="Songs" ToRole="Playlists" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="Type1" />
+    </Key>
+    <Property Name="Type1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Type" ToRole="Songs" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__ID_Use__628FA481" FromRole="Users" ToRole="Playlists" />
+  </EntityType>
+  <Association Name="FK__Playlist__ID_Use__628FA481">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Playlists">
+        <PropertyRef Name="ID_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Songs__ID_Singer__534D60F1">
+    <End Role="Singers" Type="Self.Singers" Multiplicity="0..1" />
+    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Singers">
+        <PropertyRef Name="ID_Singer" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="ID_Singer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Songs__Type__52593CB8">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="Type1" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Playlist_Songs">
+    <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
+    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="WebNgheNhacEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Playlists" EntityType="Self.Playlists" />
+    <EntitySet Name="Singers" EntityType="Self.Singers" />
+    <EntitySet Name="Songs" EntityType="Self.Songs" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Type" EntityType="Self.Type" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Playlists" EntitySet="Playlists" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Songs__ID_Singer__534D60F1" Association="Self.FK__Songs__ID_Singer__534D60F1">
+      <End Role="Singers" EntitySet="Singers" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Songs__Type__52593CB8" Association="Self.FK__Songs__Type__52593CB8">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+    <AssociationSet Name="Playlist_Songs" Association="Self.Playlist_Songs">
+      <End Role="Playlists" EntitySet="Playlists" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
