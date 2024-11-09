@@ -78,14 +78,14 @@
         <div class="nowPlayingBar">
             <div class="playerControl">
                 <div class="playerControlLeft">
-                    <div class="medialeft" style="background-image: url('../img/vinyl-2241789_1280.png');">
+                    <div class="medialeft" id="background_song" style="background-image: url('../img/vinyl-2241789_1280.png'); background-position: center; background-repeat: no-repeat; background-size: cover;  ">
                     </div>
                     <div class="mediaCenter">
-                        <div class="songInfoName">
-                            <span>MANBO</span>
+                        <div class="songInfoName" id="songName">
+                            <span>Null</span>
                         </div>
-                        <div class="songInfoArtis">
-                            <span>REEVES (ft. HIEUTHUHAI, HURRYKNG) (Prod. by Rev)</span>
+                        <div class="songInfoArtis" id="singerName">
+                            <span>Null</span>
                         </div>
                     </div>
                     <div class="mediaRight">
@@ -139,6 +139,39 @@
         </div>
     </div>
 
+
+
+    <style>
+
+
+        #background_song {
+
+
+
+
+        }
+
+       @@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+       }
+
+    #background_song {
+            
+            
+            animation: rotate 15s linear infinite;
+        }
+
+       
+
+    </style>
+
+
+
     <script>
 
 
@@ -158,18 +191,42 @@
         const volume = document.getElementById("volume");
         const volume_up = document.getElementById("volume-up");
         const volume_mute = document.getElementById("volume-mute");
-        let oldVolume ;
+        let oldVolume;
+
+        const background_song = document.getElementById("background_song");
+        const songName = document.getElementById("songName");
+        const singerName = document.getElementById("singerName");
 
         var lengthPlaylist = 2;
         var check_loop = false;
         var check_shuffle = false;
         var index = 0;
+
+
         function loadsong(index) {
 
             audio.src = listsong[index].PathSongs
             console.log(listsong[index].PathSongs)
             audio.load();
             audio.currentTime = 0.1;
+            var t = listsong[index].PathBackground;
+            console.log(t);
+
+            if (t == null) {
+                t = "SongBackGround/defaut.png"
+
+            }
+            var c = listsong[index].Name
+            var b = listsong[index].Singer
+            background_song.style.backgroundImage = "url('" + t + "')";
+            singerName.innerHTML = b;
+            songName.textContent = c;
+            background_song.style.animationPlayState = "paused"
+
+            
+
+
+
 
 
         }
@@ -181,12 +238,18 @@
             $("#play").click(function () {
 
                 audio.play();
+                
+                
 
             });
 
             $("#pause").click(function () {
 
                 audio.pause();
+
+                
+
+                
 
 
             });
@@ -357,12 +420,17 @@
 
         audio.onplay = function () {
 
-            play.style.display = "none"
+            play.style.display = "none";
 
 
 
 
             pause.style.display = "block";
+
+            background_song.style.animationPlayState = "running";
+
+            
+            
 
 
         }
@@ -370,9 +438,14 @@
 
         audio.onpause = function () {
 
-            pause.style.display = "none"
+            pause.style.display = "none";
 
-            play.style.display = "block"
+            play.style.display = "block";
+
+            background_song.style.animationPlayState = "paused";
+            
+
+           
         }
 
         audio.ontimeupdate = function () {

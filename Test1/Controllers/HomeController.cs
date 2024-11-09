@@ -20,22 +20,25 @@ namespace Test1.Controllers
 
             Song t = new Song();
             t.Id = 123;
+            t.Name = "Never Gonna Give You Up";
             t.PathSongs = Url.Content("~/Songs/song1.mp3");
-            t.PathBackground = "~/Songs/song1.mp3";
+            t.PathBackground = Url.Content("~/img/909edb5e516afbcd5b007d19ecfd5897.jpg");
             t.Singer = "Tung";
 
 
 
             Song t1 = new Song();
             t1.Id = 124;
+            t1.Name = "Let Me Go";
             t1.PathSongs = Url.Content("~/Songs/song2.mp3");
-            t1.PathBackground = "~/Songs/song1.mp3";
-            t1.Singer = "Tung";
+            
+            t1.Singer = "Ha Quang Hoa ";
 
             Song t2 = new Song();
             t2.Id = 124;
+            t2.Name = "Dark Soul";
             t2.PathSongs = Url.Content("~/Songs/song3.mp3");
-            t2.PathBackground = "~/Songs/song1.mp3";
+           
             t2.Singer = "Tung";
 
 
@@ -44,5 +47,14 @@ namespace Test1.Controllers
 
             return View();
         }
+
+
+    public ActionResult Text() { 
+            
+            
+            
+            return View(); }
+
+
     }
 }
