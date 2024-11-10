@@ -11,10 +11,13 @@ namespace Test1.Controllers
         
         public ActionResult Library()
         {
-            return View();
+
+
+            return PartialView("_Library");
+
         }
 
-       
+
 
     }
 }

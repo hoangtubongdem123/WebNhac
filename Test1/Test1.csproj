@@ -201,6 +201,7 @@
     <Content Include="Views\Library\Library.cshtml" />
     <Content Include="Views\Playlist\Playlist.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
+    <Content Include="Views\Library\_Library.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
