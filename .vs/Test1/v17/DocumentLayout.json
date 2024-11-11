@@ -3,36 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\downloads\\webnhac\\webnhac\\test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\views\\playlist\\playlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\playlist\\playlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\views\\library\\library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\downloads\\webnhac\\webnhac\\test1\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\views\\library\\_library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\_library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\downloads\\webnhac\\webnhac\\test1\\models\\model1.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\models\\model1.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\downloads\\webnhac\\webnhac\\test1\\views\\library\\_library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\_library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\test1\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\downloads\\webnhac\\webnhac\\test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,24 +38,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "Test1\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "Test1\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-11-10T17:55:09.522Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Model1.edmx.diagram",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Models\\Model1.edmx.diagram",
+              "RelativeDocumentMoniker": "Test1\\Models\\Model1.edmx.diagram",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Models\\Model1.edmx.diagram",
+              "RelativeToolTip": "Test1\\Models\\Model1.edmx.diagram",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-10T17:55:03.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "_Library.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Library\\_Library.cshtml",
               "RelativeDocumentMoniker": "Test1\\Views\\Library\\_Library.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Library\\_Library.cshtml",
               "RelativeToolTip": "Test1\\Views\\Library\\_Library.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-10T15:45:10.46Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PlaylistController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Controllers\\PlaylistController.cs",
               "RelativeDocumentMoniker": "Test1\\Controllers\\PlaylistController.cs",
@@ -72,39 +93,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Playlist.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Playlist\\Playlist.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Playlist\\Playlist.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Playlist\\Playlist.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Playlist\\Playlist.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-09T12:51:03.719Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Library.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Library\\Library.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Library\\Library.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Library\\Library.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Library\\Library.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-09T09:54:22.078Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "LibraryController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Controllers\\LibraryController.cs",
               "RelativeDocumentMoniker": "Test1\\Controllers\\LibraryController.cs",
               "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Controllers\\LibraryController.cs",
               "RelativeToolTip": "Test1\\Controllers\\LibraryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAcwBQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-09T09:53:25.111Z",
               "EditorCaption": ""
@@ -124,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Test1\\Views\\Shared\\_Layout.cshtml",
@@ -134,18 +129,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-09T06:39:56.567Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Downloads\\WebNhac\\WebNhac\\Test1\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAALwAAAAAKDMzMzP7vwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-09T11:39:56.371Z"
             }
           ]
         }

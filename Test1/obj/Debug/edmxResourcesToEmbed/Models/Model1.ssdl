@@ -44,11 +44,11 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="Type">
+  <EntityType Name="Types">
     <Key>
-      <PropertyRef Name="Type" />
+      <PropertyRef Name="TypeName" />
     </Key>
-    <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -107,11 +107,11 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Songs__Type__52593CB8">
-    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
     <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Type">
-        <PropertyRef Name="Type" />
+      <Principal Role="Types">
+        <PropertyRef Name="TypeName" />
       </Principal>
       <Dependent Role="Songs">
         <PropertyRef Name="Type" />
@@ -124,7 +124,7 @@
     <EntitySet Name="Singers" EntityType="Self.Singers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Songs" EntityType="Self.Songs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Playlist___ID_Pl__656C112C" Association="Self.FK__Playlist___ID_Pl__656C112C">
       <End Role="Playlists" EntitySet="Playlists" />
@@ -143,7 +143,7 @@
       <End Role="Songs" EntitySet="Songs" />
     </AssociationSet>
     <AssociationSet Name="FK__Songs__Type__52593CB8" Association="Self.FK__Songs__Type__52593CB8">
-      <End Role="Type" EntitySet="Type" />
+      <End Role="Types" EntitySet="Types" />
       <End Role="Songs" EntitySet="Songs" />
     </AssociationSet>
   </EntityContainer>

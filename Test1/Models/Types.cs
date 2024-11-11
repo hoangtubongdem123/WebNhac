@@ -12,15 +12,15 @@ namespace Test1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Type
+    public partial class Types
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
+        public Types()
         {
             this.Songs = new HashSet<Songs>();
         }
     
-        public string Type1 { get; set; }
+        public string TypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Songs> Songs { get; set; }

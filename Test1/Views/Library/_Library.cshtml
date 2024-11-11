@@ -1,3 +1,47 @@
 ﻿
 vcc
 <h1>ko co j</h1>>
+
+<h2> tải lên </h2>
+@{
+    
+
+
+ }
+
+<form action="/" method="post" new { enctype = "multipart/form-data" }>
+
+    <label> Tên Bài Hát </label>
+    <input type="text" name="ten" value="" />
+    <label> Ca sĩ </label>
+    <select>
+        @foreach (var t in ViewBag.Allsinger)
+        {
+            <option value="value">@t.NAME</option>
+
+
+        }
+    </select>
+   
+    <label> Thể loại </label>
+    <select>
+        @foreach (var t in ViewBag.Alltype)
+        {
+            <option value="value">@t.TypeName</option>
+
+
+        }        
+    </select>
+    <label>Đường dẫn file Nhạc  </label>
+    <input type="file" name="pathsong" value="" />
+    <label>Đường dẫn ảnh </label>
+    <input type="file" name="pathimg" value="" />
+
+    <br>
+
+    <button> Tải Lên </button>
+
+
+
+
+</form>

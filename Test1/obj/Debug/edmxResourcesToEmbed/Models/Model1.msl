@@ -41,13 +41,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Type">
-      <EntityTypeMapping TypeName="WebNgheNhacModel.Type">
-        <MappingFragment StoreEntitySet="Type">
-          <ScalarProperty Name="Type1" ColumnName="Type" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="WebNgheNhacModel.Users">
         <MappingFragment StoreEntitySet="Users">
@@ -65,5 +58,12 @@
         <ScalarProperty Name="ID_Song" ColumnName="ID_Song" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="WebNgheNhacModel.Types">
+        <MappingFragment StoreEntitySet="Types">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
