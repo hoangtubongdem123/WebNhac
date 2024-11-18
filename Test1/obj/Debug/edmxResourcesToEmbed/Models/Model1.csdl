@@ -27,10 +27,10 @@
     <Property Name="ID_Singer" Type="Int32" />
     <Property Name="Path_Song" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Path_BackGround" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Types" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Singers" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Songs" ToRole="Singers" />
+    <NavigationProperty Name="Types1" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Songs" ToRole="Types" />
     <NavigationProperty Name="Playlists" Relationship="Self.Playlist_Songs" FromRole="Songs" ToRole="Playlists" />
-    <NavigationProperty Name="Types" Relationship="WebNgheNhacModel.FK__Songs__Type__52593CB81" FromRole="Songs" ToRole="Types" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -41,6 +41,13 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Types">
+    <Key>
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Types" ToRole="Songs" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -75,15 +82,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Songs__Type__52593CB8">
+    <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
+    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Types">
+        <PropertyRef Name="TypeName" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="Types" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Playlist_Songs">
     <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
     <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="WebNgheNhacEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="WebNgheNhacEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Playlists" EntityType="Self.Playlists" />
     <EntitySet Name="Singers" EntityType="Self.Singers" />
     <EntitySet Name="Songs" EntityType="Self.Songs" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Types" EntityType="Self.Types" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
       <End Role="Users" EntitySet="Users" />
@@ -93,33 +113,13 @@
       <End Role="Singers" EntitySet="Singers" />
       <End Role="Songs" EntitySet="Songs" />
     </AssociationSet>
+    <AssociationSet Name="FK__Songs__Type__52593CB8" Association="Self.FK__Songs__Type__52593CB8">
+      <End Role="Types" EntitySet="Types" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
     <AssociationSet Name="Playlist_Songs" Association="Self.Playlist_Songs">
       <End Role="Playlists" EntitySet="Playlists" />
       <End Role="Songs" EntitySet="Songs" />
     </AssociationSet>
-    <EntitySet Name="Types" EntityType="WebNgheNhacModel.Types" />
-    <AssociationSet Name="FK__Songs__Type__52593CB81" Association="WebNgheNhacModel.FK__Songs__Type__52593CB81">
-      <End Role="Types" EntitySet="Types" />
-      <End Role="Songs" EntitySet="Songs" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Types">
-    <Key>
-      <PropertyRef Name="TypeName" />
-    </Key>
-    <Property Name="TypeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Songs" Relationship="WebNgheNhacModel.FK__Songs__Type__52593CB81" FromRole="Types" ToRole="Songs" />
-  </EntityType>
-  <Association Name="FK__Songs__Type__52593CB81">
-    <End Type="WebNgheNhacModel.Types" Role="Types" Multiplicity="0..1" />
-    <End Type="WebNgheNhacModel.Songs" Role="Songs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Types">
-        <PropertyRef Name="TypeName" />
-      </Principal>
-      <Dependent Role="Songs">
-        <PropertyRef Name="Type" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

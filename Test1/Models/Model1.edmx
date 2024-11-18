@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WebNgheNhacModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WebNgheNhacModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Playlist_Songs">
           <Key>
             <PropertyRef Name="ID_Playlist" />
@@ -37,7 +37,7 @@
           <Property Name="ID_Singer" Type="int" />
           <Property Name="Path_Song" Type="nvarchar" MaxLength="100" />
           <Property Name="Path_BackGround" Type="nvarchar" MaxLength="100" />
-          <Property Name="Type" Type="nvarchar" MaxLength="30" />
+          <Property Name="Types" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -119,7 +119,7 @@
               <PropertyRef Name="TypeName" />
             </Principal>
             <Dependent Role="Songs">
-              <PropertyRef Name="Type" />
+              <PropertyRef Name="Types" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -152,7 +152,8 @@
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebNgheNhacModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -183,10 +184,10 @@
           <Property Name="ID_Singer" Type="Int32" />
           <Property Name="Path_Song" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Path_BackGround" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Types" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Singers" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Songs" ToRole="Singers" />
+          <NavigationProperty Name="Types1" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Songs" ToRole="Types" />
           <NavigationProperty Name="Playlists" Relationship="Self.Playlist_Songs" FromRole="Songs" ToRole="Playlists" />
-          <NavigationProperty Name="Types" Relationship="WebNgheNhacModel.FK__Songs__Type__52593CB81" FromRole="Songs" ToRole="Types" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -197,6 +198,13 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="TypeName" />
+          </Key>
+          <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Types" ToRole="Songs" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -231,15 +239,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Songs__Type__52593CB8">
+          <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
+          <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="TypeName" />
+            </Principal>
+            <Dependent Role="Songs">
+              <PropertyRef Name="Types" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Playlist_Songs">
           <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
           <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="WebNgheNhacEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WebNgheNhacEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Playlists" EntityType="Self.Playlists" />
           <EntitySet Name="Singers" EntityType="Self.Singers" />
           <EntitySet Name="Songs" EntityType="Self.Songs" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
             <End Role="Users" EntitySet="Users" />
@@ -249,41 +270,21 @@
             <End Role="Singers" EntitySet="Singers" />
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
+          <AssociationSet Name="FK__Songs__Type__52593CB8" Association="Self.FK__Songs__Type__52593CB8">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
           <AssociationSet Name="Playlist_Songs" Association="Self.Playlist_Songs">
             <End Role="Playlists" EntitySet="Playlists" />
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
-          <EntitySet Name="Types" EntityType="WebNgheNhacModel.Types" />
-          <AssociationSet Name="FK__Songs__Type__52593CB81" Association="WebNgheNhacModel.FK__Songs__Type__52593CB81">
-            <End Role="Types" EntitySet="Types" />
-            <End Role="Songs" EntitySet="Songs" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Types">
-          <Key>
-            <PropertyRef Name="TypeName" />
-          </Key>
-          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Songs" Relationship="WebNgheNhacModel.FK__Songs__Type__52593CB81" FromRole="Types" ToRole="Songs" />
-        </EntityType>
-        <Association Name="FK__Songs__Type__52593CB81">
-          <End Type="WebNgheNhacModel.Types" Role="Types" Multiplicity="0..1" />
-          <End Type="WebNgheNhacModel.Songs" Role="Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Types">
-              <PropertyRef Name="TypeName" />
-            </Principal>
-            <Dependent Role="Songs">
-              <PropertyRef Name="Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebNgheNhacModelStoreContainer" CdmEntityContainer="WebNgheNhacEntities">
+        <EntityContainerMapping StorageEntityContainer="WebNgheNhacModelStoreContainer" CdmEntityContainer="WebNgheNhacEntities1">
           <EntitySetMapping Name="Playlists">
             <EntityTypeMapping TypeName="WebNgheNhacModel.Playlists">
               <MappingFragment StoreEntitySet="Playlists">
@@ -309,7 +310,7 @@
                 <ScalarProperty Name="ID_Singer" ColumnName="ID_Singer" />
                 <ScalarProperty Name="Path_Song" ColumnName="Path_Song" />
                 <ScalarProperty Name="Path_BackGround" ColumnName="Path_BackGround" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Types" ColumnName="Types" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -321,6 +322,13 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="WebNgheNhacModel.Types">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -341,13 +349,6 @@
               <ScalarProperty Name="ID_Song" ColumnName="ID_Song" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Types">
-            <EntityTypeMapping TypeName="WebNgheNhacModel.Types">
-              <MappingFragment StoreEntitySet="Types">
-                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

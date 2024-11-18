@@ -1,9 +1,14 @@
-﻿const btnPrev = document.querySelector('.btnPrev');
+﻿
+const btnPrev = document.querySelector('.btnPrev');
 const btnNext = document.querySelector('.btnNext');
 const gallery = document.querySelector('.gallery');
 const mainAppBody = document.getElementById('mainAppBody');
 
+console.log(mainAppBody);
+console.log(2);
 
+
+const galleryWidth = gallery.offsetWidth;
 
 
 gallery.addEventListener('wheel', (e) => {
@@ -30,20 +35,4 @@ mainAppBody.addEventListener('scroll', () => {
     else {
         appHeader.classList.add("onscroll");
     }
-
-
 })
-
-const listsong = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ListSongs));
-
-
-
-const audio = getElementById('audio');
-const pause = getElementById('pause');
-const play = getElementById('play');
-
-
-
-
-
-

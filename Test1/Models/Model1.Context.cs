@@ -13,10 +13,10 @@ namespace Test1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WebNgheNhacEntities : DbContext
+    public partial class WebNgheNhacEntities1 : DbContext
     {
-        public WebNgheNhacEntities()
-            : base("name=WebNgheNhacEntities")
+        public WebNgheNhacEntities1()
+            : base("name=WebNgheNhacEntities1")
         {
         }
     
@@ -29,7 +29,7 @@ namespace Test1.Models
         public virtual DbSet<Singers> Singers { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Types> Types { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

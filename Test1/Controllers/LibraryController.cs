@@ -14,7 +14,7 @@ namespace Test1.Controllers
         {
 
 
-           WebNgheNhacEntities db = new WebNgheNhacEntities();
+           WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
 
             List<Singers> t = db.Singers.ToList();
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WebNgheNhacModelStoreContainer" CdmEntityContainer="WebNgheNhacEntities">
+  <EntityContainerMapping StorageEntityContainer="WebNgheNhacModelStoreContainer" CdmEntityContainer="WebNgheNhacEntities1">
     <EntitySetMapping Name="Playlists">
       <EntityTypeMapping TypeName="WebNgheNhacModel.Playlists">
         <MappingFragment StoreEntitySet="Playlists">
@@ -26,7 +26,7 @@
           <ScalarProperty Name="ID_Singer" ColumnName="ID_Singer" />
           <ScalarProperty Name="Path_Song" ColumnName="Path_Song" />
           <ScalarProperty Name="Path_BackGround" ColumnName="Path_BackGround" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Types" ColumnName="Types" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -38,6 +38,13 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="WebNgheNhacModel.Types">
+        <MappingFragment StoreEntitySet="Types">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -58,12 +65,5 @@
         <ScalarProperty Name="ID_Song" ColumnName="ID_Song" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Types">
-      <EntityTypeMapping TypeName="WebNgheNhacModel.Types">
-        <MappingFragment StoreEntitySet="Types">
-          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

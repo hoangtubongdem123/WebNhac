@@ -1,18 +1,127 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Account</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
 </head>
 <body>
-    <div> 
-        <h2>Account</h2>
+    <div>
+        <div class="wrapperListMusic">
+            <div class="divListMusic">
+                <ul class="listMusic" id="sec">
+                   
+                </ul>
+                <div class="pagination">
+                    <button id="Previous">Previous</button>
+                    <span id="currentPage">1</span>
+                    <button id="Next">Next</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+   
+
+    <script>
+
+        var currentPage = document.getElementById("currentPage");
+        var Previous = document.getElementById("Previous");
+        var Next = document.getElementById("Next");
+        var listsong_account = document.getElementById("sec");
+        var listSong_account = [];
+
+
+        function fetchSongs() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: '@Url.Action("GetListSong", "Account")',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                resolve(data); // Giải quyết Promise khi dữ liệu được tải
+            },
+            error: function (error) {
+                reject(error); // Từ chối Promise khi có lỗi
+            }
+        });
+    });
+}
+
+
+
+        fetchSongs()
+            .then((listSong_account) => {
+                console.log("Dữ liệu nhận được từ server:", listSong_account);
+
+                
+                listSong_account.forEach(function (song) {
+                    var songitem = document.createElement("li");
+                    songitem.classList.add('songItem');
+
+                    songitem.innerHTML = `
+                <div class="songItemLeft">
+                    <div class="songLeftLogo" style="background-image: url('/${song.Path_BackGround}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+                    <div class="songLeftText">
+                        <span class="lName">${song.NAME}</span>
+                        <a class="lArtist" href="#">${song.Singer.NAME}</a>
+                    </div>
+                </div>
+                <div class="songItemCenter">
+                    <div class="songCenterAlbum">
+                        <a class="songCenterAlbumLink" href="#">${song.Types}</a>
+                    </div>
+                </div>
+                <div class="songItemRight">
+                    <div class="songTime">
+                        <span></span> <!-- Replace with song duration if available -->
+                    </div>
+                </div>
+            `;
+
+                    $(songitem).click(function () {
+                       
+                        listsong = [song]
+                        loadsong(0);
+                        audio.play();
+                        console.log(listsong)
+
+
+
+
+                      })
+
+                    document.getElementById("sec").appendChild(songitem);
+
+                    
+
+
+
+
+                });
+            })
+
+            .catch((error) => {
+                console.error("Lỗi khi tải dữ liệu:", error);
+                alert("Error loading data");
+            });
+
+
+
+
+
+
+
+
+
+    </script>
 </body>
 </html>
+
+

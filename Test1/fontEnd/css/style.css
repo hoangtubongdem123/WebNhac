@@ -32,10 +32,6 @@
     width: 120px;
     height: 40px;
     display: inline-block;
-    background-image: url('../img/logo-light.svg');
-    object-fit:contain;
-    border-radius:50%;
-
 }
 
 .navbarMenu {
@@ -374,13 +370,11 @@
 .btn-play-pause {
     border: 2px solid #000;
     border-radius: 50%;
-    
 }
 
 .pause {
     display: none;
 }
-
 
 .divInput {
     display: flex;
@@ -426,6 +420,7 @@
 .bodyContent {
     margin-top: 70px;
     min-height: calc(100% - 158px);
+    margin-bottom: 90px;
 }
 
 .divBodyContent {
@@ -479,9 +474,9 @@
 }
 
 .gallrryImg {
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 6px;
 }
 
@@ -526,7 +521,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 64px 0;
+    margin-top: 64px;
+    margin-bottom: 22px;
 }
 
 .desListMusic {
@@ -575,6 +571,8 @@
 }
 
 .songLeftText {
+    width: 300px; 
+    overflow: hidden; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -665,4 +663,228 @@
 }
 
 
+/*footer*/
+.footer {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 32px 40px;
+    margin-top: 40px;
+}
 
+.footerTop {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.footerTopLink {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footerColum {
+    display: flex;
+    flex-direction: column;
+    margin: 0 24px 32px 0;
+    min-width: 170px;
+}
+
+.footerColumHeading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin: 16px 0;
+}
+
+.footerListLink {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerItemLink {
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #32323D;
+}
+
+    .footerItemLink:hover {
+        text-decoration: underline;
+    }
+
+.footerTopSocial {
+    display: flex;
+    column-gap: 16px;
+}
+
+    .footerTopSocial a {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.05);
+        color: #000;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
+
+.footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 26px;
+    border-top: 1px solid rgba(0,0,0, 0.2);
+}
+
+.footerBottomListLink {
+    display: flex;
+    column-gap: 16px;
+}
+
+.footerBottomLinkItem {
+    font-size: 14px;
+    color: #32323D;
+    text-decoration: none;
+}
+
+    .footerBottomLinkItem:hover {
+        text-decoration: underline;
+    }
+
+.footerBottomPolicy {
+    color: #32323D;
+    font-size: 15px;
+}
+
+/*section*/
+
+.wrapperSection {
+    display: flex;
+    flex-direction: column;
+    margin: 0 -15px 22px;
+}
+
+.wrapperSectionHeading {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 67px;
+}
+
+.sectionLink {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.sectionLinkH2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 8px 0 16px;
+}
+
+.sectionSeeMore {
+    font-size: 14px;
+    font-weight: 700;
+    color: #32323D;
+    text-decoration: none;
+}
+
+    .sectionSeeMore:hover {
+        text-decoration: underline;
+    }
+
+.wrapperSectionBody {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.SectionItem {
+    width: 20%;
+    position: relative;
+    padding-left: 14px;
+    padding-right: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.SectionItemImg {
+    width: 100%;
+    height: auto;
+}
+
+    .SectionItemImg img {
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.SectionItemText {
+    margin-top: 12px;
+}
+
+.SectionItemTextName {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #32323d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.SectionItemTextDes {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.33;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.SectionItemTextDesLink {
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+    .SectionItemTextDesLink:hover {
+        text-decoration: underline;
+    }
+
+
+
+.top-80px {
+    margin-top: 80px;
+}
+
+.SectionItemImg-Artis {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .SectionItemImg-Artis img {
+        border-radius: 50%;
+        width: 80%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.SectionItemTextArt {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

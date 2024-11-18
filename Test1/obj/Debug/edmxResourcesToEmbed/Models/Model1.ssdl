@@ -32,7 +32,7 @@
     <Property Name="ID_Singer" Type="int" />
     <Property Name="Path_Song" Type="nvarchar" MaxLength="100" />
     <Property Name="Path_BackGround" Type="nvarchar" MaxLength="100" />
-    <Property Name="Type" Type="nvarchar" MaxLength="30" />
+    <Property Name="Types" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -114,7 +114,7 @@
         <PropertyRef Name="TypeName" />
       </Principal>
       <Dependent Role="Songs">
-        <PropertyRef Name="Type" />
+        <PropertyRef Name="Types" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
