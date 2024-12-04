@@ -21,6 +21,7 @@ namespace Test1.Models
         }
     
         public string TypeName { get; set; }
+        public string Path_Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Songs> Songs { get; set; }

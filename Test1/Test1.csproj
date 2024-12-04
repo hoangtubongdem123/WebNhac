@@ -148,6 +148,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Album.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,7 +172,6 @@
     <Compile Include="Models\Singers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Song.cs" />
     <Compile Include="Models\Songs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,6 +203,10 @@
     <Content Include="Views\Playlist\Playlist.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
     <Content Include="Views\Library\_Library.cshtml" />
+    <Content Include="Views\Library\Singer.cshtml" />
+    <Content Include="Views\Library\DetailSinger.cshtml" />
+    <Content Include="Views\Home\ViewSearch.cshtml" />
+    <Content Include="Views\Home\_SearchResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

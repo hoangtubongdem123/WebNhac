@@ -25,6 +25,7 @@ namespace Test1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Album> Album { get; set; }
         public virtual DbSet<Playlists> Playlists { get; set; }
         public virtual DbSet<Singers> Singers { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }

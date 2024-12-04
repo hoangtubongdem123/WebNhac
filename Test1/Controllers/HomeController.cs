@@ -13,53 +13,88 @@ namespace Test1.Controllers
         public ActionResult Index()
         {
 
-            //WebNgheNhacEntities db = new WebNgheNhacEntities();
 
-            //List<Songs> t = db.Songs.ToList();
-            //ViewBag.ListSongs = t;
-
-            Song t = new Song();
-            t.Id = 123;
-            t.Name = "Never Gonna Give You Up";
-            t.PathSongs = "/Songs/song1.mp3";
-            t.PathBackground = Url.Content("~/img/909edb5e516afbcd5b007d19ecfd5897.jpg");
-            t.Singer = "Tung";
-
-
-
-            Song t1 = new Song();
-            t1.Id = 124;
-            t1.Name = "Let Me Go";
-            t1.PathSongs = Url.Content("~/Songs/song2.mp3");
-
-            t1.Singer = "Ha Quang Hoa ";
-
-            Song t2 = new Song();
-            t2.Id = 124;
-            t2.Name = "Dark Soul";
-            t2.PathSongs = Url.Content("~/Songs/song3.mp3");
-
-            t2.Singer = "Tung";
-
-
-            List<Song> ListSongs = new List<Song> { t, t1, t2 };
-            ViewBag.ListSongs = ListSongs;
 
             return View();
         }
 
-
-        public ActionResult Text()
+        public ActionResult getAllType()
         {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+
+            var type = db.Types.Select(t => new
+            {
+                t.TypeName,
+                t.Path_Type
+
+            })
+
+                    .ToList();
 
 
+            return Json(new {Types = type}, JsonRequestBehavior.AllowGet);
+        }
 
-            return View();
+        [HttpGet]
+        public ActionResult Search(string query)
+        
+        {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+
+            var songs = db.Songs
+                    .Where(s => s.NAME.Contains(query))
+                    .Select(s => new { s.ID_Song, s.NAME })
+                    .ToList();
+
+            
+            var types = db.Types
+                          .Where(t => t.TypeName.Contains(query))
+                          .Select(t => new {  t.TypeName })
+                          .ToList();
+
+         
+            var albums = db.Album
+                           .Where(a => a.Name_Album.Contains(query))
+                           .Select(a => new { a.ID_Album, a.Name_Album })
+                           .ToList();
+
+            var singers = db.Singers
+                            .Where(si => si.NAME.Contains(query))
+                            .Select(si => new { si.ID_Singer, si.NAME })
+                            .ToList();
+
+            return Json(new
+            {
+                Songs = songs,
+                Types = types,
+                Albums = albums,
+                Singers = singers
+            }, JsonRequestBehavior.AllowGet);
+
 
 
         }
 
-       
+        [HttpGet]
+        public ActionResult getAllSinger()
+        {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+
+            var singer = db.Singers.Select(t => new
+            {   
+                t.ID_Singer,
+                t.NAME,
+                t.Path_Singer
+
+            })
+
+                    .ToList();
+
+
+            return Json(new { Singers = singer }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
     }
 }

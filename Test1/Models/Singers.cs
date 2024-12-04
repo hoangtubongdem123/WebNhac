@@ -22,6 +22,7 @@ namespace Test1.Models
     
         public int ID_Singer { get; set; }
         public string NAME { get; set; }
+        public string Path_Singer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Songs> Songs { get; set; }

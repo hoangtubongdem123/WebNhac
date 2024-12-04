@@ -17,7 +17,7 @@ namespace Test1.Controllers
 
 
         [HttpGet]
-        public ActionResult GetListSong()
+        public ActionResult GetListSong(int page =1, int pageSize=4 )
         {
 
 
@@ -27,9 +27,11 @@ namespace Test1.Controllers
 
             var songs = db.Songs
             .Include("Singers")
-          
-         .Select(song => new
-         {
+            .OrderBy(song => song.ID_Song)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+             .Select(song => new
+                 {
              song.ID_Song,
              song.NAME,
              song.Path_BackGround,
@@ -42,7 +44,9 @@ namespace Test1.Controllers
              }
          })
     .ToList();
-            return Json(songs, JsonRequestBehavior.AllowGet);
+
+            var totalRecords = db.Songs.Count();
+            return Json(new {Song = songs , TotalRecords = totalRecords, CurrentPage = page } ,JsonRequestBehavior.AllowGet);
 
 
         }

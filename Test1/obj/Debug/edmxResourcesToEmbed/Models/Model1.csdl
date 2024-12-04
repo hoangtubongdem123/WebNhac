@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WebNgheNhacModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="ID_Album" />
+    </Key>
+    <Property Name="ID_Album" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Album" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_Song" Type="Int32" Nullable="false" />
+    <Property Name="Path_Album" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Songs" Relationship="Self.FK__Album__ID_Song__6FE99F9F" FromRole="Album" ToRole="Songs" />
+  </EntityType>
   <EntityType Name="Playlists">
     <Key>
       <PropertyRef Name="ID_Playlist" />
@@ -16,6 +26,7 @@
     </Key>
     <Property Name="ID_Singer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Path_Singer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Singers" ToRole="Songs" />
   </EntityType>
   <EntityType Name="Songs">
@@ -28,6 +39,7 @@
     <Property Name="Path_Song" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Path_BackGround" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Types" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Album" Relationship="Self.FK__Album__ID_Song__6FE99F9F" FromRole="Songs" ToRole="Album" />
     <NavigationProperty Name="Singers" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Songs" ToRole="Singers" />
     <NavigationProperty Name="Types1" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Songs" ToRole="Types" />
     <NavigationProperty Name="Playlists" Relationship="Self.Playlist_Songs" FromRole="Songs" ToRole="Playlists" />
@@ -47,6 +59,7 @@
       <PropertyRef Name="TypeName" />
     </Key>
     <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Path_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__Type__52593CB8" FromRole="Types" ToRole="Songs" />
   </EntityType>
   <EntityType Name="Users">
@@ -56,8 +69,21 @@
     <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__ID_Use__628FA481" FromRole="Users" ToRole="Playlists" />
   </EntityType>
+  <Association Name="FK__Album__ID_Song__6FE99F9F">
+    <End Role="Songs" Type="Self.Songs" Multiplicity="1" />
+    <End Role="Album" Type="Self.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Songs">
+        <PropertyRef Name="ID_Song" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="ID_Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Playlist__ID_Use__628FA481">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
@@ -99,12 +125,17 @@
     <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
   </Association>
   <EntityContainer Name="WebNgheNhacEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Album" EntityType="Self.Album" />
     <EntitySet Name="Playlists" EntityType="Self.Playlists" />
     <EntitySet Name="Singers" EntityType="Self.Singers" />
     <EntitySet Name="Songs" EntityType="Self.Songs" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Types" EntityType="Self.Types" />
     <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK__Album__ID_Song__6FE99F9F" Association="Self.FK__Album__ID_Song__6FE99F9F">
+      <End Role="Songs" EntitySet="Songs" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
     <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
       <End Role="Users" EntitySet="Users" />
       <End Role="Playlists" EntitySet="Playlists" />

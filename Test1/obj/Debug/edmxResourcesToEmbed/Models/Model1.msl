@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="WebNgheNhacModelStoreContainer" CdmEntityContainer="WebNgheNhacEntities1">
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="WebNgheNhacModel.Album">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="ID_Album" ColumnName="ID_Album" />
+          <ScalarProperty Name="Name_Album" ColumnName="Name_Album" />
+          <ScalarProperty Name="ID_Song" ColumnName="ID_Song" />
+          <ScalarProperty Name="Path_Album" ColumnName="Path_Album" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Playlists">
       <EntityTypeMapping TypeName="WebNgheNhacModel.Playlists">
         <MappingFragment StoreEntitySet="Playlists">
@@ -15,6 +25,7 @@
         <MappingFragment StoreEntitySet="Singers">
           <ScalarProperty Name="ID_Singer" ColumnName="ID_Singer" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Path_Singer" ColumnName="Path_Singer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,6 +56,7 @@
       <EntityTypeMapping TypeName="WebNgheNhacModel.Types">
         <MappingFragment StoreEntitySet="Types">
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="Path_Type" ColumnName="Path_Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -54,6 +66,7 @@
           <ScalarProperty Name="ID_User" ColumnName="ID_User" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

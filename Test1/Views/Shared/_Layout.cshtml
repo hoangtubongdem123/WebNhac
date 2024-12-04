@@ -45,17 +45,21 @@
         </div>
         <div class="appHeader" id="appHeader">
             <div class="headerLeft">
-                <form class="formSearch">
+                <form class="formSearch" id="searchForm">
                     <div class="searchContainer">
-                        <button class="sreachBtn">
+                        <button type="submit" class="sreachBtn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                         <div class="inputWrapper">
-                            <input type="text" class="inputSearch" placeholder="Tìm kiếm bài hát, nghệ sỹ, lời bài hát .....">
+                            <input type="text" id="textInput" class="inputSearch" name="query" placeholder="Tìm kiếm bài hát, nghệ sỹ, thể loại , .....">
+
                         </div>
                     </div>
                 </form>
             </div>
+
+
+
             <div class="headerRight">
                 <button class="btn btnLogin">Đăng nhập</button>
                 <a href="#" class="btn btnRegister">Đăng kí</a>
@@ -68,6 +72,9 @@
 
             </div>
         </div>
+
+
+        <div id="searchResults" class="search-results"></div>
         <div class="appBody" id="appBody">
             <div class="wrapperAppBody">
                 <div id="mainAppBody" class="mainAppBody">
@@ -534,6 +541,9 @@
 
 
 
+
+
+
     </script>
 
 
@@ -605,7 +615,7 @@
                 $.ajax({
                     url: url,
                     method: 'GET',
-                    success: function (data) {
+                  success: function (data) {
                         $('#divBodyContent').html(data);
                     },
                     error: function () {
@@ -618,10 +628,64 @@
         });
 
 
+
        
-        
+        $(document).ready(function () {
+            $('#searchForm').on('submit', function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+                var query = $('#textInput').val(); // Lấy giá trị từ ô nhập liệu
+                $.ajax({
+                    url: '/Home/Search', // Đường dẫn đến controller
+                    type: 'GET', // Phương thức HTTP
+                    data: { query: query }, // Dữ liệu gửi đi
+                    success: function (response) {
+                        console.log(response); // Kiểm tra toàn bộ phản hồi
+                        var singers = response.Singers || [];
+                        var albums = response.Albums || [];
+                        var songs = response.Songs || [];
+                        var types = response.Types || [];
+
+                        // Tạo HTML để hiển thị danh sách ca sĩ
+                        var html = '<h3>Danh sách ca sĩ:</h3><ul>';
+                        singers.forEach(function (singer) {
+                            html += '<li>' + singer.NAME + '</li>';
+                        });
+                        html += '</ul>';
+
+                        // Tạo HTML để hiển thị danh sách album
+                        html += '<h3>Danh sách album:</h3><ul>';
+                        albums.forEach(function (album) {
+                            html += '<li>' + album.Name_Album + '</li>';
+                        });
+                        html += '</ul>';
+
+                        // Tạo HTML để hiển thị danh sách bài hát
+                        html += '<h3>Danh sách bài hát:</h3><ul>';
+                        songs.forEach(function (song) {
+                            html += '<li>' + song.NAME + '</li>';
+                        });
+                        html += '</ul>';
+
+                        // Tạo HTML để hiển thị danh sách thể loại
+                        html += '<h3>Danh sách thể loại:</h3><ul>';
+                        types.forEach(function (type) {
+                            html += '<li>' + type.TypeName + '</li>';
+                        });
+                        html += '</ul>';
+
+                        // Cập nhật nội dung của div
+                        $('#divBodyContent').html(html);
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi
+                        console.error(error);
+                    }
+                });
 
 
+            });
+        });
        
 
 
