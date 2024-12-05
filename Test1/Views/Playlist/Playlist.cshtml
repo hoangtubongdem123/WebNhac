@@ -1,303 +1,116 @@
 ﻿
-@{
-    ViewBag.Title = "Playlist";
-   
-}
-<head>
-    
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-</head>
-
-
-
-<body>
-
-
-
-    <h2>Playlist</h2>
-
-
-    <h3>Danh Sách Ca Sĩ</h3>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody id="singerTableBody">
-            <!-- Các hàng dữ liệu sẽ được thêm vào đây -->
-        </tbody>
-    </table>
-
-    <button onclick="openModal()">Thêm Ca Sĩ</button>
-
-
-    <!-- Modal -->
-    <div id="addSingerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Thêm Ca Sĩ</h2>
-            <!-- Form thêm ca sĩ -->
-            <form id="addSingerForm">
-                <div>
-                    <label for="Name">Tên Ca Sĩ</label>
-                    <input type="text" id="Name" name="Name" required>
-                </div>
-
-                <button onclick="addSinger()" type="submit">Thêm</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="editSingerModal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Sửa Ca Sĩ</h2>
-            <form id="editSingerForm">
-                <input type="hidden" id="singerId"> <!-- Trường ẩn để lưu ID của ca sĩ -->
-                <div>
-                    <label for="Name">Tên Ca Sĩ</label>
-                    <input type="text" id="Names" name="Name" required>
-                </div>
-                <button type="submit">Lưu</button>
-            </form>
-        </div>
-    </div>
-
-
-
-    <style>
-        .modal {
-            display: none; /* Ẩn modal mặc định */
-            position: fixed;
-            z-index: 1; /* Đảm bảo modal luôn hiển thị trên cùng */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Màu nền mờ cho vùng nền */
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-            .close-btn:hover,
-            .close-btn:focus {
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-        form div {
-            margin-bottom: 10px;
-        }
-
-        form label {
-            display: block;
-        }
-
-        form input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-        }
-
-        form button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-            form button:hover {
-                background-color: #45a049;
-            }
-    </style>
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
-
-        function loadList() {
-
-            $(document).ready(function () {
-                $.ajax({
-                    url: '@Url.Action("GetListSinger", "Playlist")', // Đường dẫn đến hành động trong controller
-                    type: 'POST',  // Phương thức HTTP
-                    dataType: 'json',  // Kiểu dữ liệu trả về
-                    success: function (data) {
-                        var tableHtml = ''; // Chuỗi để chứa các hàng của bảng
-
-                        // Sử dụng $.each để lặp qua mảng dữ liệu
-                        $.each(data, function (index, item) {
-                            tableHtml += `
-                    <tr>
-                        <td>${item.ID_Singer}</td>
-                        <td>${item.NAME}</td>
-                       <td><button  type="button" id="editButton" data-id="${item.ID_Singer}">Edit</button></td>
-                         <td><button type="button" id="deleteButton" data-id="${item.ID_Singer}">Delete</button></td>
-
-                    </tr>
-                `;
-                        });
-
-                        // Chèn các hàng vào tbody của bảng với id là 'singerTableBody'
-                        $('#singerTableBody').html(tableHtml);
-                    },
-
-                    error: function () {
-                        alert('Error Loading');
-                    }
-                });
-
-
-            });
-        }
-
-        loadList();
-
-        function openModal() {
-            document.getElementById('addSingerModal').style.display = "block";
-        }
-
-        // Đóng modal khi người dùng nhấn vào nút X
-        document.querySelector('.close-btn').addEventListener('click', function () {
-            document.getElementById('addSingerModal').style.display = "none";
-        });
-
-
-
-
-
-
-        function openModal2() {
-            document.getElementById('editSingerModal').style.display = "block";
-        }
-
-        // Đóng modal khi nhấn vào nút X
+    <div class="wrapperSectionHeading">
+        <a class="sectionLink">
+            <h2 class="sectionLinkH2">Danh Sách Playlist </h2>
+        </a>
         
+    </div>
+    <div class="wrapperSectionBody_playlist">
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
+        <div class="SectionItem">
+            <div class="SectionItemImg-Artis_playlist">
+                <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+            </div>
+            <div class="SectionItemIcon"></div>
+            <div class="SectionItemTextArt">
+                <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+                <div class="SectionItemTextDes">
+                    <a href="#" class="SectionItemTextDesLink">Artis</a>
+                </div>
+            </div>
+        </div>
 
-        function addSinger() {
-
-            var t = document.getElementById("Name");
-
-            var formData = {
-                NAME: document.getElementById('Name').value,
-
-            };
-
-
-            $.ajax({
-                url: '@Url.Action("AddSinger","Playlist")',
-                type: 'POST',
-                contentType: 'application/json' ,
-                data:JSON.stringify(formData),
-                success: function (response) {
-                    if (response.success) {
-                        alert(response.message);  // Hiển thị thông báo thành công
-                        document.getElementById('addSingerModal').style.display = "none";  // Đóng modal
-                        document.getElementById('addSingerForm').reset();  // Xóa form
-                        loadList();
-                    } else {
-                        alert(response.message);  // Hiển thị thông báo lỗi
-                    }
-
-
-                },
-                error: function () {
-
-                    alert('error');
-                }
 
 
 
 
 
 
-            })
-        }
-
-        $(document).ready(function () {
-
-            $(document).on('click', '#editButton', function () {
-                // Lấy ID từ thuộc tính 'data-id' của nút vừa được nhấn
-                var id = $(this).data('id');
-               
-                console.log(id);
-
-                $.ajax({
-                    url: '@Url.Action("Edit","Playlist")',
-                    type: 'POST',
-                    
-                    dataType: 'json',
-                    data: JSON.stringify({ id: id }), // Gửi ID dưới dạng JSON
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (data) {
-                        $('#Name').val(data.NAME);
-                        
-                    
-
-                        openModal2();
-                        $(document).ready(function () {
-                            // Đóng modal khi nhấn vào nút X
-                            $('.close-btn').click(function () {
-                                $('#editSingerModal').hide();
-                            });
-                            $('#Name').val(data.NAME);
-                        });
-
-
-                    }
-
-
-                })
 
 
 
 
-
-            });
-
-        })
-
-
-
-
-
-
-    </script>
-
-
-
-
-</body>
-
+    </div>
