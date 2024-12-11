@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Test1.Models.Singers>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+
+<h2>Quản lý ca sĩ</h2>
+
+<button id="openModal">Thêm ca sĩ</button>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm ca sĩ</h3>
+        <label>Tên ca sĩ</label>
+        <form action="~/Singers/CreateSinger" method="post">
+            <input type="text" name="name" value="" class="form-control" required />
+            <button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>ID_Singer</th>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td style="width:6%">@item.ID_Singer</td>
+                <td>@item.NAME</td>
+                <td style="width:2%">
+                    <form action="@Url.Action("DeleteSinger", new { id = item.ID_Singer })" method="get" >
+                        <button type="submit">Xóa</button>
+                    </form>
+                </td>
+                <td style="width:2%">
+                    <button class="openModal" data-id="@item.ID_Singer">Sửa</button>
+
+                    <div id="modal-@item.ID_Singer" class="modal">
+                        <div class="modal-content">
+                            <span class="close" data-id="@item.ID_Singer">&times;</span>
+                            <h3>Sửa ca sĩ</h3>
+                            <label>Tên ca sĩ</label>
+                            <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post">
+                                    <input type="text" name="name" value="@item.NAME" class="form-control" required />
+                                    <button type="submit">Sửa</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<script src="~/Scripts/main.js"></script>

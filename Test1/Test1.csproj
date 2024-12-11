@@ -99,8 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\playsong.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="fontEnd\css\grid.css" />
     <Content Include="fontEnd\css\style.css" />
     <Content Include="fontEnd\js\main.js" />
@@ -133,6 +132,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\main.js" />
     <Content Include="Songs\1. beat pop preview.mp3" />
     <Content Include="Songs\song1.mp3" />
     <Content Include="Songs\song3.mp3" />
@@ -145,6 +145,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\PlaylistController.cs" />
+    <Compile Include="Controllers\SingersController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
+    <Compile Include="Controllers\TypesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +211,12 @@
     <Content Include="Views\Library\DetailSinger.cshtml" />
     <Content Include="Views\Home\ViewSearch.cshtml" />
     <Content Include="Views\Home\_SearchResults.cshtml" />
+    <Content Include="Views\Singers\Singers.cshtml" />
+    <Content Include="Views\Songs\Songs.cshtml" />
+    <Content Include="Views\Types\Types.cshtml" />
+    <Content Include="Views\Users\Users.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

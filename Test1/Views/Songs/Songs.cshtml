@@ -1,0 +1,35 @@
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+
+@model IEnumerable<Test1.Models.Songs>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý nhạc</h2>
+
+<table>
+    <tr>
+        <th>ID_Song</th>
+        <th>Name</th>
+        <th>Path_Song</th>
+        <th>Path_BackGround</th>
+        <th>Type</th>
+        <th>Tuy chon</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID_Song</td>
+            <td>@item.NAME</td>
+            <td>@item.Path_Song</td>
+            <td>@item.Path_BackGround</td>
+            <td>@item.Types</td>
+            <td>
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src='~/Scripts/main.js'></script>

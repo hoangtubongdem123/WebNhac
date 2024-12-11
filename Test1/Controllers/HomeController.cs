@@ -94,7 +94,10 @@ namespace Test1.Controllers
             return Json(new { Singers = singer }, JsonRequestBehavior.AllowGet);
         }
 
-
+        public ActionResult Dashboard()
+        {
+            return View("Dashboard");
+        }
 
     }
 }
