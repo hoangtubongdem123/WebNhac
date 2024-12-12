@@ -24,21 +24,12 @@ namespace Test1.Controllers
             Singers singer = new Singers();
             singer.NAME = name;
 
-            if (imageFile != null && imageFile.ContentLength > 0)
-            {
-                string folderPath = Server.MapPath("~/SingerBackGround");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
+            var fileName = Path.GetFileName(imageFile.FileName);
+            var filePath = Path.Combine(Server.MapPath("~/SingerBackGround"), fileName);
 
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                string filePath = Path.Combine(folderPath, fileName);
+            imageFile.SaveAs(filePath);
 
-                imageFile.SaveAs(filePath);
-
-                singer.Path_Singer = "/SingerBackGround/" + fileName;
-            }
+            singer.Path_Singer = "/SingerBackGround/" + fileName;
 
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             if (name != null)
@@ -82,5 +73,6 @@ namespace Test1.Controllers
             }
             return RedirectToAction("Singers");
         }
+
     }
 }

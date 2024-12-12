@@ -14,9 +14,9 @@
         <span class="close">&times;</span>
         <h3>Thêm ca sĩ</h3>
         <label>Tên ca sĩ</label>
-        <form action="~/Singers/CreateSinger" method="post">
+        <form action="~/Singers/CreateSinger" method="post" enctype="multipart/form-data">
             <input type="text" name="name" value="" class="form-control" required />
-            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
             <button type="submit">Thêm</button>
         </form>
     </div>
