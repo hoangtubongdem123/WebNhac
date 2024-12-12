@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="App">
+        <div class="appSidebar">
+            <div class="wrapperSidebar">
+                <div class="sidebarLogo">
+                    <a href="/Home/Dashboard">
+                        <img src="~/Images/logo-light.png" alt="" class="logo">
+                    </a>
+                </div>
+                <ul class="navbarMenu">
+                    <li class="navbarItem " id="Songs">
+                        <a href="/Songs/Songs">
+                            <div class="linkItem">
+                                <span class="">Nhạc</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navbarItem" id="Users">
+                        <a href="/Users/Users">
+                            <div class="linkItem">
+                                <span class="">Tài Khoản</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navbarItem" id="Singers">
+                        <a href="/Singers/Singers">
+                            <div class="linkItem">
+                                <span class="">Ca sí</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navbarItem" id="Types">
+                        <a href="/Types/Types">
+                            <div class="linkItem">
+                                <span class"">Thể loại</span>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="appBody" id="appBody">
+            <div class="wrapperAppBody">
+                <div id="mainAppBody" class="mainAppBody">
+                    <div class="bodyContent">
+                        <div class="divBodyContent" id="divBodyContent">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    a:link {
+        text-decoration: none;
+    } 
+    a:visited {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: blue;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:active {
+        color: blue;
+        background-color: transparent;
+        text-decoration: none;
+    }
+    .navbarItem {
+        padding: 2px;
+    }
+    .navbarItem:hover {
+        background-color: white;
+    }
+</style>
