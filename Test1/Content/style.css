@@ -1,0 +1,226 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+}
+
+.App {
+    display: flex;
+    flex-direction: row;
+}
+
+.appSidebar {
+    height: calc(100vh - 90px);
+    height: 100vh;
+    width: 240px;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-bottom: 54px;
+}
+
+.sidebarLogo {
+    width: 240px;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    padding: 0 25px 0 28px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 120px;
+    height: 40px;
+    display: inline-block;
+    object-fit: contain;
+}
+
+.navbarMenu {
+    padding-top: 70px;
+    list-style: none;
+}
+
+.navbarItem {
+    font-weight: 700;
+    border-left: 3px solid transparent;
+    line-height: 1.5;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
+    .navbarItem:hover .linkItem {
+        color: #8d22c3;
+    }
+
+.linkItem {
+    color: #32323d;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 12px 21px;
+}
+
+    .linkItem span {
+        white-space: nowrap;
+        line-height: normal;
+    }
+
+.navItemicon {
+    margin-right: 12px;
+}
+
+.appBody {
+    flex-grow: 1;
+    position: relative;
+    width: calc(100% - 570px);
+    min-height: 100%;
+}
+
+.wrapperAppBody {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.mainAppBody {
+    position: absolute;
+    inset: 0px;
+    overflow: hidden scroll;
+    margin-right: -6px;
+    margin-bottom: 0px;
+    padding: 0 60px;
+}
+
+    .mainAppBody::-webkit-scrollbar {
+        display: none;
+    }
+
+.bodyContent {
+    margin-top: 70px;
+    min-height: calc(100% - 158px);
+}
+
+.divBodyContent {
+    padding: 40px 0 50px;
+}
+
+.logo {
+    width: 120px;
+    height: 40px;
+    display: inline-block;
+    object-fit: contain;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+h2 {
+    padding-bottom: 8px;
+}
+h3 {
+    padding-bottom: 8px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus{
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+button {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+button:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+button:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+button:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+button:focus {
+    outline: 1px transparent;
+}
+
+button:before {
+    display: none;
+}
+
+button:-webkit-details-marker {
+    display: none;
+}

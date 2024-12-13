@@ -1,0 +1,70 @@
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+@model IEnumerable<Test1.Models.Users>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý người dùng</h2>
+
+<button id="openModal">Thêm người dùng</button>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm người dùng</h3>
+        <form action="~/Users/CreateUser" method="post">
+            <label>Tên đăng nhập</label>
+            <input type="text" name="username" value="" class="form-control" required /><br />
+            <label>Mật khẩu</label>
+            <input type="text" name="password" value="" class="form-control" required /><br />
+            <button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>ID_User</th>
+        <th>UserName</th>
+        <th>PassWord</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            {
+                <tr>
+                    <td style="width:6%">@item.ID_User</td>
+                    <td>@item.UserName</td>
+                    <td>@item.PassWord</td>
+                    <td style="width:2%">
+                        <form action="@Url.Action("DeleteUser", new { id = item.ID_User })" method="get">
+                            <button type="submit">Xóa</button>
+                        </form>
+                    </td>
+                    <td style="width:2%"; display: flex; justify-content: center>
+                        <button class="openModal" data-id="@item.ID_User">Sửa</button>
+
+                        <div id="modal-@item.ID_User" class="modal">
+                            <div class="modal-content">
+                                <span class="close" data-id="@item.ID_User">&times;</span>
+                                <h3>Sửa người dùng</h3>
+                                <form action="@Url.Action("UpdateUser", new { id = item.ID_User })" method="post">
+                                    <label>Tên đăng nhập</label>
+                                    <input type="text" name="username" value="@item.UserName" class="form-control" required /><br />
+                                    <label>Mật khẩu</label>
+                                    <input type="text" name="password" value="@item.PassWord" class="form-control" required /><br />
+                                    <button type="submit">Sửa</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    }
+</table>
+
+<script src='~/Scripts/main.js'></script>
