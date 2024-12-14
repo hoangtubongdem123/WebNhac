@@ -58,7 +58,7 @@ namespace Test1.Controllers
             return RedirectToAction("Singers");
         }
 
-        public ActionResult UpdateSinger(int id, string name)
+        public ActionResult UpdateSingerName(int id, string name)
         {
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             var singer = db.Singers.Find(id);
@@ -73,6 +73,20 @@ namespace Test1.Controllers
             }
             return RedirectToAction("Singers");
         }
+        [HttpPost]
+        public ActionResult UpdateSingerImage(int id, HttpPostedFileBase imageFile)
+        {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+            var singer = db.Singers.Find(id);
 
+            var fileName = Path.GetFileName(imageFile.FileName);
+            var filePath = Path.Combine(Server.MapPath("~/SingerBackGround"), fileName);
+
+            imageFile.SaveAs(filePath);
+
+            singer.Path_Singer = "/SingerBackGround/" + fileName;
+            db.SaveChanges();
+            return RedirectToAction("Singers");
+        }
     }
 }

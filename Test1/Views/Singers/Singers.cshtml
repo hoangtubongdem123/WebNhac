@@ -50,10 +50,19 @@
                         <div class="modal-content">
                             <span class="close" data-id="@item.ID_Singer">&times;</span>
                             <h3>Sửa ca sĩ</h3>
-                            <label>Tên ca sĩ</label>
-                            <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post">
-                                    <input type="text" name="name" value="@item.NAME" class="form-control" required />
-                                    <button type="submit">Sửa</button>
+                            
+                            <form action="@Url.Action("UpdateSingerName", new { id = item.ID_Singer })" method="post">
+                                <label>Tên ca sĩ:</label><br />
+                                <input type="text" name="name" value="@item.NAME" class="form-control" required /><br />
+                                <button type="submit">Sửa tên</button>
+                            </form>
+                            <br />
+                            <form action="@Url.Action("UpdateSingerImage", new {id=item.ID_Singer})" method="post" enctype="multipart/form-data">
+                                <label>Ảnh ca sĩ:</label><br />
+                                <img style="height:120px" src="@item.Path_Singer" /><br /><br />
+                                <label>Chọn ảnh mới: </label>
+                                <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" /><br />
+                                <button type="submit">Đổi ảnh</button>
                             </form>
                         </div>
                     </div>
