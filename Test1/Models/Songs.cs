@@ -26,13 +26,13 @@ namespace Test1.Models
         public Nullable<int> ID_Singer { get; set; }
         public string Path_Song { get; set; }
         public string Path_BackGround { get; set; }
-        public string Types { get; set; }
         public Nullable<int> Plays { get; set; }
+        public Nullable<int> ID_Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Album> Album { get; set; }
         public virtual Singers Singers { get; set; }
-        public virtual Types Types1 { get; set; }
+        public virtual Types Types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Playlists> Playlists { get; set; }
     }

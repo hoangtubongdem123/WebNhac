@@ -188,9 +188,6 @@
     <Compile Include="Models\Songs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Types.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
