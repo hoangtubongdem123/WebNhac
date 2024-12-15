@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -58,7 +59,7 @@ namespace Test1.Controllers
             return RedirectToAction("Singers");
         }
 
-        public ActionResult UpdateSingerName(int id, string name)
+        public ActionResult UpdateSinger(int id, string name, HttpPostedFileBase imageFile)
         {
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             var singer = db.Singers.Find(id);
@@ -66,27 +67,45 @@ namespace Test1.Controllers
             {
                 singer.NAME = name;
                 db.SaveChanges();
+                if (imageFile != null)
+                {
+                    var fileName = Path.GetFileName(imageFile.FileName);
+                    var filePath = Path.Combine(Server.MapPath("~/SingerBackGround"), fileName);
+
+                    imageFile.SaveAs(filePath);
+
+                    singer.Path_Singer = "/SingerBackGround/" + fileName;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return RedirectToAction("Singers");
+                }   
             }
             else
             {
                 return HttpNotFound();
             }
             return RedirectToAction("Singers");
+
         }
-        [HttpPost]
-        public ActionResult UpdateSingerImage(int id, HttpPostedFileBase imageFile)
+        public ActionResult SearchSinger(string keywords)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
-            var singer = db.Singers.Find(id);
-
-            var fileName = Path.GetFileName(imageFile.FileName);
-            var filePath = Path.Combine(Server.MapPath("~/SingerBackGround"), fileName);
-
-            imageFile.SaveAs(filePath);
-
-            singer.Path_Singer = "/SingerBackGround/" + fileName;
-            db.SaveChanges();
-            return RedirectToAction("Singers");
+            using (var db = new WebNgheNhacEntities1())
+            {
+                if (keywords != null)
+                {
+                    var searchResults = db.Singers
+                                          .Where(s => s.NAME.Contains(keywords))
+                                          .ToList();
+                    return PartialView("Singers",searchResults);
+                }
+                else
+                {
+                    return RedirectToAction("Singers");
+                }
+            }
         }
+
     }
 }

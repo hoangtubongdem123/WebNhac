@@ -9,6 +9,8 @@
 
 <button id="openModal">Thêm ca sĩ</button>
 
+
+
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -17,7 +19,7 @@
         <form action="~/Singers/CreateSinger" method="post" enctype="multipart/form-data">
             <input type="text" name="name" value="" class="form-control" required />
             <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
-            <button type="submit">Thêm</button>
+            <br /><br /><button type="submit">Thêm</button>
         </form>
     </div>
 </div>
@@ -51,18 +53,14 @@
                             <span class="close" data-id="@item.ID_Singer">&times;</span>
                             <h3>Sửa ca sĩ</h3>
                             
-                            <form action="@Url.Action("UpdateSingerName", new { id = item.ID_Singer })" method="post">
+                            <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post" enctype="multipart/form-data">
                                 <label>Tên ca sĩ:</label><br />
-                                <input type="text" name="name" value="@item.NAME" class="form-control" required /><br />
-                                <button type="submit">Sửa tên</button>
-                            </form>
-                            <br />
-                            <form action="@Url.Action("UpdateSingerImage", new {id=item.ID_Singer})" method="post" enctype="multipart/form-data">
+                                <input type="text" name="name" value="@item.NAME" class="form-control" required /><br /><br />
                                 <label>Ảnh ca sĩ:</label><br />
                                 <img style="height:120px" src="@item.Path_Singer" /><br /><br />
                                 <label>Chọn ảnh mới: </label>
                                 <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" /><br />
-                                <button type="submit">Đổi ảnh</button>
+                                <button type="submit">Lưu</button>
                             </form>
                         </div>
                     </div>
