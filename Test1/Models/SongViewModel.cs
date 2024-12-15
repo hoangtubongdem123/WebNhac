@@ -15,7 +15,9 @@ namespace Test1.Models
         public string ID_Type { get; set; }
         public int Plays { get; set; }
 
-        public Singers Singers { get; set; }
+        public SingerViewModel Singers { get; set; }
+
+        public TypeModel Types { get; set; }
 
 
     }

@@ -247,10 +247,9 @@
     type: 'GET',
     dataType: 'json',
     success: function (data) {
-
+        console.log(data)
         var $container1 = $('.gallerContainer').eq(0);
         var $container2 = $('.gallerContainer').eq(1);
-
 
         $container1.empty();
         $container2.empty();
@@ -263,17 +262,37 @@
                     </a>
                 </div>
             `;
+            var $galleyItem = $(galleryItem);
+            
+            $galleyItem.click(function (e) {
+                e.preventDefault(); 
+                $.ajax({
+                    url: '@Url.Action("DetailType", "Library")',
+                    type: 'GET',
+                    data: { id_type: type.ID_Type }, 
+                    success: function (response) {
+                        $('#divBodyContent').html(response); 
+                        history.pushState(null, '', `/Type/${type.TypeName}`); 
+                    },
+                    error: function () {
+                        alert('Lỗi khi tải chi tiết loại.');
+                    }
+                });
+            });
+
+            // Thêm gallery item vào container
             if (index % 2 === 0) {
-                $container1.append(galleryItem);
+                $container1.append($galleyItem);
             } else {
-                $container2.append(galleryItem);
+                $container2.append($galleyItem);
             }
         });
+
     },
     error: function (error) {
         alert("Lỗi load");
     }
-   });
+});
 
 
 

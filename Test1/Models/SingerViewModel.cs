@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Test1.Models
 {
-    public class TypeModel
+    public class SingerViewModel
     {
-        public string TypeName { get; set; }
-        public string Path_Type { get; set; }
+        public int ID_Singer { get; set; }
+        public string NAME { get; set; }
     }
 }

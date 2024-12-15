@@ -180,6 +180,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlaylistDetailViewModel.cs" />
     <Compile Include="Models\Playlists.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -187,6 +188,7 @@
     <Compile Include="Models\Singers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SingerViewModel.cs" />
     <Compile Include="Models\Songs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -241,6 +243,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Library\ListType.cshtml" />
     <Content Include="Views\Library\DetailType.cshtml" />
+    <Content Include="Views\Playlist\DetailPlaylist.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

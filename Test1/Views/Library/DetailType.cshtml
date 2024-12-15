@@ -1,6 +1,7 @@
 ﻿@model Test1.Models.TypeDetailViewModel
+@using Newtonsoft.Json
 
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style2.css")" />
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="wapperBanner">
@@ -28,24 +29,98 @@
     </div>
 </div>
 
-<div class="divListsong">
-    <div class="listSong">
-        @foreach (var song in Model.Songs)
+
+    <div class="divListsong">
+        @if (Model.Songs != null && Model.Songs.Any())
         {
-            <div class="songItem grid-template-column">
-                <div class="songItem-index">
-                    <span>@song.ID_Song</span>
-                </div>
-                <div class="songItem-text">
-                    <div class="divSongItem-text">
-                        <span>@song.NAME</span>
-                        <span class="nameArts">Some Artist</span>
+            <div class="listSong">
+                @for (int i = 0; i < Model.Songs.Count; i++)
+                {
+                    <div class="songItem grid-template-column">
+                        <!-- Số thứ tự bài hát -->
+                        <div class="songItem-index">
+                            <span>@(i + 1)</span>
+                        </div>
+                        <!-- Thông tin bài hát -->
+                        <div class="songItem-text">
+                            <div class="divSongItem-text">
+                                <span>@Model.Songs[i].NAME</span>
+                                <span class="nameArts">@Model.Songs[i].Singers.NAME</span>
+                            </div>
+                        </div>
+                        <!-- Thời gian bài hát -->
+                        <div class="songItem-time">
+                            <span>@Model.Songs[i].Plays</span> <!-- Thay bằng thời gian thực nếu có -->
+                        </div>
                     </div>
-                </div>
-                <div class="songItem-time">
-                    <span>@song.Plays</span>
-                </div>
+
+                }
             </div>
         }
+        else
+        {
+            <p>Không có bài hát nào.</p>
+        }
     </div>
-</div>
+
+    <style>
+        .wapperBanner {
+            width: 100%;
+        }
+
+        .bannerLink {
+            text-decoration: none;
+        }
+
+        .divBannerImg {
+            background-color: transparent !important;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .bannerImg {
+            width: 100%; /* Chiếm toàn bộ chiều rộng */
+            height: auto; /* Tự động điều chỉnh chiều cao theo tỷ lệ */
+            max-height: 500px; /* Giới hạn chiều cao tối đa */
+            object-fit: cover; /* Đảm bảo hiển thị toàn bộ hình ảnh */
+        }
+    </style>
+
+    <script>
+var songsArray = [];
+$(document).ready(function () {
+
+    var a = @Html.Raw(JsonConvert.SerializeObject(Model.Songs));
+    console.log(a);
+
+
+    a.forEach(function (songItem) {
+        var song = {
+            ID_Song: songItem.ID_Song,
+            NAME: songItem.NAME,
+            Path_Song: songItem.Path_Song,
+            Singer: songItem.Singers
+                ? {
+                    ID_Singer: songItem.Singers.ID_Singer,
+                    NAME: songItem.Singers.NAME,
+                  }
+                : { ID_Singer: null, NAME: "Unknown" },
+            Path_BackGround: songItem.Path_BackGround,
+        };
+        songsArray.push(song);
+    });
+});
+
+
+listsong = songsArray;
+
+
+$(document).on("click", ".songItem", function () {
+    var index = $(this).index();
+    console.log(songsArray[index]);
+
+    loadsong(index);
+    audio.play();
+});
+
+    </script>

@@ -5,14 +5,10 @@ using System.Web;
 
 namespace Test1.Models
 {
-    public class TypeDetailViewModel
+    public class PlaylistDetailViewModel
     {
-        public int ID_Type { get; set; }
-        public string TypeName { get; set; }
-       public string Path_Type { get; set; }
-
+        public int ID_Playlist { get; set; }
+        public string Name_Playlist { get; set; }
         public List<SongViewModel> Songs { get; set; }
-
-
     }
 }

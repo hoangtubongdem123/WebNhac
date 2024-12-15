@@ -27,7 +27,7 @@ namespace Test1.Controllers
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
 
             var type = db.Types.Select(t => new
-            {
+            {   t.ID_Type,
                 t.TypeName,
                 t.Path_Type
 

@@ -82,7 +82,14 @@ namespace Test1.Controllers
                                 NAME = s.NAME,
                                 Path_Song = s.Path_Song,
                                 Path_BackGround = s.Path_BackGround,
-                                Plays = s.Plays ?? 0
+                                Plays = s.Plays ?? 0 ,
+                                Types = s.Types != null ? new TypeModel
+                                {
+                                   
+                                    TypeName = s.Types.TypeName 
+                                } : null
+                                
+
                             }).ToList()
                         })
                         .FirstOrDefault();
@@ -112,27 +119,30 @@ namespace Test1.Controllers
         public ActionResult DetailType(int id_type)
         {
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
-            var type = db.Types.Where(t=> t.ID_Type==id_type).Select(t=> new TypeDetailViewModel
+
+            var type = db.Types.Where(t => t.ID_Type == id_type).Select(t => new TypeDetailViewModel
             {
+                ID_Type = t.ID_Type,
                 TypeName = t.TypeName,
-                Path_Type =t.Path_Type,
+                Path_Type = t.Path_Type,
                 Songs = t.Songs.Select(s => new SongViewModel
                 {
                     ID_Song = s.ID_Song,
                     NAME = s.NAME,
                     Path_Song = s.Path_Song,
                     Path_BackGround = s.Path_BackGround,
-                    Plays = s.Plays ?? 0
+                    Plays = s.Plays ?? 0,
+                    Singers = s.Singers != null ? new SingerViewModel
+                    {
+                        ID_Singer = s.Singers.ID_Singer,
+                        NAME = s.Singers.NAME
+                    } : null 
                 }).ToList()
-
-
-
             }).FirstOrDefault();
-
-
 
             return View(type);
         }
+
 
 
 

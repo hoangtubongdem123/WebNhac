@@ -1,0 +1,214 @@
+﻿@model Test1.Models.PlaylistDetailViewModel
+
+
+<div class="detailTypes-wrapper">
+    <div class="div-detail-types">
+        <div class="detail-left">
+            <!-- Hiển thị ảnh nền và tên playlist -->
+            <img id="vcc" src="/img/vinyl.jpg"  />
+            <span class="detail-type-name">@Model.Name_Playlist</span>
+            <div class="detail-left-action">
+                <button class="detail-left-btn">
+                    <i class="pause fa-solid fa-pause"></i>
+                    <i class="play fa-solid fa-play"></i>
+                    Tiếp tục phát
+                </button>
+            </div>
+        </div>
+
+        <div class="detail-right">
+            <div class="select-header">
+                <div class="select-left">
+                    <span>Bài Hát</span>
+                </div>
+                <div class="select-center">
+                    <span>Ca sĩ</span>
+                </div>
+                <div class="select-right">
+                    <span>Lượt nghe</span>
+                </div>
+            </div>
+
+            <div class="select-list">
+                <!-- Lặp qua danh sách bài hát -->
+                @foreach (var song in Model.Songs)
+                {   
+                    <div class="select-item">
+                        <div class="selec-item-left">
+                            <img src="/@song.Path_BackGround" />
+                            <span>@song.NAME</span>
+                        </div>
+                        <div class="select-item-center">
+                            <span>@song.Singers.NAME</span>
+                        </div>
+                        <div class="select-item-right">
+                            <span>@song.Plays</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .detailTypes-wrapper {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .div-detail-types {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .detail-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+        .detail-left img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+    .detail-type-name {
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        margin-bottom: 0;
+        text-transform: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .detail-right {
+        flex: 1;
+        margin-left: 20px;
+    }
+
+    .select-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 10px;
+        border-radius: 5px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .select-left {
+        width: 50%;
+    }
+
+    .select-center {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: left;
+        align-self: center;
+    }
+
+    .select-right {
+    }
+
+    .select-list {
+    }
+
+    .select-item {
+        align-items: center;
+        display: flex;
+        text-align: left;
+        padding: 10px;
+        border-radius: 5px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+        .select-item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+    .selec-item-left {
+        width: 50%;
+        display: flex;
+        text-align: left;
+        align-items: center;
+    }
+
+        .selec-item-left img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+    .select-item-center {
+        flex: 1;
+    }
+
+    .detail-left-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .detail-left-btn {
+        font-size: 14px;
+        padding: 9px 24px;
+        font-weight: 400;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #fff;
+        background-color: #8d22c3;
+        border-radius: 20px;
+        gap: 5px;
+    }
+    .select-item {
+        align-items: center;
+        display: flex;
+        text-align: left;
+        padding: 10px;
+        border-radius: 5px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
+    }
+
+        .select-item:hover {
+            background-color: rgba(141, 34, 195, 0.1); /* Màu nền khi hover */
+        }
+
+    .selec-item-left {
+        width: 50%;
+        display: flex;
+        text-align: left;
+        align-items: center;
+    }
+
+        .selec-item-left img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-right: 10px;
+            transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển tiếp cho hình ảnh */
+        }
+
+    .select-item:hover .selec-item-left img {
+        transform: scale(1.1); /* Phóng to hình ảnh khi hover */
+    }
+
+
+
+</style>

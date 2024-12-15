@@ -372,9 +372,11 @@
     border-radius: 50%;
 }
 
-.pause {
+#pause {
     display: none;
 }
+
+    
 
 .divInput {
     display: flex;

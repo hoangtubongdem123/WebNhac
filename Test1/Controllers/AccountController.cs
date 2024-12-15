@@ -121,7 +121,7 @@ namespace Test1.Controllers
              song.Path_BackGround,
              song.Path_Song,
              song.Types,
-             Singer = new
+              Singer = new
              {
                  song.Singers.ID_Singer,
                  song.Singers.NAME
