@@ -1,0 +1,139 @@
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="wrapperSectionHeading">
+    <a class="sectionLink">
+        <h2 class="sectionLinkH2">Danh Sách Artis</h2>
+    </a>
+   
+</div>
+<div class="wrapperSectionBody">
+    <div class="SectionItem">
+        <div class="SectionItemImg-Artis">
+            <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+        </div>
+        <div class="SectionItemIcon"></div>
+        <div class="SectionItemTextArt">
+            <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+            <div class="SectionItemTextDes">
+                <a href="#" class="SectionItemTextDesLink">Artis</a>
+            </div>
+        </div>
+    </div>
+    <div class="SectionItem">
+        <div class="SectionItemImg-Artis">
+            <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+        </div>
+        <div class="SectionItemIcon"></div>
+        <div class="SectionItemTextArt">
+            <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+            <div class="SectionItemTextDes">
+                <a href="#" class="SectionItemTextDesLink">Artis</a>
+            </div>
+        </div>
+    </div>
+    <div class="SectionItem">
+        <div class="SectionItemImg-Artis">
+            <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+        </div>
+        <div class="SectionItemIcon"></div>
+        <div class="SectionItemTextArt">
+            <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+            <div class="SectionItemTextDes">
+                <a href="#" class="SectionItemTextDesLink">Artis</a>
+            </div>
+        </div>
+    </div>
+    <div class="SectionItem">
+        <div class="SectionItemImg-Artis">
+            <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+        </div>
+        <div class="SectionItemIcon"></div>
+        <div class="SectionItemTextArt">
+            <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+            <div class="SectionItemTextDes">
+                <a href="#" class="SectionItemTextDesLink">Artis</a>
+            </div>
+        </div>
+    </div>
+    <div class="SectionItem">
+        <div class="SectionItemImg-Artis">
+            <img src="~/img/8640d841ca6413b752227781f6e9d8c3.jpg" alt="item" />
+        </div>
+        <div class="SectionItemIcon"></div>
+        <div class="SectionItemTextArt">
+            <h3 class="SectionItemTextName">Nguyễn Văn Kiên</h3>
+            <div class="SectionItemTextDes">
+                <a href="#" class="SectionItemTextDesLink">Artis</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    $.ajax({
+    url: '@Url.Action("getAllSinger", "Home")',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+
+        var $casi = $('.wrapperSectionBody');
+
+        console.log(data.Singers[0].Path_Singer);
+
+
+        $casi.empty();
+
+
+        data.Singers.forEach(function (s) {
+
+            var casiItem = `
+            <div class="SectionItem">
+                <div class="SectionItemImg-Artis">
+                    <img src="${s.Path_Singer}" alt="item" />
+                </div>
+                <div class="SectionItemIcon"></div>
+                <div class="SectionItemTextArt">
+                    <h3 class="SectionItemTextName">${s.NAME}</h3>
+                    <div class="SectionItemTextDes">
+                        <a href="#" class="SectionItemTextDesLink">Artis</a>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            var $casiItem = $(casiItem);
+
+
+            $casiItem.click(function () {
+                $.ajax({
+                    url: '@Url.Action("DetailSinger", "Library")',
+                    type: 'GET',
+                    data: { id_singer: s.ID_Singer },
+                    success: function (response) {
+
+                        $('#divBodyContent').html(response);
+
+
+                        history.pushState(null, '', `/Singer/${s.NAME}`);
+                    },
+                    error: function () {
+                        alert('Lỗi khi tải chi tiết ca sĩ.');
+                    }
+                });
+            });
+
+
+            $casi.append($casiItem);
+
+             
+        });
+
+    },
+    error: function (error) {
+        alert("Lỗi load");
+    }
+});
+
+
+</script>

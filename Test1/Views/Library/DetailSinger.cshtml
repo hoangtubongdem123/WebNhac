@@ -1,0 +1,136 @@
+﻿@model Test1.Models.SingerDetailViewModel
+@using Newtonsoft.Json
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Ca Sĩ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="wrapperArtis">
+        <div class="divArtis">
+            <!-- Ảnh ca sĩ -->
+            <div class="divArtisAvt" style="background-image: url('@Url.Content("~/" + Model.Path_Singer)');"></div>
+            <!-- Tên ca sĩ -->
+            <h3 class="divArtisName">
+                <span class="artisName">@Model.NAME</span>
+            </h3>
+            <!-- Nút Play/Pause -->
+            <button class="divBtnPlay">
+                <div class="btnArt playArt">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <div class="btnArt pauseArt">
+                    <i class="fa-solid fa-pause"></i>
+                </div>
+            </button>
+        </div>
+        <!-- Tiêu đề cột -->
+        <div class="headingColum grid-template-column">
+            <div class="div#">
+                <span>#</span>
+            </div>
+            <div class="theloai">
+                <span>Tiêu đề</span>
+            </div>
+            <div class="timeLogo">
+                <span>Lượt Nghe </span>
+                <div class="thoiluong">
+                    <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI">
+                        <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path>
+                        <path d="M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- Danh sách bài hát -->
+        <div class="divListsong">
+            @if (Model.Songs != null && Model.Songs.Any())
+            {
+                <div class="listSong">
+                    @for (int i = 0; i < Model.Songs.Count; i++)
+                    {
+                        <div class="songItem grid-template-column">
+                            <!-- Số thứ tự bài hát -->
+                            <div class="songItem-index">
+                                <span>@(i + 1)</span>
+                            </div>
+                            <!-- Thông tin bài hát -->
+                            <div class="songItem-text">
+                                <div class="divSongItem-text">
+                                    <span>@Model.Songs[i].NAME</span>
+                                    <span class="nameArts">@Model.NAME</span>
+                                </div>
+                            </div>
+                            <!-- Thời gian bài hát -->
+                            <div class="songItem-time">
+                                <span>@Model.Songs[i].Plays</span> <!-- Thay bằng thời gian thực nếu có -->
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            }
+            else
+            {
+                <p>Không có bài hát nào.</p>
+            }
+
+        <script>
+            var songsArray = [];
+                $(document).ready(function () {
+                    // Danh sách bài hát
+                    var a = @Html.Raw(JsonConvert.SerializeObject(Model.Songs));
+                    
+
+                     a.forEach(function (songItem) {
+        var song = {
+            ID_Song: songItem.ID_Song,
+            NAME : songItem.NAME,
+            Path_Song: songItem.Path_Song,
+            Singer: {
+                ID_Singer: "@Model.ID_Singer",
+                NAME: "@Model.NAME",
+            },
+            Path_BackGround: songItem.Path_BackGround,
+            Type: songItem.Type
+        };
+                         songsArray.push(song);
+    });
+
+
+
+                });
+
+
+
+
+                listsong=songsArray
+
+            $(".songItem").click(function () {
+
+                
+                        var index = $(this).index(); // Lấy thứ tự bài hát được click
+                console.log(songsArray[index]);            
+                        
+
+                        loadsong(index);
+                        audio.play();
+
+                       
+                    });
+
+        </script>
+
+
+
+        </div>
+    </div>
+</body>
+</html>

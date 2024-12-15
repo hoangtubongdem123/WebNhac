@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/assets/css/styles.css")" />
+    <title>Đăng ký</title>
+</head>
+<body>
+    <svg class="login__blob" viewBox="0 0 566 840" xmlns="http://www.w3.org/2000/svg">
+        <mask id="mask0" mask-type="alpha">
+            <path d="M342.407 73.6315C388.53 56.4007 394.378 17.3643 391.538
+            0H566V840H0C14.5385 834.991 100.266 804.436 77.2046 707.263C49.6393
+            591.11 115.306 518.927 176.468 488.873C363.385 397.026 156.98 302.824
+            167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z" />
+        </mask>
+
+        <g mask="url(#mask0)">
+            <path d="M342.407 73.6315C388.53 56.4007 394.378 17.3643 391.538
+            0H566V840H0C14.5385 834.991 100.266 804.436 77.2046 707.263C49.6393
+            591.11 115.306 518.927 176.468 488.873C363.385 397.026 156.98 302.824
+            167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z" />
+
+            <!-- Chèn ảnh của bạn (kích thước khuyến nghị: 1000 x 1200) -->
+            <image class="login__img" href="~/fontEnd/assets/img/bg-img.jpg" />
+        </g>
+    </svg>
+    <div class="login container grid">
+        <div class="login__access">
+            <h1 class="login__title">Đăng ký tài khoản.</h1>
+
+            <div class="login__area">
+                <form action="/Account/Register" method="post" class="login__form">
+                    <div class="login__content grid">
+                        <div class="login__box">
+                            <input type="text" id="username" name="username" required placeholder=" " class="login__input">
+                            <label for="username" class="login__label">Tên đăng nhập</label>
+                            <i class="ri-user-fill login__icon"></i>
+                        </div>
+
+
+                        <div class="login__box">
+                            <input type="password" id="password" name="password" required placeholder=" " class="login__input">
+                            <label for="password" class="login__label">Mật khẩu</label>
+                            <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
+                        </div>
+
+                        <div class="login__box">
+                            <input type="password" id="confirmpassword" name="confirmpassword" required placeholder=" " class="login__input">
+                            <label for="confirmpassword" class="login__label">Xác nhận mật khẩu</label>
+                            <i class="ri-eye-off-fill login__icon login__password" id="loginPasswordConfirm"></i>
+                        </div>
+                        <span id="error-message" style="color: red; display: none;">Mật khẩu không khớp</span>
+
+                    </div>
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+
+
+                    <button type="submit" class="login__button">Đăng ký</button>
+                </form>
+
+                <p class="login__switch">
+                    Chưa đã có tài khoản?
+                    <a href="/Account/Login">Đăng nhập</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="~/fontEnd/assets/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector(".login__form");
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirmpassword");
+            const errorMessage = document.getElementById("error-message");
+
+            form.addEventListener("submit", function (event) {
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    event.preventDefault(); // Ngăn chặn form submit
+                    errorMessage.style.display = "block";
+                } else {
+                    errorMessage.style.display = "none";
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

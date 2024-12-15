@@ -1,0 +1,155 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Account</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+</head>
+<body>
+    <div>
+        <div class="wrapperListMusic">
+            <div class="divListMusic">
+                <ul class="listMusic" id="sec">
+                   
+                </ul>
+                <div class="pagination">
+                    <button id="Previous">Previous</button>
+                    <span id="currentPage">1</span>
+                    <button id="Next">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+
+    <script>
+
+        var currentPage = document.getElementById("currentPage");
+        var Previous = document.getElementById("Previous");
+        var Next = document.getElementById("Next");
+        var listsong_account = document.getElementById("sec");
+       
+
+        var currentPage = 1; // Trang hiện tại
+        var pageSize = 4; // Số bài hát trên mỗi trang
+
+        function fetchSongs(page , pageSize) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: '@Url.Action("GetListSong", "Account")',
+            type: 'GET',
+            data: { page: page, pageSize: pageSize },
+            dataType: 'json',
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error); 
+            }
+        });
+    });
+}
+
+
+        function LoadPageSong(page) {
+
+            fetchSongs(page, pageSize)
+                .then((data) => {
+                    console.log("Dữ liệu nhận được từ server:", data);
+                    $("#sec").empty();
+
+                    data.Song.forEach(function (song) {
+                        var songitem = document.createElement("li");
+                        songitem.classList.add('songItem');
+
+                        songitem.innerHTML = `
+                <div class="songItemLeft">
+                    <div class="songLeftLogo" style="background-image: url('/${song.Path_BackGround}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+                    <div class="songLeftText">
+                        <span class="lName">${song.NAME}</span>
+                        <a class="lArtist" href="#">${song.Singer.NAME}</a>
+                    </div>
+                </div>
+                <div class="songItemCenter">
+                    <div class="songCenterAlbum">
+                        <a class="songCenterAlbumLink" href="#">${song.Types}</a>
+                    </div>
+                </div>
+                <div class="songItemRight">
+                    <div class="songTime">
+                        <span></span> <!-- Replace with song duration if available -->
+                    </div>
+                </div>
+            `;
+
+                        $(songitem).click(function () {
+
+                          
+                            listsong = [song]
+                            
+                            loadsong(0);
+                            audio.play();
+                            
+                           
+                            console.log(IdCurentSong)
+                           
+
+
+
+                        })
+
+                        document.getElementById("sec").appendChild(songitem);
+
+
+                    });
+
+
+                    $("#currentPage").text(data.CurrentPage);
+                    currentPage = data.CurrentPage;
+
+                    // Ẩn/Hiện nút Previous/Next
+                    $("#Previous").prop("disabled", currentPage === 1);
+                    $("#Next").prop("disabled", currentPage === Math.ceil(data.TotalRecords / pageSize));
+                })
+
+                .catch((error) => {
+                    console.error("Lỗi khi tải dữ liệu:", error);
+                    alert("Error loading data");
+                });
+
+        }
+
+        $("#Previous").click(function () {
+            if (currentPage > 1) {
+                LoadPageSong(currentPage - 1);
+            }
+        });
+
+        $("#Next").click(function () {
+            LoadPageSong(currentPage + 1);
+        });
+
+
+        $(document).ready(function () {
+            LoadPageSong(currentPage);
+        });
+
+        
+
+
+
+
+
+
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,27 @@
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("/Content/style.css")" />
+
+@model IEnumerable<Test1.Models.Types>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý thể loại</h2>
+
+<table>
+    <tr>
+        <th>TenTheLoai</th>
+        <th>Tuy chon</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TypeName</td>
+            <td>
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src='~/Scripts/main.js'></script>

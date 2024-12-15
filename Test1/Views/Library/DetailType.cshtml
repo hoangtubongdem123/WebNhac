@@ -1,0 +1,51 @@
+﻿@model Test1.Models.TypeDetailViewModel
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style2.css")" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="wapperBanner">
+    <a href="" class="bannerLink">
+        <div class="divBannerImg">
+            <img src="@Model.Path_Type" alt="" class="bannerImg">
+        </div>
+    </a>
+</div>
+
+<div class="headingColum grid-template-column">
+    <div class="div#">
+        <span>#</span>
+    </div>
+    <div class="theloai">
+        <span>@Model.TypeName</span>
+    </div>
+    <div class="timeLogo">
+        <div class="thoiluong">
+            <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI">
+                <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path>
+                <path d="M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z"></path>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="divListsong">
+    <div class="listSong">
+        @foreach (var song in Model.Songs)
+        {
+            <div class="songItem grid-template-column">
+                <div class="songItem-index">
+                    <span>@song.ID_Song</span>
+                </div>
+                <div class="songItem-text">
+                    <div class="divSongItem-text">
+                        <span>@song.NAME</span>
+                        <span class="nameArts">Some Artist</span>
+                    </div>
+                </div>
+                <div class="songItem-time">
+                    <span>@song.Plays</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
