@@ -7,13 +7,48 @@
 
 <h2>Quản lý nhạc</h2>
 
+<button id="openModal">Thêm bài hát</button>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm bài hát</h3>
+        
+        <form action="~/Songs/CreateSong" method="post" enctype="multipart/form-data">
+            <label>Tên bài hát</label>
+            <input type="text" name="name" value="" class="form-control" required /><br />
+            @*<label>Thể loại</label>
+            <select>
+                @foreach (var b in ViewBag.Alltype)
+                {
+                    <option name="@b.typeId">@b.TypeName</option>
+                }
+            </select><br />
+            <label>Ca sĩ</label>
+            <select>
+                @foreach (var t in ViewBag.Allsinger)
+                {
+                    <option name="@t.singerId">@t.NAME</option>
+                }
+            </select><br />*@
+            <label>Chọn bài hát</label>
+            <input type="file" name="songFile" id="songFile" accept=".mp3,audio/*" value="" class="form-control" required />
+            <label>Chọn ảnh</label>
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+            <br /><br /><button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+
 <table>
     <tr>
         <th>ID_Song</th>
         <th>Name</th>
+        <th>ID_Singer</th>
         <th>Path_Song</th>
         <th>Path_BackGround</th>
-        <th>Type</th>
+        <th>Plays</th>
+        <th>ID_Type</th>
         <th>Tuy chon</th>
     </tr>
     @foreach (var item in Model)
@@ -21,9 +56,11 @@
         <tr>
             <td>@item.ID_Song</td>
             <td>@item.NAME</td>
+            <td>@item.ID_Singer</td>
             <td>@item.Path_Song</td>
             <td>@item.Path_BackGround</td>
-            <td>@item.Types</td>
+            <td>@item.Plays</td>
+            <td>@item.ID_Type</td>
             <td>
                 <button>Sửa</button>
                 <button>Xóa</button>
