@@ -1,0 +1,120 @@
+﻿@model Test1.Models.Songs
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Bài Hát";
+}
+
+<h2>Chỉnh Sửa Bài Hát</h2>
+
+@using (Html.BeginForm("Edit", "Songs", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.HiddenFor(model => model.ID_Song) <!-- Giữ lại ID_Song để chỉnh sửa bài hát cụ thể -->
+        @Html.LabelFor(model => model.NAME)
+        @Html.TextBoxFor(model => model.NAME, new { @class = "form-control", placeholder = "Nhập tên bài hát" })
+        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Path_Song)
+        @Html.TextBoxFor(model => model.Path_Song, new { @class = "form-control", placeholder = "Nhập đường dẫn bài hát" })
+        @Html.ValidationMessageFor(model => model.Path_Song, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Path_BackGround)
+        @Html.TextBoxFor(model => model.Path_BackGround, new { @class = "form-control", placeholder = "Nhập đường dẫn ảnh nền" })
+        @Html.ValidationMessageFor(model => model.Path_BackGround, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Types)
+        @Html.DropDownListFor(model => model.Types, (SelectList)ViewBag.Types, "Chọn thể loại", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Types, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Lưu Thay Đổi" class="btn btn-success" />
+        <a href="@Url.Action("Songs", "Songs")" class="btn btn-default">Hủy</a>
+    </div>
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    form {
+        max-width: 500px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .form-group input[type="submit"]:hover {
+                background-color: #218838;
+            }
+
+        .form-group a {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+            .form-group a:hover {
+                text-decoration: underline;
+            }
+
+    .text-danger {
+        font-size: 12px;
+        color: #dc3545;
+        margin-top: 5px;
+    }
+</style>
