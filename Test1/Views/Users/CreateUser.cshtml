@@ -1,0 +1,163 @@
+﻿@model Test1.Models.Users
+
+@{
+    ViewBag.Title = "Tạo Người Dùng Mới";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Tạo Người Dùng Mới</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Nhập tên người dùng" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "control-label" })
+            @Html.PasswordFor(model => model.PassWord, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+        </div>
+
+
+
+        <div class="form-group text-center">
+            <input type="submit" value="Tạo Người Dùng" class="btn btn-success" />
+        </div>
+
+        <div class="form-group text-center">
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+</div>
+
+<style>
+    /* Cải thiện bố cục và tạo khoảng cách giữa các phần tử */
+    .container {
+        max-width: 600px;
+        margin: 40px auto; /* Căn giữa và thêm khoảng cách trên và dưới */
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Cải thiện bố cục của form để các trường nhập liệu thẳng hàng */
+    .form-group {
+        display: flex;
+        align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+        margin-bottom: 20px;
+    }
+
+        /* Label và Textbox sẽ ở cùng một hàng */
+        .form-group label {
+            width: 30%; /* Đặt chiều rộng của label */
+            margin-right: 10px; /* Khoảng cách giữa label và trường nhập liệu */
+            text-align: right; /* Đảm bảo label căn chỉnh sang phải */
+        }
+
+            /* Các trường nhập liệu (Textbox và Password) sẽ chiếm không gian còn lại */
+            .form-group .form-control {
+            width: 65%; /* Đặt chiều rộng của trường nhập liệu */
+            height: 45px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+}
+
+            /* Cải thiện bố cục khi cần một khoảng cách giữa các trường nhập liệu */
+            .form-group .form-control:first-child {
+                margin-right: 4%; /* Thêm khoảng cách giữa Username và Password */
+            }
+
+    /* Tùy chỉnh các trường nhập liệu */
+    input.form-control, input[type="password"].form-control {
+        height: 45px;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        /* Cải thiện hiệu ứng focus khi người dùng click vào trường nhập liệu */
+        input.form-control:focus, input[type="password"].form-control:focus {
+            border-color: #4cae4c;
+            box-shadow: 0 0 8px rgba(0, 204, 255, 0.6);
+        }
+
+    .form-group .btn-success {
+        display: block;
+        width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng */
+        max-width: 200px; /* Đặt chiều rộng tối đa cho nút */
+        margin: 20px auto; /* Căn giữa nút */
+    }
+
+    /* Cải thiện button */
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success {
+        background-color: #5cb85c;
+        border: none;
+        color: white;
+    }
+
+        .btn-success:hover {
+            background-color: #4cae4c;
+        }
+
+    .btn-default {
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        color: #333;
+    }
+
+        .btn-default:hover {
+            background-color: #e9e9e9;
+        }
+
+    /* Cải thiện thông báo lỗi */
+    .text-danger {
+        font-size: 14px;
+        color: #ff4d4d;
+    }
+
+    /* Cải thiện link trở lại */
+    a.btn-default {
+        display: inline-block;
+        margin-top: 10px;
+        color: #007bff;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+        a.btn-default:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+    /* Hiệu ứng khi focus vào input */
+    input.form-control:focus {
+        border-color: #5cb85c;
+        box-shadow: 0 0 8px rgba(0, 204, 255, 0.6);
+    }
+
+    /* Header đẹp mắt */
+    h2 {
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+</style>

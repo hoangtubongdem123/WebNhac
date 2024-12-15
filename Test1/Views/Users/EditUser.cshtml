@@ -1,0 +1,185 @@
+﻿@model Test1.Models.Users
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Người Dùng";
+}
+
+<div class="container">
+    <h2>Chỉnh Sửa Người Dùng</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Nhập tên người dùng" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "control-label" })
+            @Html.PasswordFor(model => model.PassWord, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Chỉnh Sửa Người Dùng" class="btn btn-success" />
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+</div>
+
+<style>
+    /* Cải thiện bố cục chung */
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 2px solid #ccc; /* Khung cho toàn bộ container */
+        border-radius: 10px; /* Bo tròn các góc của khung */
+        background-color: #f9f9f9; /* Màu nền cho khung */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng cho khung */
+    }
+
+    /* Căn giữa tiêu đề */
+    h2.text-center {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    /* Định dạng các nhóm form */
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        /* Căn giữa label và textbox */
+        .form-group label {
+            width: 30%;
+            text-align: right;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Căn giữa textbox */
+        .form-group .form-control {
+            width: 65%;
+            height: 45px;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+    /* Tùy chỉnh các trường nhập liệu */
+    input.form-control {
+        font-size: 16px;
+    }
+
+    /* Cải thiện thông báo lỗi */
+    .text-danger {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Nút quay lại nhỏ hơn và căn trái */
+    .btn-default {
+        padding: 5px 15px;
+        font-size: 14px;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        color: #007bff;
+        border: 1px solid #ccc;
+        text-align: center;
+        display: inline-block;
+        margin-top: 10px;
+        float: left; /* Đưa nút ra bên trái */
+    }
+
+        .btn-default:hover {
+            background-color: #e2e6ea;
+            color: #0056b3;
+        }
+
+    /* Nút chỉnh sửa người dùng và căn giữa */
+    .btn-success {
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        margin-top: 20px;
+        display: block; /* Làm cho nút trở thành block để căn giữa */
+        margin-left: auto; /* Căn giữa */
+        margin-right: auto; /* Căn giữa */
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+    /* Thêm hiệu ứng focus cho các trường nhập liệu */
+    .form-control:focus {
+        border-color: #5cb85c;
+        box-shadow: 0 0 8px rgba(0, 204, 255, 0.8);
+    }
+
+    /* Đảm bảo nút submit và nút quay lại căn giữa */
+    .form-group.text-center {
+        text-align: center;
+    }
+
+    /* Sử dụng flexbox để căn giữa các phần tử form */
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Tùy chỉnh hiệu ứng hover cho trường nhập liệu */
+    input.form-control:hover {
+        border-color: #5cb85c;
+        box-shadow: 0 0 5px rgba(0, 204, 255, 0.6);
+    }
+
+    /* Đảm bảo các trường nhập liệu có chiều rộng ổn định */
+    .form-group input,
+    .form-group select {
+        width: 70%;
+        height: 45px;
+        padding-left: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+
+    /* Tùy chỉnh container của form */
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Thêm padding cho khung ngoài form */
+    .form-container {
+        padding: 20px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Đảm bảo nút Quay lại xuống dòng dưới */
+    .btn-default {
+        display: block; /* Làm cho nút quay lại thành block element */
+        margin-top: 20px; /* Khoảng cách với nút chỉnh sửa */
+        margin-left: 0; /* Căn trái */
+        float: none; /* Hủy bỏ float */
+    }
+
+</style>

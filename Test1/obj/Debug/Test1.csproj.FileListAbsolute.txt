@@ -458,3 +458,7 @@ C:\Users\Admin\Source\Repos\WebNhac\Test1\obj\Debug\Test1.csproj.CoreCompileInpu
 C:\Users\Admin\Source\Repos\WebNhac\Test1\obj\Debug\Test1.csproj.Up2Date
 C:\Users\Admin\Source\Repos\WebNhac\Test1\obj\Debug\Test1.dll
 C:\Users\Admin\Source\Repos\WebNhac\Test1\obj\Debug\Test1.pdb
+C:\Users\Admin\source\repos\WebNhac\Test1\bin\PagedList.dll
+C:\Users\Admin\source\repos\WebNhac\Test1\bin\PagedList.Mvc.dll
+C:\Users\Admin\source\repos\WebNhac\Test1\bin\PagedList.xml
+C:\Users\Admin\source\repos\WebNhac\Test1\bin\PagedList.Mvc.xml

@@ -1,25 +1,74 @@
 ﻿<link rel="stylesheet" type="text/css" href="@Url.Content("/Content/style.css")" />
-
+<link rel=" stylesheet" href="~/fontEnd/css/Type.css" />
 @model IEnumerable<Test1.Models.Types>
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div class="appHeader" id="appHeader">
+    <search>
+        <form method="get" action="@Url.Action("Types", "Types")">
+            <input type="search" name="searchTerm" placeholder="Tìm kiếm thể loại" class="form-control" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </search>
+</div>
+
 <h2>Quản lý thể loại</h2>
 
+<button id="openModal">Thêm thể loại</button>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm thể loại</h3>
+        <form action="@Url.Action("CreateType", "Types")" method="post">
+            <label>Tên thể loại</label>
+            <input type="text" name="typeName" class="form-control" required /><br /><br />
+            <label>Chọn ảnh:</label><br />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+            <br /><br /><button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+<br /><br />
 <table>
     <tr>
-        <th>TenTheLoai</th>
-        <th>Tuy chon</th>
+        <th>ID</th>
+        <th>Tên Thể Loại</th>
+        <th>Đường Dẫn Thể Loại </th>
+        <th>Tùy Chọn</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.TypeName</td>
+            <td>@item.ID_Type</td>
+            <td>
+                @item.TypeName
+            </td>
             <td>@item.Path_Type</td>
             <td>
-                <button>Sửa</button>
-                <button>Xóa</button>
+                <div style="display:inline-flex">
+                <form action="@Url.Action("DeleteType", new { id = item.ID_Type })" method="post">
+                    <button type="submit">Xóa</button>
+                </form>
+
+                <button class="openModal" data-id="@item.TypeName">Sửa</button>
+                <div id="modal-@item.TypeName" class="modal">
+                    <div class="modal-content">
+                        <span class="close" data-id="@item.TypeName">&times;</span>
+                        <h3>Sửa thể loại</h3>
+                        <form action="@Url.Action("UpdateType", new { id = item.ID_Type })" method="post" enctype="multipart/form-data">
+                            <label>Tên thể loại</label>
+                            <input type="text" name="typeName" value="@item.TypeName" class="form-control" required /><br /><br />
+                            <label>Ảnh ca sĩ:</label><br />
+                            <img style="height:120px" src="@item.Path_Type" /><br /><br />
+                            <label>Chọn ảnh mới: </label>
+                            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" /><br />
+                            <button type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
             </td>
         </tr>
     }

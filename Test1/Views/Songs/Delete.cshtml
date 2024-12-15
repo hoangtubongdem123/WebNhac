@@ -1,0 +1,41 @@
+﻿@model Test1.Models.Songs
+
+@{
+    ViewBag.Title = "Xác nhận xóa bài hát";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Xác nhận xóa bài hát</h2>
+
+<div>
+    <h4>Bài hát cần xóa:</h4>
+    <dl class="dl-horizontal">
+        <dt>ID:</dt>
+        <dd>@Model.ID_Song</dd>
+
+        <dt>Tên bài hát:</dt>
+        <dd>@Model.NAME</dd>
+
+        <dt>Đường dẫn bài hát:</dt>
+        <dd>@Model.Path_Song</dd>
+
+        <dt>Đường dẫn ảnh nền:</dt>
+        <dd>@Model.Path_BackGround</dd>
+
+        <dt>Thể loại:</dt>
+        <dd>@Model.Types</dd>
+    </dl>
+</div>
+
+<!-- Form xác nhận xóa -->
+@using (Html.BeginForm("DeleteConfirmed", "Songs", new { id = Model.ID_Song }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <strong>Bạn có chắc chắn muốn xóa bài hát này không?</strong>
+    </p>
+
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="@Url.Action("Songs", "Songs")" class="btn btn-default">Hủy</a>
+}
+

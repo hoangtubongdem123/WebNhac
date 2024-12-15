@@ -1,72 +1,81 @@
 ﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+@model PagedList.IPagedList<Test1.Models.Songs>
+@using PagedList.Mvc;
+@using PagedList;
 
-@model IEnumerable<Test1.Models.Songs>
 @{
+    ViewBag.Title = "Quản lý bài hát";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Quản lý nhạc</h2>
+<h1>Quản lý bài hát</h1>
+<br />
+<div class="text-right">
+    <button class="btn btn-success" style="background-color: #00FF00; padding: 10px;" onclick="window.location.href='@Url.Action("Create", "Songs")'">
+    Thêm Bài Hát Mới
+    </button>
+</div>
+<br />
 
-<button id="openModal">Thêm bài hát</button>
-
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Thêm bài hát</h3>
-        
-        <form action="~/Songs/CreateSong" method="post" enctype="multipart/form-data">
-            <label>Tên bài hát</label>
-            <input type="text" name="name" value="" class="form-control" required /><br />
-            @*<label>Thể loại</label>
-            <select>
-                @foreach (var b in ViewBag.Alltype)
-                {
-                    <option name="@b.typeId">@b.TypeName</option>
-                }
-            </select><br />
-            <label>Ca sĩ</label>
-            <select>
-                @foreach (var t in ViewBag.Allsinger)
-                {
-                    <option name="@t.singerId">@t.NAME</option>
-                }
-            </select><br />*@
-            <label>Chọn bài hát</label>
-            <input type="file" name="songFile" id="songFile" accept=".mp3,audio/*" value="" class="form-control" required />
-            <label>Chọn ảnh</label>
-            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
-            <br /><br /><button type="submit">Thêm</button>
-        </form>
-    </div>
+<!-- Form tìm kiếm -->
+<div>
+    @using (Html.BeginForm("Songs", "Songs", FormMethod.Get))
+    {
+        <div class="form-inline">
+            <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm bài hát" value="@ViewBag.CurrentFilter" style="font-size: 18px; height: 30px; padding: 10px; width: 50%;" />
+            <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+        </div>
+    }
 </div>
 
-<table>
-    <tr>
-        <th>ID_Song</th>
-        <th>Name</th>
-        <th>ID_Singer</th>
-        <th>Path_Song</th>
-        <th>Path_BackGround</th>
-        <th>Plays</th>
-        <th>ID_Type</th>
-        <th>Tuy chon</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<br />
+<p style="text-align:center; opacity:0.5 ">Nhấn vào ID hoặc Tên bài hát để sắp xếp</p>
+
+<!-- Bảng danh sách bài hát -->
+<table class="table">
+    <thead>
         <tr>
-            <td>@item.ID_Song</td>
-            <td>@item.NAME</td>
-            <td>@item.ID_Singer</td>
-            <td>@item.Path_Song</td>
-            <td>@item.Path_BackGround</td>
-            <td>@item.Plays</td>
-            <td>@item.ID_Type</td>
-            <td>
-                <button>Sửa</button>
-                <button>Xóa</button>
-            </td>
+            <th>
+                @Html.ActionLink("ID", "Songs", new { sortOrder = ViewBag.IDSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage })
+            </th>
+            <th>
+                @Html.ActionLink("Tên bài hát", "Songs", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage })
+            </th>
+            <th>Đường dẫn bài hát</th>
+            <th>Đường dẫn ảnh nền</th>
+            <th>Thể loại</th>
+            <th>Tùy chọn</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="song-@item.ID_Song">
+                <td>@item.ID_Song</td>
+                <td>@item.NAME</td>
+                <td>@item.Path_Song</td>
+                <td>@item.Path_BackGround</td>
+                <td>@item.Types</td>
+                <td>
+                    @using (Html.BeginForm("Edit", "Songs", new { id = item.ID_Song }, FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-primary" style="background-color: #FFFF00;">Sửa</button>
+                    }
+
+                    @using (Html.BeginForm("Delete", "Songs", new { id = item.ID_Song }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken() <!-- Thêm Token để bảo vệ khỏi CSRF -->
+                        <button type="submit" class="btn btn-danger" style="background-color: #FF0000;" onclick="return confirm('Bạn có chắc chắn muốn xóa bài hát này?')">Xóa</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-<script src='~/Scripts/main.js'></script>
+<br />
+<!-- Phân trang -->
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Songs", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.CurrentFilter }))
+</div>
+

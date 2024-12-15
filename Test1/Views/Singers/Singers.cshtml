@@ -5,11 +5,18 @@
 
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
 
+<div class="appHeader" id="appHeader">
+    <search>
+        <form action="~/Singers/SearchSinger" method="post" enctype="multipart/form-data">
+            <input type="search" id="keywords" name="keywords" placeholder="Tìm kiếm theo tên" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </search>
+</div>
+
 <h2>Quản lý ca sĩ</h2>
 
 <button id="openModal">Thêm ca sĩ</button>
-
-
 
 <div id="modal" class="modal">
     <div class="modal-content">
@@ -24,7 +31,7 @@
         </form>
     </div>
 </div>
-
+<br /><br />
 <table>
     <tr>
         <th>ID_Singer</th>
