@@ -31,7 +31,7 @@ namespace Test1.Controllers
                         types = (sortDirection == "asc") ? types.OrderBy(t => t.TypeName) : types.OrderByDescending(t => t.TypeName);
                         break;
                     default:
-                        types = (sortDirection == "asc") ? types.OrderBy(t => t.Path_Type) : types.OrderByDescending(t => t.Path_Type);
+                        types = (sortDirection == "asc") ? types.OrderBy(t => t.ID_Type) : types.OrderByDescending(t => t.ID_Type);
                         break;
                 }
             }
