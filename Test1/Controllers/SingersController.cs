@@ -7,16 +7,50 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Test1.Models;
+using PagedList;
 
 namespace Test1.Controllers
 {
     public class SingersController : Controller
     {
-        public ActionResult Singers()
+        private WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+        public ActionResult Singers(string sortOrder, string searchString, int? page, int? size)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
-            var singers = db.Singers.ToList();
-            return View(singers);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name" ;
+            ViewBag.IDSortParm = sortOrder == "id" ? "id_desc" : "id";
+
+            ViewBag.CurrentFilter = searchString;
+
+            var singers = from s in db.Singers select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                singers = singers.Where(s => s.NAME.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                default:
+                    goto case "id";
+                case "id":
+                    singers = singers.OrderBy(s => s.ID_Singer);
+                    break;
+                case "id_desc":
+                    singers = singers.OrderByDescending(s => s.ID_Singer);
+                    break;
+                case "name_desc":
+                    singers = singers.OrderByDescending(s => s.NAME);
+                    break;
+                case "name":
+                    singers = singers.OrderBy(s => s.NAME);
+                    break;
+            }
+
+            int pageSize = size ?? 7;
+            int pageNumber = page ?? 1;
+
+            return View(singers.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
@@ -32,7 +66,6 @@ namespace Test1.Controllers
 
             singer.Path_Singer = "/SingerBackGround/" + fileName;
 
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             if (name != null)
             {
                 db.Singers.Add(singer);
@@ -44,7 +77,6 @@ namespace Test1.Controllers
 
         public ActionResult DeleteSinger(int id)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             var singer = db.Singers.Find(id);
             if (singer != null)
             {
@@ -61,7 +93,6 @@ namespace Test1.Controllers
 
         public ActionResult UpdateSinger(int id, string name, HttpPostedFileBase imageFile)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             var singer = db.Singers.Find(id);
             if (singer != null)
             {
@@ -91,8 +122,6 @@ namespace Test1.Controllers
         }
         public ActionResult SearchSinger(string keywords)
         {
-            using (var db = new WebNgheNhacEntities1())
-            {
                 if (keywords != null)
                 {
                     var searchResults = db.Singers
@@ -104,7 +133,6 @@ namespace Test1.Controllers
                 {
                     return RedirectToAction("Singers");
                 }
-            }
         }
 
     }

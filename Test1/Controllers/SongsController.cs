@@ -3,15 +3,14 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using PagedList;
-using Test1.Models; // Replace with the namespace where your Model1.edmx entities are located
+using Test1.Models;
 
 namespace Test1.Controllers
 {
     public class SongsController : Controller
     {
-        private WebNgheNhacEntities1 db = new WebNgheNhacEntities1(); // EF DbContext generated from Model1.edmx
+        private WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
 
-        // GET: Songs
         public ActionResult Songs(string sortOrder, string searchString, int? page, int? size)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -20,7 +19,6 @@ namespace Test1.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            // Query songs with LINQ
             var songs = from s in db.Songs select s;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -50,7 +48,6 @@ namespace Test1.Controllers
             return View(songs.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Songs/Create
         public ActionResult Create()
         {
             var typesList = db.Types.Select(t => t.TypeName).ToList();
@@ -58,22 +55,20 @@ namespace Test1.Controllers
             return View();
         }
 
-        // POST: Songs/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_Song,NAME,Path_Song,Path_BackGround,TypeName")] Songs song)
         {
             if (ModelState.IsValid)
             {
-                db.Songs.Add(song); // Add new song using EF
-                db.SaveChanges(); // Save changes
+                db.Songs.Add(song);
+                db.SaveChanges();
                 return RedirectToAction("Songs");
             }
 
             return View(song);
         }
 
-        // GET: Songs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,7 +76,7 @@ namespace Test1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Songs song = db.Songs.Find(id); // Fetch song by ID using EF
+            Songs song = db.Songs.Find(id);
             if (song == null)
             {
                 return HttpNotFound();
@@ -91,15 +86,14 @@ namespace Test1.Controllers
             return View(song);
         }
 
-        // POST: Songs/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Song,NAME,Path_Song,Path_BackGround,TypeName")] Songs song)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(song).State = System.Data.Entity.EntityState.Modified; // Mark entity as modified
-                db.SaveChanges(); // Save changes
+                db.Entry(song).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Songs");
             }
 
@@ -107,7 +101,6 @@ namespace Test1.Controllers
             return View(song);
         }
 
-        // GET: Songs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +108,7 @@ namespace Test1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Songs song = db.Songs.Find(id); // Fetch song by ID using EF
+            Songs song = db.Songs.Find(id);
             if (song == null)
             {
                 return HttpNotFound();
@@ -124,7 +117,6 @@ namespace Test1.Controllers
             return View(song);
         }
 
-        // POST: Songs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -134,8 +126,8 @@ namespace Test1.Controllers
                 Songs song = db.Songs.Find(id);
                 if (song != null)
                 {
-                    db.Songs.Remove(song); // Remove song using EF
-                    db.SaveChanges(); // Save changes
+                    db.Songs.Remove(song);
+                    db.SaveChanges();
                 }
                 return RedirectToAction("Songs");
             }
@@ -146,7 +138,6 @@ namespace Test1.Controllers
             }
         }
 
-        // Dispose the context
         protected override void Dispose(bool disposing)
         {
             if (disposing)

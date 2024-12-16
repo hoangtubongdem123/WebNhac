@@ -49,7 +49,7 @@
             <td>
                 <div style="display:inline-flex">
                 <form action="@Url.Action("DeleteType", new { id = item.ID_Type })" method="post">
-                    <button type="submit">Xóa</button>
+                    <button type="submit" onclick="return confirm('Bạn có chắc là muốn xóa @item.TypeName?')">Xóa</button>
                 </form>
 
                 <button class="openModal" data-id="@item.TypeName">Sửa</button>

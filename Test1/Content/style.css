@@ -228,7 +228,7 @@ search {
     }
 
 
-
+/*bảng*/
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -247,6 +247,8 @@ h2 {
 h3 {
     padding-bottom: 8px;
 }
+
+/*modal lúc hiện*/
 .modal {
     display: none;
     position: fixed;
@@ -282,6 +284,8 @@ h3 {
         cursor: pointer;
     }
 
+
+/* Của button */
 button {
     appearance: none;
     background-color: #FAFBFC;
@@ -337,4 +341,61 @@ button:before {
 
 button:-webkit-details-marker {
     display: none;
+}
+
+
+/* Của phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+        .pagination li a, .pagination li span {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #f1f1f1;
+            color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .pagination li a:hover, .pagination li span:hover {
+                background-color: #007bff;
+                color: white;
+            }
+
+        .pagination li.active a {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination li.disabled a {
+            color: #ccc;
+        }
+
+
+/* Mũi tên động cạnh ActionLink */
+.sortable-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.fa {
+    margin-left: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.fa-arrow-up {
+    color: green;
+}
+
+.fa-arrow-down {
+    color: red;
 }
