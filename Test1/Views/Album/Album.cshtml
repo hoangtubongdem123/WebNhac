@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<Test1.Models.Album>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<div class="appHeader" id="appHeader">
+    <search>
+        <br />
+        <form method="get" action="@Url.Action("Album", "Album")">
+            <input type="search" name="searchString" placeholder="Tìm kiếm album" class="form-control" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </search>
+</div>
+
+<h2>Quản lý album</h2>
+
+<button id="openModal">Thêm album</button>
+<a style="text-decoration:none" href="/Album/Album?sortOrder=id">
+    <button>Làm mới</button>
+</a>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm album</h3>
+        <form action="@Url.Action("CreateAlbum", "Album")" method="post">
+            <label>Tên album</label>
+            <input type="text" name="typeName" class="form-control" required /><br /><br />
+            <label>Chọn ảnh:</label><br />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+            <br /><br /><button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+<br />
+<br />
+<table>
+    <tr>
+        <th style="width:4%">
+            @Html.ActionLink("ID", "Album", new { sortOrder = ViewBag.IDSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage },
+                                              new { @class = "sortable-link" })
+            @if (ViewBag.CurrentSort == "id")
+            {
+                <i class="fa fa-arrow-up"></i>
+            }
+            else if (ViewBag.CurrentSort == "id_desc")
+            {
+                <i class="fa fa-arrow-down"></i>
+            }
+        </th>
+        <th style="width:30%">
+            @Html.ActionLink("Tên album", "Album", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage },
+                                                     new { @class = "sortable-link" })
+            @if (ViewBag.CurrentSort == "name_desc")
+            {
+                <i class="fa fa-arrow-down"></i>
+            }
+            else if (ViewBag.CurrentSort == "name")
+            {
+                <i class="fa fa-arrow-up"></i>
+            }
+        </th>
+        <th>Đường dẫn ảnh album </th>
+        <th style="width:4%">Tùy chọn</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID_Album</td>
+            <td>@item.Album_Name</td>
+            <td>@item.Path_Ablum</td>
+            <td>
+                <div style="display:inline-flex">
+                    <form action="@Url.Action("DeleteAlbum", new { id = item.ID_Album })" method="post">
+                        <button type="submit" onclick="return confirm('Bạn có chắc là muốn xóa @item.Album_Name?')">Xóa</button>
+                    </form>
+
+                    <button class="openModal" data-id="@item.Album_Name">Sửa</button>
+                    <div id="modal-@item.Album_Name" class="modal">
+                        <div class="modal-content">
+                            <span class="close" data-id="@item.Album_Name">&times;</span>
+                            <h3>Sửa album</h3>
+                            <form action="@Url.Action("UpdateAlbum", new { id = item.ID_Album })" method="post" enctype="multipart/form-data">
+                                <label>Tên album</label>
+                                <input type="text" name="typeName" value="@item.Album_Name" class="form-control" required /><br /><br />
+                                <label>Ảnh ca sĩ:</label><br />
+                                <img style="height:120px" src="@item.Path_Ablum" /><br /><br />
+                                <label>Chọn ảnh mới: </label>
+                                <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" /><br />
+                                <button type="submit">Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+<div class="text-center">
+    <div class="pager">
+        @Html.PagedListPager(Model, page => Url.Action("Album", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.CurrentFilter }))
+    </div>
+</div>
+<script src='~/Scripts/main.js'></script>
