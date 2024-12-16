@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Test1.Models;
 
@@ -9,9 +10,6 @@ namespace Test1.Controllers
 {
     public class AccountController : Controller
     {
-
-
-
         public ActionResult Login()
         {
             return View();
@@ -62,6 +60,11 @@ namespace Test1.Controllers
             return View();
         }
 
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
 
 
 
@@ -89,6 +92,44 @@ namespace Test1.Controllers
 
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+
+        public ActionResult ChangePasswordHandle(string UserName ,string oldPassword, string newPassword, string cfmPassword  )
+        {
+
+            using(WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
+            {
+                if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(cfmPassword))
+                {
+                    ViewBag.ErrorMessage = "Vui lòng điền đầy đủ thông tin.";
+                    return View("ChangePassword");
+                }
+
+                if (newPassword != cfmPassword)
+                {
+                    ViewBag.ErrorMessage = "Mật khẩu xác nhận không khớp.";
+                    return View("ChangePassword");
+                }
+
+                var user = db.Users.SingleOrDefault(u => u.UserName == UserName);
+                if (user == null)
+                {
+                    ViewBag.ErrorMessage = "Người dùng không tồn tại.";
+                    return View("ChangePassword");
+                }
+
+                if(user.PassWord != oldPassword)
+                {
+                    ViewBag.ErrorMessage = "Mật khẩu cũ không đúng.";
+                    return View("ChangePassword");
+                }
+                user.PassWord = newPassword;
+                db.SaveChanges();
+
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         // GET: Logout

@@ -193,6 +193,7 @@
     <Compile Include="Models\Songs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SongSearch.cs" />
     <Compile Include="Models\SongViewModel.cs" />
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -247,6 +248,8 @@
     <Content Include="Views\Playlist\DetailPlaylist.cshtml" />
     <Content Include="Views\Library\DetailAlbum.cshtml" />
     <Content Include="Views\Library\ListAlbum.cshtml" />
+    <Content Include="Views\Home\_Noresult.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

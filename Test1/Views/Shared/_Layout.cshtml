@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
-
-
-    <script src="~/fontEnd/js/main.js"></script>
-
-
-
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css?v=@DateTime.Now.Ticks")" />
+    <script src="@Url.Content("~/fontEnd/js/main.js?v=@DateTime.Now.Ticks")"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -661,44 +656,14 @@
 
                 var query = $('#textInput').val(); // Lấy giá trị từ ô nhập liệu
                 $.ajax({
-                    url: '/Home/Search', // Đường dẫn đến controller
+                    url: '/Home/ViewSearch', // Đường dẫn đến controller
                     type: 'GET', // Phương thức HTTP
                     data: { query: query }, // Dữ liệu gửi đi
-                    success: function (response) {
-                        console.log(response); // Kiểm tra toàn bộ phản hồi
-                        var singers = response.Singers || [];
-                        var albums = response.Albums || [];
-                        var songs = response.Songs || [];
-                        var types = response.Types || [];
-
-                        // Tạo HTML để hiển thị danh sách ca sĩ
-                        var html = '<h3>Danh sách ca sĩ:</h3><ul>';
-                        singers.forEach(function (singer) {
-                            html += '<li>' + singer.NAME + '</li>';
-                        });
-                        html += '</ul>';
-
-
-                        html += '<h3>Danh sách album:</h3><ul>';
-                        albums.forEach(function (album) {
-                            html += '<li>' + album.Name_Album + '</li>';
-                        });
-                        html += '</ul>';
-
-
-                        html += '<h3>Danh sách bài hát:</h3><ul>';
-                        songs.forEach(function (song) {
-                            html += '<li>' + song.NAME + '</li>';
-                        });
-                        html += '</ul>';
-
-                        html += '<h3>Danh sách thể loại:</h3><ul>';
-                        types.forEach(function (type) {
-                            html += '<li>' + type.TypeName + '</li>';
-                        });
-                        html += '</ul>';
-
-                        $('#divBodyContent').html(html);
+                    success: function (data) {
+                        
+                        $('#divBodyContent').html(data);
+                        var newUrl = window.location.protocol + "//" + window.location.host + '/Home/ViewSearch?query=' + encodeURIComponent(query);
+                        history.pushState({ path: newUrl }, '', newUrl);
                     },
                     error: function (xhr, status, error) {
 

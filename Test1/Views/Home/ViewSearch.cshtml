@@ -1,5 +1,103 @@
-﻿Kết Quả Tìm Kiếm :
+﻿@model Tuple<List<Test1.Models.SongSearch>, List<Test1.Models.Types>, List<Test1.Models.Singers>>
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+<div class="page-search">
 
+    <!-- Phần hiển thị Ca sĩ -->
+    @if (Model.Item3 != null && Model.Item3.Any())
+    {
+        <div class="wrapperSection">
+            <div class="wrapperSectionHeading">
+                <h2 class="sectionLinkH2">Ca sĩ </h2>
+            </div>
+            <div class="wrapperSectionBody">
+                @foreach (var singer in Model.Item3)
+                {
+                    <div class="SectionItem">
+                        <div class="SectionItemImg-Artis">
+                            <img src="@singer.Path_Singer" alt="@singer.NAME" />
+                        </div>
+                        <div class="SectionItemTextArt">
+                            <h3 class="SectionItemTextName">@singer.NAME</h3>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
 
+    <!-- Phần hiển thị Bài hát -->
+    @if (Model.Item1 != null && Model.Item1.Any())
+    {
+        <div class="wrapperSection">
+            <div class="wrapperSectionHeading">
+                <h2 class="sectionLinkH2">Bài hát</h2>
+            </div>
+            <div class="wrapperSectionBody">
+                <div class="headingColum grid-template-column" style="width:100%">
+                    <div class="div#">
+                        <span>#</span>
+                    </div>
+                    <div class="theloai">
+                        <span>Tiêu đề</span>
+                    </div>
+                    <div class="timeLogo">
+                        <span>Lượt Nghe </span>
+                        <div class="thoiluong">
+                            <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI">
+                                <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path>
+                                <path d="M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                @foreach (var song in Model.Item1)
+                {
+                    <div class="songItem grid-template-column">
+                        <div class="songItem-index">
+                            <span>1</span>
+                        </div>
+                        <div class="songItem-text">
+                            <div class="divSongItem-text">
+                                <span>@song.NAME</span>
+                                <span class="nameArts">@song.Singers.NAME</span>
+                            </div>
+                        </div>
+                        <div class="songItem-time">
+                            <span>@song.Plays</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Phần hiển thị Thể loại -->
+    @if (Model.Item2 != null && Model.Item2.Any())
+    {
+        <div class="wrapperSection">
+            <div class="wrapperSectionHeading">
+                <h2 class="sectionLinkH2">Thể Loại</h2>
+            </div>
+            <div class="wrapperSectionBody">
+                @foreach (var type in Model.Item2)
+                {
+                    <div class="SectionItem">
+                        <div class="SectionItemImg">
+                            <img src="@type.Path_Type" alt="item">
+                        </div>
+                        <div class="SectionItemIcon"></div>
+                        <div class="SectionItemText">
+                            <h3 class="SectionItemTextName">@type.TypeName</h3>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+</div>
