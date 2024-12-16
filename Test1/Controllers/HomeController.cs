@@ -39,6 +39,25 @@ namespace Test1.Controllers
             return Json(new {Types = type}, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult getAllAlbum()
+        {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+
+            var album = db.Album.Select(t => new
+            {
+                t.ID_Album,
+                t.Album_Name,
+                t.Path_Ablum
+
+            })
+
+                    .ToList();
+
+
+            return Json(new { Album = album }, JsonRequestBehavior.AllowGet);
+        }
+
+
         [HttpGet]
         public ActionResult Search(string query)
         
@@ -58,8 +77,8 @@ namespace Test1.Controllers
 
          
             var albums = db.Album
-                           .Where(a => a.Name_Album.Contains(query))
-                           .Select(a => new { a.ID_Album, a.Name_Album })
+                           .Where(a => a.Album_Name.Contains(query))
+                           .Select(a => new { a.ID_Album, a.Album_Name })
                            .ToList();
 
             var singers = db.Singers

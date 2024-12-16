@@ -1,0 +1,75 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+<div class="wrapperSectionHeading">
+    <a class="sectionLink">
+        <h2 class="sectionLinkH2">Danh Sách Album </h2>
+    </a>
+
+</div>
+<div class="wrapperSectionBody_playlist">
+
+    
+  
+
+
+
+
+
+
+</div>
+
+<script>
+         $.ajax({
+    url: '@Url.Action("getAllAlbum", "Home")',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+        var $playlist_body = $('.wrapperSectionBody_playlist').eq(0);
+
+        $playlist_body.empty();
+        var albums = data.Album;
+        albums.forEach(function (album) {
+            var playlistItem = `
+                <div class="SectionItem" oncontextmenu="showContextMenu(event, ${album.ID_Album}, '${album.Album_Name}')">
+                    <div class="SectionItemImg-Artis_playlist">
+                        <img src="${album.Path_Ablum}" alt="item" />
+                    </div>
+                    <div class="SectionItemTextArt">
+                        <h3 class="SectionItemTextName">${album.Album_Name}</h3>
+                    </div>
+                </div>
+            `;
+
+            var $playlistItem = $(playlistItem);
+
+            $playlistItem.click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '@Url.Action("DetailAlbum", "Library")',
+                    type: 'GET',
+                    data: { id_album: album.ID_Album },
+                    success: function (response) {
+                        $('#divBodyContent').html(response);
+                        history.pushState(null, '', '/Library/' + album.Album_Name);
+                    },
+                    error: function () {
+                        alert('Lỗi khi tải chi tiết playlist.');
+                    }
+                });
+            });
+
+
+            $playlist_body.append($playlistItem);
+        });
+    },
+    error: function (error) {
+        alert("Lỗi load");
+    }
+});
+
+
+
+
+</script>
+<style>
+</style>

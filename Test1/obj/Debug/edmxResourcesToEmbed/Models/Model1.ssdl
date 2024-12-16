@@ -5,9 +5,8 @@
       <PropertyRef Name="ID_Album" />
     </Key>
     <Property Name="ID_Album" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name_Album" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="ID_Song" Type="int" Nullable="false" />
-    <Property Name="Path_Album" Type="nvarchar" MaxLength="255" />
+    <Property Name="Album_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Path_Ablum" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Playlist_Songs">
     <Key>
@@ -44,6 +43,7 @@
     <Property Name="Path_BackGround" Type="nvarchar" MaxLength="100" />
     <Property Name="Plays" Type="int" />
     <Property Name="ID_Type" Type="int" />
+    <Property Name="ID_Album" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -71,43 +71,8 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="50" />
     <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
     <Property Name="Avatar" Type="nvarchar" MaxLength="255" />
+    <Property Name="Quyen" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <Association Name="FK__Album__ID_Song__6FE99F9F">
-    <End Role="Songs" Type="Self.Songs" Multiplicity="1" />
-    <End Role="Album" Type="Self.Album" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Songs">
-        <PropertyRef Name="ID_Song" />
-      </Principal>
-      <Dependent Role="Album">
-        <PropertyRef Name="ID_Song" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Playlist___ID_Pl__656C112C">
-    <End Role="Playlists" Type="Self.Playlists" Multiplicity="1" />
-    <End Role="Playlist_Songs" Type="Self.Playlist_Songs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Playlists">
-        <PropertyRef Name="ID_Playlist" />
-      </Principal>
-      <Dependent Role="Playlist_Songs">
-        <PropertyRef Name="ID_Playlist" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Playlist___ID_So__66603565">
-    <End Role="Songs" Type="Self.Songs" Multiplicity="1" />
-    <End Role="Playlist_Songs" Type="Self.Playlist_Songs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Songs">
-        <PropertyRef Name="ID_Song" />
-      </Principal>
-      <Dependent Role="Playlist_Songs">
-        <PropertyRef Name="ID_Song" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Playlist__ID_Use__628FA481">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
@@ -132,6 +97,46 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PlaylistSongs_Playlists">
+    <End Role="Playlists" Type="Self.Playlists" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Playlist_Songs" Type="Self.Playlist_Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Playlists">
+        <PropertyRef Name="ID_Playlist" />
+      </Principal>
+      <Dependent Role="Playlist_Songs">
+        <PropertyRef Name="ID_Playlist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlaylistSongs_Songs">
+    <End Role="Songs" Type="Self.Songs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Playlist_Songs" Type="Self.Playlist_Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Songs">
+        <PropertyRef Name="ID_Song" />
+      </Principal>
+      <Dependent Role="Playlist_Songs">
+        <PropertyRef Name="ID_Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Songs_Albums">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="ID_Album" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="ID_Album" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Songs_IDType">
     <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
     <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
@@ -153,24 +158,24 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Album__ID_Song__6FE99F9F" Association="Self.FK__Album__ID_Song__6FE99F9F">
-      <End Role="Songs" EntitySet="Songs" />
-      <End Role="Album" EntitySet="Album" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Playlist___ID_Pl__656C112C" Association="Self.FK__Playlist___ID_Pl__656C112C">
-      <End Role="Playlists" EntitySet="Playlists" />
-      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Playlist___ID_So__66603565" Association="Self.FK__Playlist___ID_So__66603565">
-      <End Role="Songs" EntitySet="Songs" />
-      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
-    </AssociationSet>
     <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
       <End Role="Users" EntitySet="Users" />
       <End Role="Playlists" EntitySet="Playlists" />
     </AssociationSet>
     <AssociationSet Name="FK__Songs__ID_Singer__534D60F1" Association="Self.FK__Songs__ID_Singer__534D60F1">
       <End Role="Singers" EntitySet="Singers" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlaylistSongs_Playlists" Association="Self.FK_PlaylistSongs_Playlists">
+      <End Role="Playlists" EntitySet="Playlists" />
+      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlaylistSongs_Songs" Association="Self.FK_PlaylistSongs_Songs">
+      <End Role="Songs" EntitySet="Songs" />
+      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Songs_Albums" Association="Self.FK_Songs_Albums">
+      <End Role="Album" EntitySet="Album" />
       <End Role="Songs" EntitySet="Songs" />
     </AssociationSet>
     <AssociationSet Name="FK_Songs_IDType" Association="Self.FK_Songs_IDType">

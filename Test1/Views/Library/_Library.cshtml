@@ -3,11 +3,22 @@
     
 }
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h2 class="sectionLinkH2"></h2>
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+
+  
 <div class="divwrapperGallery">
+  <div class="wrapperSectionHeading">
+    <a class="sectionLink">
+        <h2 class="sectionLinkH2">Type</h2>
+    </a>
+    <a href="#" class="sectionSeeMore">Show All</a>
+</div>
     <div class="wrapperGallery">
+
         <div class="divBtn divBtnPrev">
             <button class="galleryBtn btnPrev">
                 <i class="fa-duotone fa-solid fa-angle-left"></i>
@@ -113,7 +124,7 @@
 <section class="wrapperSection">
     <div class="wrapperSectionHeading">
         <a class="sectionLink">
-            <h2 class="sectionLinkH2">Trending</h2>
+            <h2 class="sectionLinkH2">Album</h2>
         </a>
         <a href="#" class="sectionSeeMore">Show All</a>
     </div>
@@ -263,16 +274,16 @@
                 </div>
             `;
             var $galleyItem = $(galleryItem);
-            
+
             $galleyItem.click(function (e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 $.ajax({
                     url: '@Url.Action("DetailType", "Library")',
                     type: 'GET',
-                    data: { id_type: type.ID_Type }, 
+                    data: { id_type: type.ID_Type },
                     success: function (response) {
-                        $('#divBodyContent').html(response); 
-                        history.pushState(null, '', `/Type/${type.TypeName}`); 
+                        $('#divBodyContent').html(response);
+                        history.pushState(null, '', `/Type/${type.TypeName}`);
                     },
                     error: function () {
                         alert('Lỗi khi tải chi tiết loại.');
@@ -354,13 +365,134 @@
     error: function (error) {
         alert('Lỗi load danh sách ca sĩ.');
     }
+   });
+
+
+
+
+
+   //album
+
+       $.ajax({
+    url: '@Url.Action("getAllAlbum", "Home")',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+        var $playlist_body = $('.wrapperSectionBody').eq(0);
+
+        $playlist_body.empty();
+        var albums = data.Album;
+        albums.forEach(function (album) {
+            var playlistItem = `
+                <div class="SectionItem" oncontextmenu="showContextMenu(event, ${album.ID_Album}, '${album.Album_Name}')">
+                    <div class="SectionItemImg-Artis_playlist">
+                        <img src="${album.Path_Ablum}" alt="item" />
+                    </div>
+                    <div class="SectionItemTextArt">
+                        <h3 class="SectionItemTextName">${album.Album_Name}</h3>
+                    </div>
+                </div>
+            `;
+
+            var $playlistItem = $(playlistItem);
+
+            $playlistItem.click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '@Url.Action("DetailAlbum", "Library")',
+                    type: 'GET',
+                    data: { id_album: album.ID_Album },
+                    success: function (response) {
+                        $('#divBodyContent').html(response);
+                        history.pushState(null, '', '/Library/' + album.Album_Name);
+                    },
+                    error: function () {
+                        alert('Lỗi khi tải chi tiết playlist.');
+                    }
+                });
+            });
+
+
+            $playlist_body.append($playlistItem);
+        });
+    },
+    error: function (error) {
+        alert("Lỗi load");
+    }
 });
 
 
 
 
 
+
+
+
+
+
+
+
+ $(".sectionSeeMore").eq(0).click(function () {
+
+
+
+        $.ajax({
+         url: '@Url.Action("ListType", "Library")',
+            type: 'GET',
+
+            success: function (data) {
+
+                $('.divBodyContent').html(data);
+
+                 history.pushState({ page: "ListType" }, '', '@Url.Action("ListType", "Library")');
+
+
+ },
+ error: function (error) {
+     alert("Lỗi load");
+ }
+});
+
+
+
+
+    console.log("secccc")
+
+    });
+
+
+
+
  $(".sectionSeeMore").eq(1).click(function () {
+
+
+
+        $.ajax({
+         url: '@Url.Action("ListAlbum", "Library")',
+            type: 'GET',
+
+            success: function (data) {
+
+                $('.divBodyContent').html(data);
+
+                 history.pushState({ page: "ListAlbum" }, '', '@Url.Action("ListAlbum", "Library")');
+
+
+ },
+ error: function (error) {
+     alert("Lỗi load");
+ }
+});
+
+
+
+
+    console.log("secccc")
+
+    });
+
+
+ $(".sectionSeeMore").eq(2).click(function () {
 
 
 
@@ -389,8 +521,6 @@
     console.log("secccc")
 
     });
-
-
 
 
 

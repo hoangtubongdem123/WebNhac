@@ -23,8 +23,6 @@ namespace Test1.Controllers
 
 
 
-            ViewBag.Allsinger = t;
-            ViewBag.Alltype = b;
 
 
             return PartialView("_Library");
@@ -146,7 +144,48 @@ namespace Test1.Controllers
 
 
 
+        public ActionResult ListType()
+        {
 
+            return View();
+        }
+
+
+
+
+        public ActionResult ListAlbum()
+        {
+
+
+            return View();
+        }
+
+        public ActionResult DetailAlbum(int id_album)
+        {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+
+            var album = db.Album.Where(t => t.ID_Album == id_album).Select(t => new AlbumDetaiViewModel
+            {
+                ID_Album = t.ID_Album,
+                Album_Name = t.Album_Name,
+                Path_Album = t.Path_Ablum,
+                Songs = t.Songs.Select(s => new SongViewModel
+                {
+                    ID_Song = s.ID_Song,
+                    NAME = s.NAME,
+                    Path_Song = s.Path_Song,
+                    Path_BackGround = s.Path_BackGround,
+                    Plays = s.Plays ?? 0,
+                    Singers = s.Singers != null ? new SingerViewModel
+                    {
+                        ID_Singer = s.Singers.ID_Singer,
+                        NAME = s.Singers.NAME
+                    } : null
+                }).ToList()
+            }).FirstOrDefault();
+
+            return View(album);
+        }
 
 
 

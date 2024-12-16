@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da0c536c9eeb44898d291f1e8ed496dc" Name="Diagram1">
-        <EntityTypeShape EntityType="WebNgheNhacModel.Album" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Playlists" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Singers" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="ef3137b17e3047bea3a33f12e4e3d8ac" Name="Diagram1">
+        <EntityTypeShape EntityType="WebNgheNhacModel.Album" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Playlists" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Singers" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WebNgheNhacModel.Songs" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="WebNgheNhacModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Types" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Users" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="WebNgheNhacModel.FK__Album__ID_Song__6FE99F9F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Types" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Users" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="WebNgheNhacModel.FK_Songs_Albums" ManuallyRouted="false" />
         <AssociationConnector Association="WebNgheNhacModel.FK__Playlist__ID_Use__628FA481" ManuallyRouted="false" />
         <AssociationConnector Association="WebNgheNhacModel.FK__Songs__ID_Singer__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="WebNgheNhacModel.FK_Songs_IDType" ManuallyRouted="false" />

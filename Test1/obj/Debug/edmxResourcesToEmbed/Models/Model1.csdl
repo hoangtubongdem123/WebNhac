@@ -5,10 +5,9 @@
       <PropertyRef Name="ID_Album" />
     </Key>
     <Property Name="ID_Album" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name_Album" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ID_Song" Type="Int32" Nullable="false" />
-    <Property Name="Path_Album" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Songs" Relationship="Self.FK__Album__ID_Song__6FE99F9F" FromRole="Album" ToRole="Songs" />
+    <Property Name="Album_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Path_Ablum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Songs" Relationship="Self.FK_Songs_Albums" FromRole="Album" ToRole="Songs" />
   </EntityType>
   <EntityType Name="Playlists">
     <Key>
@@ -40,7 +39,8 @@
     <Property Name="Path_BackGround" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Plays" Type="Int32" />
     <Property Name="ID_Type" Type="Int32" />
-    <NavigationProperty Name="Album" Relationship="Self.FK__Album__ID_Song__6FE99F9F" FromRole="Songs" ToRole="Album" />
+    <Property Name="ID_Album" Type="Int32" />
+    <NavigationProperty Name="Album" Relationship="Self.FK_Songs_Albums" FromRole="Songs" ToRole="Album" />
     <NavigationProperty Name="Singers" Relationship="Self.FK__Songs__ID_Singer__534D60F1" FromRole="Songs" ToRole="Singers" />
     <NavigationProperty Name="Types" Relationship="Self.FK_Songs_IDType" FromRole="Songs" ToRole="Types" />
     <NavigationProperty Name="Playlists" Relationship="Self.Playlist_Songs" FromRole="Songs" ToRole="Playlists" />
@@ -72,17 +72,18 @@
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Quyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__ID_Use__628FA481" FromRole="Users" ToRole="Playlists" />
   </EntityType>
-  <Association Name="FK__Album__ID_Song__6FE99F9F">
-    <End Role="Songs" Type="Self.Songs" Multiplicity="1" />
-    <End Role="Album" Type="Self.Album" Multiplicity="*" />
+  <Association Name="FK_Songs_Albums">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Songs">
-        <PropertyRef Name="ID_Song" />
+      <Principal Role="Album">
+        <PropertyRef Name="ID_Album" />
       </Principal>
-      <Dependent Role="Album">
-        <PropertyRef Name="ID_Song" />
+      <Dependent Role="Songs">
+        <PropertyRef Name="ID_Album" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -134,9 +135,9 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Types" EntityType="Self.Types" />
     <EntitySet Name="Users" EntityType="Self.Users" />
-    <AssociationSet Name="FK__Album__ID_Song__6FE99F9F" Association="Self.FK__Album__ID_Song__6FE99F9F">
-      <End Role="Songs" EntitySet="Songs" />
+    <AssociationSet Name="FK_Songs_Albums" Association="Self.FK_Songs_Albums">
       <End Role="Album" EntitySet="Album" />
+      <End Role="Songs" EntitySet="Songs" />
     </AssociationSet>
     <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
       <End Role="Users" EntitySet="Users" />

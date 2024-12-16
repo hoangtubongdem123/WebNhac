@@ -17,7 +17,6 @@ namespace Test1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Songs()
         {
-            this.Album = new HashSet<Album>();
             this.Playlists = new HashSet<Playlists>();
         }
     
@@ -28,9 +27,9 @@ namespace Test1.Models
         public string Path_BackGround { get; set; }
         public Nullable<int> Plays { get; set; }
         public Nullable<int> ID_Type { get; set; }
+        public Nullable<int> ID_Album { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Album> Album { get; set; }
+        public virtual Album Album { get; set; }
         public virtual Singers Singers { get; set; }
         public virtual Types Types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

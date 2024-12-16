@@ -5,9 +5,8 @@
       <EntityTypeMapping TypeName="WebNgheNhacModel.Album">
         <MappingFragment StoreEntitySet="Album">
           <ScalarProperty Name="ID_Album" ColumnName="ID_Album" />
-          <ScalarProperty Name="Name_Album" ColumnName="Name_Album" />
-          <ScalarProperty Name="ID_Song" ColumnName="ID_Song" />
-          <ScalarProperty Name="Path_Album" ColumnName="Path_Album" />
+          <ScalarProperty Name="Album_Name" ColumnName="Album_Name" />
+          <ScalarProperty Name="Path_Ablum" ColumnName="Path_Ablum" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -39,6 +38,7 @@
           <ScalarProperty Name="Path_BackGround" ColumnName="Path_BackGround" />
           <ScalarProperty Name="Plays" ColumnName="Plays" />
           <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
+          <ScalarProperty Name="ID_Album" ColumnName="ID_Album" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -69,6 +69,7 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
           <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

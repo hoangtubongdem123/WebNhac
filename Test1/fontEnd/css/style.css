@@ -116,13 +116,14 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    left: 240px;
+    left: 250px;
     top: 0;
     right: 0;
     height: 70px;
     padding: 0 59px;
     z-index: 100;
     min-width: 660px;
+    background-color: #fff;
 }
 
 .onscroll {
