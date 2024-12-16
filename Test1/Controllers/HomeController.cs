@@ -58,41 +58,105 @@ namespace Test1.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult Search(string query)
-        
+        public ActionResult ViewSearch(string query)
+
         {
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
 
             var songs = db.Songs
                     .Where(s => s.NAME.Contains(query))
-                    .Select(s => new { s.ID_Song, s.NAME })
+                    .Select(s => new SongSearch
+                    {
+                        ID_Song = s.ID_Song,
+                        NAME = s.NAME,
+                        ID_Type = s.ID_Type.Value,
+                        Path_BackGround = s.Path_BackGround,
+                        Path_Song = s.Path_Song,
+                        Plays = s.Plays.Value,
+                        ID_Singer = s.ID_Singer.Value,
+                        Singers = db.Singers
+                        .Where(si => si.ID_Singer == s.ID_Singer)
+                        .FirstOrDefault()
+                    })
                     .ToList();
-
-            
-            var types = db.Types
-                          .Where(t => t.TypeName.Contains(query))
-                          .Select(t => new {  t.TypeName })
-                          .ToList();
-
-         
-            var albums = db.Album
-                           .Where(a => a.Album_Name.Contains(query))
-                           .Select(a => new { a.ID_Album, a.Album_Name })
-                           .ToList();
+            var songsiDs = songs.Select(s => s.ID_Singer).ToList();
 
             var singers = db.Singers
                             .Where(si => si.NAME.Contains(query))
-                            .Select(si => new { si.ID_Singer, si.NAME })
                             .ToList();
+            var singersiDs = singers.Select(s => s.ID_Singer).ToList();
 
-            return Json(new
+            var songsFromSingers = db.Songs
+                             .Where(s => singersiDs.Contains(s.ID_Singer.Value))
+                             .Select(s => new SongSearch
+                             {
+                                 ID_Song = s.ID_Song,
+                                 NAME = s.NAME,
+                                 ID_Type = s.ID_Type.Value,
+                                 Path_BackGround = s.Path_BackGround,
+                                 Path_Song = s.Path_Song,
+                                 Plays = s.Plays.Value,
+                                 ID_Singer = s.ID_Singer.Value,
+                                 Singers = db.Singers
+                        .Where(si => si.ID_Singer == s.ID_Singer)
+                        .FirstOrDefault()
+                             })
+                             .ToList();
+
+            var singersFromSongs = db.Singers
+                .Where(s => songsiDs.Contains(s.ID_Singer)).ToList();
+
+            var types = db.Types
+                          .Where(t => t.TypeName.Contains(query))
+                          .ToList();
+
+            var typeIds = types.Select(t => t.ID_Type).ToList();
+
+            var songsFromTypes = db.Songs
+                           .Where(song => typeIds.Contains(song.ID_Type.Value))
+                           .Select(s => new SongSearch
+                           {
+                               ID_Song = s.ID_Song,
+                               NAME = s.NAME,
+                               ID_Type = s.ID_Type.Value,
+                               Path_BackGround = s.Path_BackGround,
+                               Path_Song = s.Path_Song,
+                               Plays = s.Plays.Value,
+                               ID_Singer = s.ID_Singer.Value,
+                               Singers = db.Singers
+                        .Where(si => si.ID_Singer == s.ID_Singer)
+                        .FirstOrDefault()
+                           })
+                           .ToList();
+
+            var songIDfromType = songsFromTypes.Select(s => s.ID_Singer).ToList();
+
+            var singerFromTypes = db.Singers
+                            .Where(s => songIDfromType.Contains(s.ID_Singer)).ToList();
+
+
+
+            var allSongs = songs
+
+                   .ToList();
+
+            var allSingers = singers
+
+                   .ToList();
+
+
+            //var allSinger = singers
+            var result = Tuple.Create(allSongs, types, allSingers);
+            if (!result.Item1.Any() && !result.Item2.Any() && !result.Item3.Any())
             {
-                Songs = songs,
-                Types = types,
-                Albums = albums,
-                Singers = singers
-            }, JsonRequestBehavior.AllowGet);
+                return PartialView("_Noresult");
+            }
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+
+                return PartialView("_SearchResults", result);
+            }
+            return View(result);
 
 
 
@@ -135,6 +199,12 @@ namespace Test1.Controllers
 
         public ActionResult Dashboard()
         {
+            int? sessionLevel = Session["Level"] as int?;
+
+            if (sessionLevel == 1)
+            {
+                return HttpNotFound();
+            }
             return View("Dashboard");
         }
 

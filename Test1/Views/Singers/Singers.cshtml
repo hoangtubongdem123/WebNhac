@@ -1,60 +1,103 @@
-﻿@model IEnumerable<Test1.Models.Singers>
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+@model PagedList.IPagedList<Test1.Models.Singers>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/style.css")" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<div class="appHeader" id="appHeader">
+    <search><br />
+        <form action="~/Singers/Singers" method="post" enctype="multipart/form-data">
+            <input type="search" name="searchString" placeholder="Tìm kiếm ca sĩ" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </search>
+</div>
 
 <h2>Quản lý ca sĩ</h2>
 
 <button id="openModal">Thêm ca sĩ</button>
-
+<a style="text-decoration:none" href="/Singers/Singers?sortOrder=id">
+    <button>Làm mới</button>
+</a>
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h3>Thêm ca sĩ</h3>
-        <label>Tên ca sĩ</label>
-        <form action="~/Singers/CreateSinger" method="post">
-            <input type="text" name="name" value="" class="form-control" required />
-            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" />
-            <button type="submit">Thêm</button>
+        <label>Tên ca sĩ:</label>
+        <form action="~/Singers/CreateSinger" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" value="" class="form-control" required /><br /><br />
+            <label>Chọn ảnh:</label><br />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+            <br /><br /><button type="submit">Thêm</button>
         </form>
     </div>
 </div>
-
+<br />
+<br />
 <table>
     <tr>
-        <th>ID_Singer</th>
-        <th>Name</th>
-        <th>Path_Singer</th>
-        <th></th>
-        <th></th>
+        <th>
+            @Html.ActionLink("ID", "Singers", new { sortOrder = ViewBag.IDSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage },
+                                              new { @class = "sortable-link" })
+            @if (ViewBag.CurrentSort == "id")
+            {
+                <i class="fa fa-arrow-up"></i>
+            }
+            else if (ViewBag.CurrentSort == "id_desc")
+            {
+                <i class="fa fa-arrow-down"></i>
+            }
+        </th>
+        <th>
+            @Html.ActionLink("Tên ca sĩ", "Singers", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage },
+                                                     new { @class = "sortable-link" })
+            @if (ViewBag.CurrentSort == "name_desc")
+            {
+                <i class="fa fa-arrow-down"></i>
+            }
+            else if (ViewBag.CurrentSort == "name")
+            {
+                <i class="fa fa-arrow-up"></i>
+            }
+        </th>
+        <th>Đường dẫn ảnh ca sĩ</th>
+        <th>Tùy chọn</th>
     </tr>
     @if (Model != null)
     {
         foreach (var item in Model)
         {
             <tr>
-                <td style="width:6%">@item.ID_Singer</td>
-                <td>@item.NAME</td>
+                <td style="width:4%">@item.ID_Singer</td>
+                <td style="width:30%">@item.NAME</td>
                 <td>@item.Path_Singer</td>
                 <td style="width:2%">
-                    <form action="@Url.Action("DeleteSinger", new { id = item.ID_Singer })" method="get" >
-                        <button type="submit">Xóa</button>
-                    </form>
-                </td>
-                <td style="width:2%">
-                    <button class="openModal" data-id="@item.ID_Singer">Sửa</button>
+                    <div style="display:inline-flex">
+                        <form action="@Url.Action("DeleteSinger", new { id = item.ID_Singer })" method="get">
+                            <button type="submit" onclick="return confirm('Bạn có chắc là muốn xóa @item.NAME?')">Xóa</button>
+                        </form>
+                        <button class="openModal" data-id="@item.ID_Singer">Sửa</button>
 
-                    <div id="modal-@item.ID_Singer" class="modal">
-                        <div class="modal-content">
-                            <span class="close" data-id="@item.ID_Singer">&times;</span>
-                            <h3>Sửa ca sĩ</h3>
-                            <label>Tên ca sĩ</label>
-                            <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post">
-                                    <input type="text" name="name" value="@item.NAME" class="form-control" required />
-                                    <button type="submit">Sửa</button>
-                            </form>
+                        <div id="modal-@item.ID_Singer" class="modal">
+                            <div class="modal-content">
+                                <span class="close" data-id="@item.ID_Singer">&times;</span>
+                                <h3>Sửa ca sĩ</h3>
+
+                                <form action="@Url.Action("UpdateSinger", new { id = item.ID_Singer })" method="post" enctype="multipart/form-data">
+                                    <label>Tên ca sĩ:</label><br />
+                                    <input type="text" name="name" value="@item.NAME" class="form-control" required /><br /><br />
+                                    <label>Ảnh ca sĩ:</label><br />
+                                    <img style="height:120px" src="@item.Path_Singer" /><br /><br />
+                                    <label>Chọn ảnh mới: </label>
+                                    <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" /><br />
+                                    <button type="submit">Lưu</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </td>
@@ -62,5 +105,16 @@
         }
     }
 </table>
+<br />
+<div class="text-center">
+    <div class="pager">
+        @Html.PagedListPager(Model, page => Url.Action("Singers", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.CurrentFilter }))
+    </div>
+</div>
+
+<style>
+    
+</style>
 
 <script src="~/Scripts/main.js"></script>
+

@@ -1,62 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\test1\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac - copy\\webnhac\\test1\\views\\home\\viewsearch.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\home\\viewsearch.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\controllers\\singerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\singerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac - copy\\webnhac\\test1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\test1\\views\\library\\_library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\_library.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\views\\library\\listalbum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\listalbum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\views\\library\\listtype.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\listtype.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\test1\\views\\playlist\\playlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\playlist\\playlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\views\\library\\detailalbum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\detailalbum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\test1\\views\\playlist\\detailplaylist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\playlist\\detailplaylist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac\\webnhac\\test1\\models\\typedetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\models\\typedetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\test1\\views\\library\\detailtype.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\views\\library\\detailtype.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|c:\\users\\admin\\desktop\\webnhac - copy\\webnhac\\test1\\models\\songsearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4FF6581-F226-47C6-AC60-4E5BEFD27480}|Test1\\Test1.csproj|solutionrelative:test1\\models\\songsearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,188 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Test1\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\AccountController.cs*",
-              "RelativeToolTip": "Test1\\Controllers\\AccountController.cs*",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAADsAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T11:44:22.667Z",
+              "DocumentIndex": 1,
+              "Title": "ViewSearch.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Views\\Home\\ViewSearch.cshtml",
+              "RelativeDocumentMoniker": "Test1\\Views\\Home\\ViewSearch.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Views\\Home\\ViewSearch.cshtml*",
+              "RelativeToolTip": "Test1\\Views\\Home\\ViewSearch.cshtml*",
+              "ViewState": "AgIAACoAAACAZmZmZmYUwAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-16T19:07:04.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LibraryController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\LibraryController.cs",
-              "RelativeDocumentMoniker": "Test1\\Controllers\\LibraryController.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\LibraryController.cs",
-              "RelativeToolTip": "Test1\\Controllers\\LibraryController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "SongSearch.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Models\\SongSearch.cs",
+              "RelativeDocumentMoniker": "Test1\\Models\\SongSearch.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Models\\SongSearch.cs",
+              "RelativeToolTip": "Test1\\Models\\SongSearch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T07:35:37.216Z",
+              "WhenOpened": "2024-12-16T19:05:39.737Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PlaylistController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\PlaylistController.cs",
-              "RelativeDocumentMoniker": "Test1\\Controllers\\PlaylistController.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\PlaylistController.cs*",
-              "RelativeToolTip": "Test1\\Controllers\\PlaylistController.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAcAAAAAAAAAA==",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Test1\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Test1\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAHcAAACA/v////8VwDwAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T07:07:19.775Z",
+              "WhenOpened": "2024-12-16T19:03:38.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Test1\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Shared\\_Layout.cshtml*",
-              "RelativeToolTip": "Test1\\Views\\Shared\\_Layout.cshtml*",
-              "ViewState": "AgIAAC4CAAAAAAAAAAAAAEoCAAAfAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac - Copy\\WebNhac\\Test1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Test1\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIkCAAAAAAAAAAAAAKkCAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-16T05:19:34.192Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SingersController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\SingersController.cs",
-              "RelativeDocumentMoniker": "Test1\\Controllers\\SingersController.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\SingersController.cs",
-              "RelativeToolTip": "Test1\\Controllers\\SingersController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T11:47:46.759Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Test1\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Test1\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T11:44:34.434Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ListType.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\ListType.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Library\\ListType.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\ListType.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Library\\ListType.cshtml",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAAAK8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T11:32:30.063Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_Library.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\_Library.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Library\\_Library.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\_Library.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Library\\_Library.cshtml",
-              "ViewState": "AgIAAGcBAAAA/P////8dwIMBAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T07:03:52.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ListAlbum.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\ListAlbum.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Library\\ListAlbum.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\ListAlbum.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Library\\ListAlbum.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T11:23:01.077Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Playlist.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Playlist\\Playlist.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Playlist\\Playlist.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Playlist\\Playlist.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Playlist\\Playlist.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsBAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-15T08:56:59.243Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DetailAlbum.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\DetailAlbum.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Library\\DetailAlbum.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\DetailAlbum.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Library\\DetailAlbum.cshtml",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAAABMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T09:28:54.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "DetailPlaylist.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Playlist\\DetailPlaylist.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Playlist\\DetailPlaylist.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Playlist\\DetailPlaylist.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Playlist\\DetailPlaylist.cshtml",
-              "ViewState": "AgIAANcAAAAAAAAAAAAwwAkBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-15T15:05:08.548Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "TypeDetailViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Models\\TypeDetailViewModel.cs",
-              "RelativeDocumentMoniker": "Test1\\Models\\TypeDetailViewModel.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Models\\TypeDetailViewModel.cs",
-              "RelativeToolTip": "Test1\\Models\\TypeDetailViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T09:27:20.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "DetailType.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\DetailType.cshtml",
-              "RelativeDocumentMoniker": "Test1\\Views\\Library\\DetailType.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\WebNhac\\WebNhac\\Test1\\Views\\Library\\DetailType.cshtml",
-              "RelativeToolTip": "Test1\\Views\\Library\\DetailType.cshtml",
-              "ViewState": "AgIAAB8AAABAAAAAAAAhwFQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-15T15:28:36.72Z",
               "EditorCaption": ""
             }
           ]

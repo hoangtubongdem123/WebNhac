@@ -1,27 +1,106 @@
-﻿<link rel="stylesheet" type="text/css" href="@Url.Content("/Content/style.css")" />
-
-@model IEnumerable<Test1.Models.Types>
+﻿@model PagedList.IPagedList<Test1.Models.Types>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<div class="appHeader" id="appHeader">
+    <search><br />
+        <form method="get" action="@Url.Action("Types", "Types")">
+            <input type="search" name="searchString" placeholder="Tìm kiếm thể loại" class="form-control" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </search>
+</div>
+
 <h2>Quản lý thể loại</h2>
 
+<button id="openModal">Thêm thể loại</button>
+<a style="text-decoration:none" href="/Types/Types?sortOrder=id">
+    <button>Làm mới</button>
+</a>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm thể loại</h3>
+        <form action="@Url.Action("CreateType", "Types")" method="post">
+            <label>Tên thể loại</label>
+            <input type="text" name="typeName" class="form-control" required /><br /><br />
+            <label>Chọn ảnh:</label><br />
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+            <br /><br /><button type="submit">Thêm</button>
+        </form>
+    </div>
+</div>
+<br /><br />
 <table>
     <tr>
-        <th>TenTheLoai</th>
-        <th>Tuy chon</th>
+        <th style="width:4%">
+            @Html.ActionLink("ID", "Types", new { sortOrder = ViewBag.IDSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage },
+                                              new { @class = "sortable-link" })
+            @if (ViewBag.CurrentSort == "id")
+            {
+                <i class="fa fa-arrow-up"></i>
+            }
+            else if (ViewBag.CurrentSort == "id_desc")
+            {
+                <i class="fa fa-arrow-down"></i>
+            }
+        </th>
+        <th style="width:30%">
+            @Html.ActionLink("Tên thể loại", "Types", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage },
+                                                     new { @class = "sortable-link" })
+            @if (ViewBag.CurrentSort == "name_desc")
+            {
+                <i class="fa fa-arrow-down"></i>
+            }
+            else if (ViewBag.CurrentSort == "name")
+            {
+                <i class="fa fa-arrow-up"></i>
+            }
+        </th>
+        <th>Đường dẫn ảnh thể loại </th>
+        <th style="width:4%">Tùy chọn</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
+            <td>@item.ID_Type</td>
             <td>@item.TypeName</td>
+            <td>@item.Path_Type</td>
             <td>
-                <button>Sửa</button>
-                <button>Xóa</button>
+                <div style="display:inline-flex">
+                    <form action="@Url.Action("DeleteType", new { id = item.ID_Type })" method="post">
+                        <button type="submit" onclick="return confirm('Bạn có chắc là muốn xóa @item.TypeName?')">Xóa</button>
+                    </form>
+
+                    <button class="openModal" data-id="@item.TypeName">Sửa</button>
+                    <div id="modal-@item.TypeName" class="modal">
+                        <div class="modal-content">
+                            <span class="close" data-id="@item.TypeName">&times;</span>
+                            <h3>Sửa thể loại</h3>
+                            <form action="@Url.Action("UpdateType", new { id = item.ID_Type })" method="post" enctype="multipart/form-data">
+                                <label>Tên thể loại</label>
+                                <input type="text" name="typeName" value="@item.TypeName" class="form-control" required /><br /><br />
+                                <label>Ảnh ca sĩ:</label><br />
+                                <img style="height:120px" src="@item.Path_Type" /><br /><br />
+                                <label>Chọn ảnh mới: </label>
+                                <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" /><br />
+                                <button type="submit">Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
     }
 </table>
-
+<div class="text-center">
+    <div class="pager">
+        @Html.PagedListPager(Model, page => Url.Action("Types", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.CurrentFilter }))
+    </div>
+</div>
 <script src='~/Scripts/main.js'></script>

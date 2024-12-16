@@ -72,7 +72,7 @@
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Quyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" />
     <NavigationProperty Name="Playlists" Relationship="Self.FK__Playlist__ID_Use__628FA481" FromRole="Users" ToRole="Playlists" />
   </EntityType>
   <Association Name="FK_Songs_Albums">

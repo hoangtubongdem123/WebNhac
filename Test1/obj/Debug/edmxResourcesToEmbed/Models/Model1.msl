@@ -69,7 +69,7 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
           <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,0 +1,20 @@
+﻿@model Test1.Models.Users
+
+@{
+    ViewBag.Title = "Xóa Người Dùng";
+}
+
+<h2>Xóa Người Dùng</h2>
+
+<p>Bạn có chắc chắn muốn xóa người dùng <strong>@Model.UserName</strong> không?</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-default" })
+    </div>
+}
+

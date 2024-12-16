@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <h2>Quản lý người dùng</h2>
 
 <button id="openModal">Thêm người dùng</button>
@@ -44,7 +45,7 @@
                             <button type="submit">Xóa</button>
                         </form>
                     </td>
-                    <td style="width:2%"; display: flex; justify-content: center>
+                    <td style="width:2%" ; display: flex; justify-content: center>
                         <button class="openModal" data-id="@item.ID_User">Sửa</button>
 
                         <div id="modal-@item.ID_User" class="modal">
@@ -56,6 +57,8 @@
                                     <input type="text" name="username" value="@item.UserName" class="form-control" required /><br />
                                     <label>Mật khẩu</label>
                                     <input type="text" name="password" value="@item.PassWord" class="form-control" required /><br />
+                                    <label>Level</label>
+                                    <input type="text" name="password" value="@item.Level" class="form-control" required /><br />
                                     <button type="submit">Sửa</button>
                                 </form>
                             </div>
@@ -66,5 +69,11 @@
         }
     }
 </table>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <script src='~/Scripts/main.js'></script>

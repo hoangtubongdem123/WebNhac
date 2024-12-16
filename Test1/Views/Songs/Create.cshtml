@@ -1,0 +1,148 @@
+﻿@model Test1.Models.Songs
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+@{
+    ViewBag.Title = "Tạo Bài Hát Mới";
+}
+
+<h2>Tạo Bài Hát Mới</h2>
+
+@using (Html.BeginForm("Create", "Songs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NAME)
+        @Html.TextBoxFor(model => model.NAME, new { @class = "form-control", placeholder = "Nhập tên bài hát" })
+        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="ID_Singer">Ca sĩ</label>
+        <select id="ID_Singer" name="ID_Singer" class="form-control">
+            <option value="">Chọn ca sĩ</option>
+            @foreach (var singer in ViewBag.Singers as IEnumerable<SelectListItem>)
+            {
+                <option value="@singer.Value">@singer.Text</option>
+            }
+        </select>
+        <span class="text-danger">@Html.ValidationMessageFor(model => model.ID_Singer)</span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID_Type, "Thể loại")
+        @Html.DropDownList("ID_Type", (SelectList)ViewBag.Types, "Chọn thể loại", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ID_Type, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID_Album, "Album")
+        @Html.DropDownList("ID_Album", (SelectList)ViewBag.Album, "Chọn Album", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ID_Album, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>Chọn ảnh:</label>
+        <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Chọn bài hát:</label>
+        <input type="file" name="songFile" id="songFile" accept="mp3,audio/*" value="" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Tạo Bài Hát" class="btn btn-success" />
+        <a href="@Url.Action("Songs", "Songs")" class="btn btn-default">Hủy</a>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#ID_Singer').select2({
+            placeholder: "Chọn hoặc gõ tên ca sĩ",
+            allowClear: true
+        });
+    });
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    form {
+        max-width: 500px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .form-group input[type="submit"]:hover {
+                background-color: #218838;
+            }
+
+        .form-group a {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+            .form-group a:hover {
+                text-decoration: underline;
+            }
+
+    .text-danger {
+        font-size: 12px;
+        color: #dc3545;
+        margin-top: 5px;
+    }
+</style>

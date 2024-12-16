@@ -37,10 +37,18 @@ namespace Test1.Controllers
 
                 }
 
+
+
                 
                 Session["UserID"] = user.ID_User;
                 Session["UserName"] = user.UserName;
-               
+                Session["Level"] = user.Level;
+
+                int? sessionLevel = Session["Level"] as int?;
+
+                if(sessionLevel >1){
+                    return RedirectToAction("Dashboard", "Home");
+                }
 
                 // Redirect to Home/Index
                 return RedirectToAction("Index", "Home");
@@ -69,19 +77,20 @@ namespace Test1.Controllers
         {
             using (WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
             {
-                // Check if the username already exists
+               
                 if (db.Users.Any(u => u.UserName == username))
                 {
-                    TempData["ErrorMessage"] = "Tài khoản đã tồn tại."; // Set the error message
+                    TempData["ErrorMessage"] = "Tài khoản đã tồn tại."; 
                     return RedirectToAction("Register", "Account");
                 }
 
-                // Add new user if the username does not exist
+               
                 db.Users.Add(new Users
                 {
                     UserName = username,
                     PassWord = password,
-                   
+                    Level = 1
+
                 });
                 db.SaveChanges();
 

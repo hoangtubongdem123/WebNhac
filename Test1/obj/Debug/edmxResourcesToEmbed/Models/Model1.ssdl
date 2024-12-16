@@ -71,7 +71,7 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="50" />
     <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
     <Property Name="Avatar" Type="nvarchar" MaxLength="255" />
-    <Property Name="Quyen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Level" Type="int" />
   </EntityType>
   <Association Name="FK__Playlist__ID_Use__628FA481">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />

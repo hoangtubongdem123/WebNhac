@@ -1,0 +1,91 @@
+﻿@model IPagedList<Test1.Models.Users>
+@using PagedList.Mvc
+@using PagedList
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Quản lý tài khoản</h1>
+<br />
+<div class="appHeader" id="appHeader">
+    <search>
+        <br />
+        @using (Html.BeginForm("Index", "Users", FormMethod.Get))
+        {
+            <input type="search" name="searchString" class="form-control" placeholder="Tìm kiếm người dùng" value="@ViewBag.CurrentFilter" />
+            <button type="submit">Tìm kiếm</button>
+        }
+    </search>
+</div>
+<!-- Tạo người dùng mới -->
+<div class="text-right">
+    @using (Html.BeginForm("CreateUser", "Users", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-success" style="background-color: #00FF00; padding: 10px;">
+            Tạo Người Dùng Mới
+        </button>
+    }
+</div>
+
+<p style="text-align:center; opacity:0.5 ">Nhấn vào ID hoặc Tên người dùng để sắp xếp</p>
+
+<!-- Sắp xếp -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center; width: 4%">
+                @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm })
+            </th>
+            <th style="text-align: center;">
+                @Html.ActionLink("Tên người dùng", "Index", new { sortOrder = ViewBag.UserNameSortParm })
+            </th>
+            <th style="text-align: center;">Mật khẩu</th>
+            <th style="text-align: center;">Level</th>
+            <th style="width: 4%">Tùy chọn</thwidth:>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.ID_User</td>
+                <td>@user.UserName</td>
+                <td>@user.PassWord</td>
+                <td>@user.Level</td>
+                <td style="text-align: center;">
+                    <div style="display:inline-flex">
+                        <button type="button" class="btn btn-warning" style="background-color: #FFFF00;" onclick="window.location.href='@Url.Action("EditUser", "Users", new { id = user.ID_User },null)'">
+                            Sửa
+                        </button>
+
+                        @using (Html.BeginForm("DeleteUser", "Users", new { id = user.ID_User }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken() <!-- Thêm dòng này để chống CSRF -->
+                            <button type="submit" class="btn btn-danger" style="background-color: #FF0000;" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">
+                                Xóa
+                            </button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+<!-- Phân trang -->
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.CurrentFilter, sortOrder = ViewBag.CurrentSort }))
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+
+

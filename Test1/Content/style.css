@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Inter, sans-serif;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 .App {
@@ -115,6 +115,119 @@
     object-fit: contain;
 }
 
+.appHeader {
+    justify-content: space-between;
+    align-items: left;
+    position: fixed;
+    left: 240px;
+    top: 0;
+    right: 0;
+    height: 70px;
+    padding: 0 59px;
+    min-width: 660px;
+}
+
+.onscroll {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+    background-color: #fff
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-right: 12px;
+}
+
+.formSearch {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 20px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-left: 12px;
+}
+
+.sreachBtn {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 400;
+    text-transform: none;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.inputWrapper {
+    position: absolute;
+    top: 0;
+    left: 38px;
+    right: 10px;
+    bottom: 0;
+}
+
+.inputSearch {
+    margin: 0;
+    display: inline-block;
+    width: 95%;
+    font-size: 14px;
+    color: #282828;
+    background-clip: padding-box;
+    border: 0;
+    position: relative;
+    top: 2px;
+    height: 34px;
+    padding: 5px 0;
+    line-height: 34px;
+    background: none;
+    outline: none;
+}
+
+.headerRight {
+    display: flex;
+    flex-direction: row;
+}
+
+search {
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    margin: 20px 0;
+}
+
+    search form {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 5px 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    search input[type="search"] {
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 25px;
+        flex-grow: 1;
+        background-color: transparent;
+    }
+
+
+/*bảng*/
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -128,11 +241,14 @@ td, th {
 }
 
 h2 {
+    font-size:32px;
     padding-bottom: 8px;
 }
 h3 {
     padding-bottom: 8px;
 }
+
+/*modal lúc hiện*/
 .modal {
     display: none;
     position: fixed;
@@ -168,6 +284,8 @@ h3 {
         cursor: pointer;
     }
 
+
+/* Của button */
 button {
     appearance: none;
     background-color: #FAFBFC;
@@ -224,3 +342,61 @@ button:before {
 button:-webkit-details-marker {
     display: none;
 }
+
+
+/* Của phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+        .pagination li a, .pagination li span {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #f1f1f1;
+            color: #868686;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .pagination li a:hover, .pagination li span:hover {
+                background-color: #868686;
+                color: white;
+            }
+
+        .pagination li.active a {
+            background-color: #868686;
+            color: white;
+        }
+
+        .pagination li.disabled a {
+            color: #ccc;
+        }
+
+
+/* Mũi tên động cạnh ActionLink */
+.sortable-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.fa {
+    margin-left: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.fa-arrow-up {
+    color: green;
+}
+
+.fa-arrow-down {
+    color: red;
+}
+
