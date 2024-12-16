@@ -1,11 +1,12 @@
 ﻿@model Test1.Models.PlaylistDetailViewModel
+@using Newtonsoft.Json
 
 
 <div class="detailTypes-wrapper">
     <div class="div-detail-types">
         <div class="detail-left">
             <!-- Hiển thị ảnh nền và tên playlist -->
-            <img id="vcc" src="/img/vinyl.jpg"  />
+            <img id="vcc" src="/img/vinyl.jpg" />
             <span class="detail-type-name">@Model.Name_Playlist</span>
             <div class="detail-left-action">
                 <button class="detail-left-btn">
@@ -32,7 +33,7 @@
             <div class="select-list">
                 <!-- Lặp qua danh sách bài hát -->
                 @foreach (var song in Model.Songs)
-                {   
+                {
                     <div class="select-item">
                         <div class="selec-item-left">
                             <img src="/@song.Path_BackGround" />
@@ -172,6 +173,7 @@
         border-radius: 20px;
         gap: 5px;
     }
+
     .select-item {
         align-items: center;
         display: flex;
@@ -208,7 +210,57 @@
     .select-item:hover .selec-item-left img {
         transform: scale(1.1); /* Phóng to hình ảnh khi hover */
     }
-
-
-
 </style>
+
+<script>
+
+            var songsArray = [];
+            $(document).ready(function () {
+                // Danh sách bài hát
+                var a = @Html.Raw(JsonConvert.SerializeObject(Model.Songs));
+
+                console.log(a);
+                 a.forEach(function (songItem) {
+    var song = {
+        ID_Song: songItem.ID_Song,
+        NAME : songItem.NAME,
+        Path_Song: songItem.Path_Song,
+        Singer: {
+            ID_Singer: songItem.Singers.ID_Singer,
+            NAME: songItem.Singers.NAME,
+        },
+        Path_BackGround: songItem.Path_BackGround,
+        Type: songItem.Type
+    };
+                     songsArray.push(song);
+});
+
+
+
+            });
+
+
+
+
+    listsong = songsArray;
+
+    
+
+    $(".select-item").click(function () {
+
+
+        var index = $(this).index(); 
+        lengthPlaylist = listsong.length;
+           
+        console.log(listsong);
+        console.log(lengthPlaylist)
+
+                    loadsong(index);
+                    audio.play();
+
+
+                });
+
+
+
+</script>

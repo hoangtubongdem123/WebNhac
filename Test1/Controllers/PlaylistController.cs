@@ -159,5 +159,51 @@ namespace Test1.Controllers
 
 
 
+        
+        public JsonResult EditPlaylist(int id_playlist, string new_name)
+        {
+            try
+            {
+                using (WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
+                {
+                    var playlist = db.Playlists.FirstOrDefault(p => p.ID_Playlist == id_playlist);
+
+                    if (playlist == null)
+                    {
+                        return Json(new { success = false, message = "Playlist không tồn tại." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    bool isDuplicate = db.Playlists.Any(p => p.Name_Playlist == new_name && p.ID_User == playlist.ID_User);
+
+                    if (isDuplicate)
+                    {
+                        return Json(new { success = false, message = "Tên Playlist đã tồn tại." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    playlist.Name_Playlist = new_name;
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = "Sửa Playlist thành công!" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Có lỗi xảy ra: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        public JsonResult DeletePlaylist(int id_playlist)
+        {
+            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+            var playlist = db.Playlists.FirstOrDefault(p => p.ID_Playlist == id_playlist);
+            db.Playlists.Remove(playlist);
+            db.SaveChanges();
+            return Json(new { success = true, message = "Xóa Playlist thành công!" }, JsonRequestBehavior.AllowGet);
+
+
+        }
+
     }
 }

@@ -37,20 +37,20 @@
                 @for (int i = 0; i < Model.Songs.Count; i++)
                 {
                     <div class="songItem grid-template-column">
-                        <!-- Số thứ tự bài hát -->
+                       
                         <div class="songItem-index">
                             <span>@(i + 1)</span>
                         </div>
-                        <!-- Thông tin bài hát -->
+                       
                         <div class="songItem-text">
                             <div class="divSongItem-text">
                                 <span>@Model.Songs[i].NAME</span>
                                 <span class="nameArts">@Model.Songs[i].Singers.NAME</span>
                             </div>
                         </div>
-                        <!-- Thời gian bài hát -->
+                       
                         <div class="songItem-time">
-                            <span>@Model.Songs[i].Plays</span> <!-- Thay bằng thời gian thực nếu có -->
+                            <span>@Model.Songs[i].Plays</span>
                         </div>
                     </div>
 
@@ -79,10 +79,10 @@
         }
 
         .bannerImg {
-            width: 100%; /* Chiếm toàn bộ chiều rộng */
-            height: auto; /* Tự động điều chỉnh chiều cao theo tỷ lệ */
-            max-height: 500px; /* Giới hạn chiều cao tối đa */
-            object-fit: cover; /* Đảm bảo hiển thị toàn bộ hình ảnh */
+            width: 100%;
+            height: auto; 
+            max-height: 500px; 
+            object-fit: cover; 
         }
     </style>
 
@@ -118,6 +118,7 @@ listsong = songsArray;
 $(document).on("click", ".songItem", function () {
     var index = $(this).index();
     console.log(songsArray[index]);
+    lengthPlaylist = listsong.length;
 
     loadsong(index);
     audio.play();
