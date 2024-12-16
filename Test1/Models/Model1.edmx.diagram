@@ -4,18 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3df9f1540ddc431bb41a636283f6034f" Name="Diagram1">
-        <EntityTypeShape EntityType="WebNgheNhacModel.Album" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Playlists" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Singers" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Songs" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Types" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebNgheNhacModel.Users" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="WebNgheNhacModel.FK__Album__ID_Song__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="WebNgheNhacModel.FK__Playlists__ID_Us__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="WebNgheNhacModel.FK__Songs__ID_Singer__46E78A0C" ManuallyRouted="false" />
+      <Diagram DiagramId="15355a07058e4e5486c8e9d2ae7c1c0d" Name="Diagram1">
+        <EntityTypeShape EntityType="WebNgheNhacModel.Album" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Playlist_Songs" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Playlists" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Singers" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Songs" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Types" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNgheNhacModel.Users" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="WebNgheNhacModel.FK_Songs_Albums" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Playlist___ID_Pl__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Playlist___ID_So__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK_PlaylistSongs_Playlists" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Playlists__ID_Us__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNgheNhacModel.FK__Songs__ID_Singer__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="WebNgheNhacModel.FK_Songs_IDType" ManuallyRouted="false" />
-        <AssociationConnector Association="WebNgheNhacModel.Playlist_Songs" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

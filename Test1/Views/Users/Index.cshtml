@@ -7,18 +7,17 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Danh sách Người Dùng</h1>
+<h1>Quản lý tài khoản</h1>
 <br />
-<!-- Tìm kiếm -->
-@using (Html.BeginForm("Index", "Users", FormMethod.Get))
-{
-    <p>
-        Tìm kiếm theo tên người dùng:
-        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Nhập tên người dùng", style = "width: 50%; height: 30px;" })
-        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
-    </p>
-}
-<br>
+<div class="appHeader" id="appHeader">
+    <search><br />
+        @using (Html.BeginForm("Index", "Users", FormMethod.Get))
+        {
+            <input type="search" name="searchString" class="form-control" placeholder="Tìm kiếm người dùng" value="@ViewBag.CurrentFilter" />
+            <button type="submit">Tìm kiếm</button>
+        }
+    </search>
+</div>
 <!-- Tạo người dùng mới -->
 <div class="text-right">
     @using (Html.BeginForm("CreateUser", "Users", FormMethod.Get))
@@ -35,15 +34,14 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="text-align: center;">
+            <th style="text-align: center; width: 4%">
                 @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm })
             </th>
             <th style="text-align: center;">
                 @Html.ActionLink("Tên người dùng", "Index", new { sortOrder = ViewBag.UserNameSortParm })
             </th>
             <th style="text-align: center;">Mật khẩu</th>
-            <th></th>
-            <th></th>
+            <th style="width: 4%">Tùy chọn</thwidth:>
         </tr>
     </thead>
     <tbody>
@@ -54,18 +52,19 @@
                 <td>@user.UserName</td>
                 <td>@user.PassWord</td>
                 <td style="text-align: center;">
-                    <button type="button" class="btn btn-warning" style="background-color: #FFFF00;" onclick="window.location.href='@Url.Action("EditUser", "Users", new { id = user.ID_User },null)'">
-                        Sửa
-                    </button>
-                </td>
-                <td style="text-align: center;">
-                    @using (Html.BeginForm("DeleteUser", "Users", new { id = user.ID_User }, FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken() <!-- Thêm dòng này để chống CSRF -->
-                        <button type="submit" class="btn btn-danger" style="background-color: #FF0000;" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">
-                            Xóa
+                    <div style="display:inline-flex">
+                        <button type="button" class="btn btn-warning" style="background-color: #FFFF00;" onclick="window.location.href='@Url.Action("EditUser", "Users", new { id = user.ID_User },null)'">
+                            Sửa
                         </button>
-                    }
+
+                        @using (Html.BeginForm("DeleteUser", "Users", new { id = user.ID_User }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken() <!-- Thêm dòng này để chống CSRF -->
+                            <button type="submit" class="btn btn-danger" style="background-color: #FF0000;" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">
+                                Xóa
+                            </button>
+                        }
+                    </div>
                 </td>
             </tr>
         }

@@ -26,6 +26,7 @@ namespace Test1.Models
         }
     
         public virtual DbSet<Album> Album { get; set; }
+        public virtual DbSet<Playlist_Songs> Playlist_Songs { get; set; }
         public virtual DbSet<Playlists> Playlists { get; set; }
         public virtual DbSet<Singers> Singers { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }

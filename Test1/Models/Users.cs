@@ -24,6 +24,7 @@ namespace Test1.Models
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string Avatar { get; set; }
+        public string Quyen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Playlists> Playlists { get; set; }

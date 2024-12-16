@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -6,30 +7,55 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using Test1.Models;
+using PagedList;
 
 namespace Test1.Controllers
 {
     public class TypesController : Controller
     {
-
-        [HttpGet]
-        public ActionResult Types(string searchTerm)
+        private WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+        public ActionResult Types(string sortOrder, string searchString, int? page, int? size)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            ViewBag.IDSortParm = sortOrder == "id" ? "id_desc" : "id";
 
+            ViewBag.CurrentFilter = searchString;
 
-            var types = string.IsNullOrEmpty(searchTerm)
-                        ? db.Types.ToList()
-                        : db.Types.Where(t => t.TypeName.Contains(searchTerm)).ToList();
+            var types = from s in db.Types select s;
 
-            return View(types);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                types = types.Where(s => s.TypeName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                default:
+                    goto case "id";
+                case "id":
+                    types = types.OrderBy(s => s.ID_Type);
+                    break;
+                case "id_desc":
+                    types = types.OrderByDescending(s => s.ID_Type);
+                    break;
+                case "name_desc":
+                    types = types.OrderByDescending(s => s.TypeName);
+                    break;
+                case "name":
+                    types = types.OrderBy(s => s.TypeName);
+                    break;
+            }
+
+            int pageSize = size ?? 7;
+            int pageNumber = page ?? 1;
+
+            return View(types.ToPagedList(pageNumber, pageSize));
         }
-
 
         [HttpPost]
         public ActionResult CreateType(string typeName, HttpPostedFileBase imageFile)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             Types type = new Types()
             {
                 TypeName = typeName,
@@ -54,7 +80,6 @@ namespace Test1.Controllers
         [HttpPost]
         public ActionResult UpdateType(int id, HttpPostedFileBase imageFile)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             var type = db.Types.Find(id);
             if (type != null)
             {
@@ -84,7 +109,6 @@ namespace Test1.Controllers
 
         public ActionResult DeleteType(int id)
         {
-            WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
             var type = db.Types.Find(id);
             if (type != null)
             {

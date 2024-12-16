@@ -14,11 +14,17 @@ namespace Test1.Models
     
     public partial class Album
     {
-        public int ID_Album { get; set; }
-        public string Name_Album { get; set; }
-        public int ID_Song { get; set; }
-        public string Path_Album { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Album()
+        {
+            this.Songs = new HashSet<Songs>();
+        }
     
-        public virtual Songs Songs { get; set; }
+        public int ID_Album { get; set; }
+        public string Album_Name { get; set; }
+        public string Path_Ablum { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Songs> Songs { get; set; }
     }
 }

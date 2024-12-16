@@ -15,36 +15,37 @@
     Thêm Bài Hát Mới
     </button>
 </div>
-<br />
 
 <!-- Form tìm kiếm -->
-<div>
-    @using (Html.BeginForm("Songs", "Songs", FormMethod.Get))
-    {
-        <div class="form-inline">
-            <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm bài hát" value="@ViewBag.CurrentFilter" style="font-size: 18px; height: 30px; padding: 10px; width: 50%;" />
-            <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
-        </div>
-    }
+<div class="appHeader" id="appHeader">
+    <search><br />
+        
+        @using (Html.BeginForm("Songs", "Songs", FormMethod.Get))
+        {
+            <input type="search" name="searchString" class="form-control" placeholder="Tìm kiếm bài hát" value="@ViewBag.CurrentFilter" />
+            <button type="submit">Tìm kiếm</button>
+        }
+    </search>
 </div>
 
-<br />
 <p style="text-align:center; opacity:0.5 ">Nhấn vào ID hoặc Tên bài hát để sắp xếp</p>
 
 <!-- Bảng danh sách bài hát -->
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th style="width: 3%">
                 @Html.ActionLink("ID", "Songs", new { sortOrder = ViewBag.IDSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage })
             </th>
             <th>
                 @Html.ActionLink("Tên bài hát", "Songs", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.CurrentFilter, page = ViewBag.CurrentPage })
             </th>
+            <th>Ca sĩ</th>
             <th>Đường dẫn bài hát</th>
             <th>Đường dẫn ảnh nền</th>
             <th>Thể loại</th>
-            <th>Tùy chọn</th>
+            <th>Album</th>
+            <th style="width: 4%">Tùy chọn</th>
         </tr>
     </thead>
     <tbody>
@@ -53,20 +54,24 @@
             <tr id="song-@item.ID_Song">
                 <td>@item.ID_Song</td>
                 <td>@item.NAME</td>
+                <td>@(item.Singers?.NAME ?? "Không có")</td>
                 <td>@item.Path_Song</td>
                 <td>@item.Path_BackGround</td>
-                <td>@item.Types</td>
+                <td>@(item.Types?.TypeName ?? "Không có")</td>
+                <td>@(item.Album?.Album_Name ?? "Không có")</td>
                 <td>
-                    @using (Html.BeginForm("Edit", "Songs", new { id = item.ID_Song }, FormMethod.Get))
-                    {
-                        <button type="submit" class="btn btn-primary" style="background-color: #FFFF00;">Sửa</button>
-                    }
+                    <div style="display:inline-flex">
+                        @using (Html.BeginForm("Edit", "Songs", new { id = item.ID_Song }, FormMethod.Get))
+                        {
+                            <button type="submit" class="btn btn-primary" style="background-color: #FFFF00;">Sửa</button>
+                        }
 
-                    @using (Html.BeginForm("Delete", "Songs", new { id = item.ID_Song }, FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken() <!-- Thêm Token để bảo vệ khỏi CSRF -->
-                        <button type="submit" class="btn btn-danger" style="background-color: #FF0000;" onclick="return confirm('Bạn có chắc chắn muốn xóa bài hát này?')">Xóa</button>
-                    }
+                        @using (Html.BeginForm("Delete", "Songs", new { id = item.ID_Song }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken() <!-- Thêm Token để bảo vệ khỏi CSRF -->
+                            <button type="submit" class="btn btn-danger" style="background-color: #FF0000;" onclick="return confirm('Bạn có chắc chắn muốn xóa bài hát này?')">Xóa</button>
+                        }
+                    </div>
                 </td>
             </tr>
         }

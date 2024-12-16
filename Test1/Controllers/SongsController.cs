@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using PagedList;
 using Test1.Models;
 
@@ -48,19 +52,35 @@ namespace Test1.Controllers
             return View(songs.ToPagedList(pageNumber, pageSize));
         }
 
+        private void PopulateDropDowns()
+        {
+            ViewBag.Singers = new SelectList(db.Singers, "ID_Singer", "NAME");
+            ViewBag.Types = new SelectList(db.Types, "ID_Type", "TypeName");
+            ViewBag.Album = new SelectList(db.Album, "ID_Album", "Album_Name");
+        }
+
         public ActionResult Create()
         {
-            var typesList = db.Types.Select(t => t.TypeName).ToList();
-            ViewBag.Types = new SelectList(typesList);
+            PopulateDropDowns();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Song,NAME,Path_Song,Path_BackGround,TypeName")] Songs song)
+        public ActionResult Create([Bind(Include = "ID_Song,NAME,ID_Singer,ID_Type,ID_Album")] Songs song, HttpPostedFileBase imageFile, HttpPostedFileBase songFile)
         {
+            PopulateDropDowns();
+            var imageFileName = Path.GetFileName(imageFile.FileName);
+            var songFileName = Path.GetFileName(songFile.FileName);
+            var imagePath = Path.Combine(Server.MapPath("~/SongBackGround"), imageFileName);
+            var songPath = Path.Combine(Server.MapPath("~/Songs"), songFileName);
             if (ModelState.IsValid)
             {
+                imageFile.SaveAs(imagePath);
+                songFile.SaveAs(songPath);
+                song.Path_Song = "/Songs/" + songFileName;
+                song.Path_BackGround = "/SongBackGround/" + imageFileName;
+
                 db.Songs.Add(song);
                 db.SaveChanges();
                 return RedirectToAction("Songs");
@@ -71,6 +91,7 @@ namespace Test1.Controllers
 
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,23 +102,53 @@ namespace Test1.Controllers
             {
                 return HttpNotFound();
             }
-
-            ViewBag.Types = new SelectList(db.Types, "TypeName", "TypeName", song.Types);
+            ViewBag.Singers = new SelectList(db.Singers, "ID_Singer", "NAME");
+            ViewBag.Types = new SelectList(db.Types, "ID_Type", "TypeName");
+            ViewBag.Album = new SelectList(db.Album, "ID_Album", "Album_Name");
             return View(song);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Song,NAME,Path_Song,Path_BackGround,TypeName")] Songs song)
+        public ActionResult Edit([Bind(Include = "ID_Song,NAME,ID_Singer,ID_Type,ID_Album")] Songs song, HttpPostedFileBase imageFile, HttpPostedFileBase songFile)
         {
+            PopulateDropDowns();
             if (ModelState.IsValid)
             {
-                db.Entry(song).State = System.Data.Entity.EntityState.Modified;
+                var existingSong = db.Songs.Find(song.ID_Song);
+                if (existingSong == null)
+                {
+                    return HttpNotFound();
+                }
+
+                existingSong.NAME = song.NAME;
+                existingSong.ID_Singer = song.ID_Singer;
+                existingSong.ID_Type = song.ID_Type;
+                existingSong.ID_Album = song.ID_Album;
+
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    var imageFileName = Path.GetFileName(imageFile.FileName);
+                    var imagePath = Path.Combine(Server.MapPath("~/SongBackGround"), imageFileName);
+                    imageFile.SaveAs(imagePath);
+                    existingSong.Path_BackGround = "/SongBackGround/" + imageFileName;
+                }
+
+                if (songFile != null && songFile.ContentLength > 0)
+                {
+                    var songFileName = Path.GetFileName(songFile.FileName);
+                    var songPath = Path.Combine(Server.MapPath("~/Songs"), songFileName);
+                    songFile.SaveAs(songPath);
+                    existingSong.Path_Song = "/Songs/" + songFileName;
+                }
+
+                db.Entry(existingSong).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Songs");
             }
 
-            ViewBag.Types = new SelectList(db.Types, "TypeName", "TypeName", song.Types);
+            ViewBag.Types = new SelectList(db.Types, "TypeName", "TypeName", song.ID_Type);
             return View(song);
         }
 

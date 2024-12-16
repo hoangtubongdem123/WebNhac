@@ -60,10 +60,10 @@ namespace Test1.Controllers
                 if (playlist != null && song != null)
                 {
                     
-                    if (!song.Playlists.Contains(playlist))
+                    if (!db.Playlists.Contains(playlist))
                     {
                         
-                        song.Playlists.Add(playlist);
+                        db.Playlists.Add(playlist);
                         db.SaveChanges();
 
                         Console.WriteLine("Thêm Playlist vào bài hát thành công!");

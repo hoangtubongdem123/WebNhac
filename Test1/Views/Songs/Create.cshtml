@@ -6,7 +6,7 @@
 
 <h2>Tạo Bài Hát Mới</h2>
 
-@using (Html.BeginForm("Create", "Songs", FormMethod.Post))
+@using (Html.BeginForm("Create", "Songs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -17,21 +17,31 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Path_Song)
-        @Html.TextBoxFor(model => model.Path_Song, new { @class = "form-control", placeholder = "Nhập đường dẫn bài hát" })
-        @Html.ValidationMessageFor(model => model.Path_Song, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.ID_Singer, "Ca sĩ")
+        @Html.DropDownList("ID_Singer", (SelectList)ViewBag.Singers, "Chọn ca sĩ", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ID_Singer, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Path_BackGround)
-        @Html.TextBoxFor(model => model.Path_BackGround, new { @class = "form-control", placeholder = "Nhập đường dẫn ảnh nền" })
-        @Html.ValidationMessageFor(model => model.Path_BackGround, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.ID_Type, "Thể loại")
+        @Html.DropDownList("ID_Type", (SelectList)ViewBag.Types, "Chọn thể loại", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ID_Type, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Types)
-        @Html.DropDownListFor(model => model.Types, (SelectList)ViewBag.Types, "Chọn thể loại", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Types, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.ID_Album, "Album")
+        @Html.DropDownList("ID_Album", (SelectList)ViewBag.Album, "Chọn Album", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ID_Album, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>Chọn ảnh:</label>
+        <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Chọn bài hát:</label>
+        <input type="file" name="songFile" id="songFile" accept="mp3,audio/*" value="" class="form-control" required />
     </div>
 
     <div class="form-group">

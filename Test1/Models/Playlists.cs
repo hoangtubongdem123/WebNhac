@@ -17,15 +17,18 @@ namespace Test1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Playlists()
         {
-            this.Songs = new HashSet<Songs>();
+            this.Playlist_Songs = new HashSet<Playlist_Songs>();
+            this.Playlist_Songs1 = new HashSet<Playlist_Songs>();
         }
     
         public int ID_Playlist { get; set; }
         public string Name_Playlist { get; set; }
         public Nullable<int> ID_User { get; set; }
     
-        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Songs> Songs { get; set; }
+        public virtual ICollection<Playlist_Songs> Playlist_Songs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Playlist_Songs> Playlist_Songs1 { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

@@ -189,6 +189,9 @@
     <Compile Include="Models\Playlists.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Playlist_Songs.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Singers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

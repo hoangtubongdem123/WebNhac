@@ -58,8 +58,8 @@ namespace Test1.Controllers
 
          
             var albums = db.Album
-                           .Where(a => a.Name_Album.Contains(query))
-                           .Select(a => new { a.ID_Album, a.Name_Album })
+                           .Where(a => a.Album_Name.Contains(query))
+                           .Select(a => new { a.ID_Album, a.Album_Name })
                            .ToList();
 
             var singers = db.Singers
