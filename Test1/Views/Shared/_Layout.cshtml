@@ -636,7 +636,7 @@
                 url = '@Url.Action("Account", "Account")';
             } else if (event.state.page === "Playlist") {
                 url = '@Url.Action("Playlist", "Playlist")';
-            } 
+            }
 
 
                 $.ajax({
@@ -721,51 +721,67 @@
 
 
         //them nhac cho playlist
-        $(document).ready(function () {
-
-            $('#moreOptions').click(function () {
-
-                $('#playlistMenu').toggle();
-
-                 $.ajax({
-                url: '@Url.Action("getAllPlaylist", "Playlist")',
-                 method: 'GET',
-                     success: function (data) {
-                         var $listplaylist = $('.playlistMenu');
-                         $listplaylist.empty();
-
-                         data.forEach(function (playlist) {
-                             var html = `<li class="addToPlaylist" data-playlist-id="${playlist.ID_Playlist}">${playlist.Name_Playlist}</li>
-
-            `;
-
-                             $listplaylist.append(html);
-
-                             $('.addToPlaylist').click(function () {
 
 
 
+       $(document).ready(function () {
+    $('#moreOptions').click(function () {
+      
+        $('#playlistMenu').toggle();
 
+      
+        $.ajax({
+            url: '@Url.Action("getAllPlaylist", "Playlist")',
+            method: 'GET',
+            success: function (data) {
+                var $listplaylist = $('.playlistMenu'); 
+                $listplaylist.empty(); 
 
-                             })
+             
+                data.forEach(function (playlist) {
+                    var html = `
+                        <li class="addToPlaylist" data-playlist-id="${playlist.ID_Playlist}">
+                            ${playlist.Name_Playlist}
+                        </li>
+                    `;
 
+                    $listplaylist.append(html); 
+                });
 
+                
+                $('.addToPlaylist').off('click').on('click', function () {
+                    const playlistId = $(this).data('playlist-id');
+                    console.log("ID Playlist: " + playlistId + " - ID Current Song: " + IdCurentSong);
 
-                         })
-                         console.log(data);
-     },
-                error: function () {
-                    alert('Error loading playlist content');
-     }
- });
+                    if (!IdCurentSong) {
+                        alert("Bạn chưa chọn nhạc.");
+                        return;
+                    }
 
-
-
-
-            });
-
-
+                    $.ajax({
+                        url: '@Url.Action("InsertSongInPlaylist", "Playlist")',
+                        type: 'GET',
+                        data: { playlistId: playlistId, songId: IdCurentSong },
+                        success: function (response) {
+                            if (response.success) {
+                                alert(response.message); 
+                            } else {
+                                alert(response.message); 
+                            }
+                        },
+                        error: function () {
+                            alert("Đã xảy ra lỗi khi thêm bài hát vào playlist.");
+                        }
+                    });
+                });
+            },
+            error: function () {
+                alert('Lỗi khi tải danh sách playlist.');
+            }
         });
+    });
+});
+
 
 
 

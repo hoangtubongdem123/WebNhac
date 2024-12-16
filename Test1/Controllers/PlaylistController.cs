@@ -70,15 +70,15 @@ namespace Test1.Controllers
                         db.SaveChanges();
 
                         Console.WriteLine("Thêm Playlist vào bài hát thành công!");
-                        return Json("Thành công", JsonRequestBehavior.AllowGet);
+                        return Json(new { success = true, message = "Bài hát đã được thêm vào Playlist "+ playlist.Name_Playlist  }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json("Bài hát đã tồn tại trong Playlist", JsonRequestBehavior.AllowGet);
+                        return Json(new { success = false, message = "Bài hát "+song.NAME+" đã tồn tại trong Playlist này" }, JsonRequestBehavior.AllowGet);
                     }
                 }
 
-                return Json("Playlist hoặc bài hát không tồn tại", JsonRequestBehavior.AllowGet);
+                return Json("Lỗi ", JsonRequestBehavior.AllowGet);
             }
         }
 
