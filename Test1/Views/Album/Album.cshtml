@@ -29,7 +29,7 @@
         <h3>Thêm album</h3>
         <form action="@Url.Action("CreateAlbum", "Album")" method="post" enctype="multipart/form-data">
             <label>Tên album</label>
-            <input type="text" name="typeName" class="form-control" required /><br /><br />
+            <input type="text" name="albumName" class="form-control" required /><br /><br />
             <label>Chọn ảnh:</label><br />
             <input type="file" name="imageFile" id="imageFile" accept="image/*" value="" class="form-control" required />
             <br /><br /><button type="submit">Thêm</button>
