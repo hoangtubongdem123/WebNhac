@@ -1,4 +1,9 @@
-﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+﻿@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
 <div class="wrapperSectionHeading">
     <a class="sectionLink">
         <h2 class="sectionLinkH2">Danh Sách Playlist </h2>
@@ -137,7 +142,7 @@
             <label for="playlistName">Tên Playlist:</label>
             <input type="text" id="playlistName" name="playlistName" required />
 
-          
+
 
             <button type="submit" class="btn-submit">Thêm</button>
         </form>
@@ -161,7 +166,7 @@
 
 <style>
     .modal {
-        display: none; 
+        display: none;
         position: fixed;
         z-index: 1000;
         left: 0;
@@ -229,6 +234,7 @@
         .modal .btn-submit:hover {
             background-color: #7a1eaa;
         }
+
     .context-menu {
         position: fixed;
         top: 40%;
@@ -240,35 +246,32 @@
         z-index: 1000;
         padding: 10px;
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
         align-items: center;
     }
 
         .context-menu ul {
             list-style: none;
-            padding: 0; 
+            padding: 0;
             margin: 0;
         }
 
         .context-menu li {
-            width: 100%; 
+            width: 100%;
             padding: 15px;
             text-align: center;
             font-size: 16px;
             color: #fff;
             background-color: #007bff;
-            border-radius: 5px; 
-            margin: 5px 0; 
-            cursor: pointer; 
-            transition: background-color 0.3s; 
+            border-radius: 5px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
             .context-menu li:hover {
-                background-color: #0056b3; 
+                background-color: #0056b3;
             }
-
-
-
 </style>
 
 
@@ -281,7 +284,7 @@ $.ajax({
         var $playlist_body = $('.wrapperSectionBody_playlist').eq(0);
 
         $playlist_body.empty();
-        
+
 
         data.forEach(function (playlist) {
             var playlistItem = `

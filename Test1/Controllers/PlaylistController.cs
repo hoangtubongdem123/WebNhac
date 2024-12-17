@@ -152,7 +152,7 @@ namespace Test1.Controllers
                 catch (Exception ex)
                 {
                    
-                    return Json(new { success = false, message = "Có lỗi xảy ra: " + ex.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Bạn Phải Đăng Nhập Để Sử Dụng Tính Năng Tạo Playlist "  }, JsonRequestBehavior.AllowGet);
                 }
             }
         }

@@ -13,6 +13,11 @@ namespace Test1.Controllers
 
         public ActionResult Library()
         {
+            if (Session["UserName"] == null)
+            {
+
+                return RedirectToAction("Login", "Account");
+            }
 
 
             WebNgheNhacEntities1 db = new WebNgheNhacEntities1();

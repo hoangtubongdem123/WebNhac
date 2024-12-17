@@ -16,6 +16,11 @@ namespace Test1.Controllers
         private WebNgheNhacEntities1 db = new WebNgheNhacEntities1();
         public ActionResult Album(string sortOrder, string searchString, int? page, int? size)
         {
+            if (Session["UserID"] == null)
+            {
+
+                return RedirectToAction("Login", "Account");
+            }
             int? sessionLevel = Session["Level"] as int?;
 
             if (sessionLevel == 1)

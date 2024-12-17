@@ -132,7 +132,11 @@ namespace Test1.Controllers
         public ActionResult Edit([Bind(Include = "ID_Song,NAME,ID_Singer,ID_Type,ID_Album")] Songs song, HttpPostedFileBase imageFile, HttpPostedFileBase songFile)
         {
             int? sessionLevel = Session["Level"] as int?;
+            if (Session["UserID"] == null)
+            {
 
+                return RedirectToAction("Login", "Account");
+            }
             if (sessionLevel == 1)
             {
                 return HttpNotFound();

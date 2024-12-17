@@ -1,10 +1,14 @@
-﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+﻿@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="wrapperSectionHeading">
     <a class="sectionLink">
         <h2 class="sectionLinkH2">Danh Sách Artis</h2>
     </a>
-   
+
 </div>
 <div class="wrapperSectionBody">
     <div class="SectionItem">
@@ -126,7 +130,7 @@
 
             $casi.append($casiItem);
 
-             
+
         });
 
     },

@@ -21,12 +21,7 @@
 </div>
 <!-- Tạo người dùng mới -->
 <div class="text-right">
-    @using (Html.BeginForm("CreateUser", "Users", FormMethod.Get))
-    {
-        <button type="submit" class="btn btn-success" style="background-color: #00FF00; padding: 10px;">
-            Tạo Người Dùng Mới
-        </button>
-    }
+   
 </div>
 
 <p style="text-align:center; opacity:0.5 ">Nhấn vào ID hoặc Tên người dùng để sắp xếp</p>
@@ -56,9 +51,7 @@
                 <td>@user.Level</td>
                 <td style="text-align: center;">
                     <div style="display:inline-flex">
-                        <button type="button" class="btn btn-warning" style="background-color: #FFFF00;" onclick="window.location.href='@Url.Action("EditUser", "Users", new { id = user.ID_User },null)'">
-                            Sửa
-                        </button>
+                        
 
                         @using (Html.BeginForm("DeleteUser", "Users", new { id = user.ID_User }, FormMethod.Post))
                         {

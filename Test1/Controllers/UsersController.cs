@@ -13,6 +13,12 @@ namespace Test1.Controllers
 
         public ActionResult Index(string sortOrder, string searchString, int? page, int? size)
         {
+            if (Session["UserID"] == null)
+            {
+
+                return RedirectToAction("Login", "Account");
+            }
+
             int? sessionUserId = Session["UserID"] as int?;
             int? sessionLevel = Session["Level"] as int?;
 

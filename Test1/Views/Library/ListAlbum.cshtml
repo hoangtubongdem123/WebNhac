@@ -1,4 +1,8 @@
-﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+﻿@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
 <div class="wrapperSectionHeading">
     <a class="sectionLink">
@@ -8,8 +12,8 @@
 </div>
 <div class="wrapperSectionBody_playlist">
 
-    
-  
+
+
 
 
 

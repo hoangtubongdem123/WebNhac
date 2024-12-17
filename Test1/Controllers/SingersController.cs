@@ -17,7 +17,11 @@ namespace Test1.Controllers
         public ActionResult Singers(string sortOrder, string searchString, int? page, int? size)
         {
             int? sessionLevel = Session["Level"] as int?;
+            if (Session["UserID"] == null)
+            {
 
+                return RedirectToAction("Login", "Account");
+            }
             if (sessionLevel == 1)
             {
                 return HttpNotFound();

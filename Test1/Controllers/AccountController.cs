@@ -51,7 +51,7 @@ namespace Test1.Controllers
                 }
 
                 // Redirect to Home/Index
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Library", "Library");
             }
         }
 
@@ -107,9 +107,55 @@ namespace Test1.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        public ActionResult ChangePasswordHandle(string UserName, string oldPassword, string newPassword, string cfmPassword)
+        {
+
+            using (WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
+            {
+                if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(cfmPassword))
+                {
+                    ViewBag.ErrorMessage = "Vui lòng điền đầy đủ thông tin.";
+                    return View("Account");
+                }
+
+                if (newPassword != cfmPassword)
+                {
+                    ViewBag.ErrorMessage = "Mật khẩu xác nhận không khớp.";
+                    return View("Account");
+                }
+
+                var user = db.Users.SingleOrDefault(u => u.UserName == UserName);
+                if (user == null)
+                {
+                    ViewBag.ErrorMessage = "Người dùng không tồn tại.";
+                    return View("Account");
+                }
+
+                if (user.PassWord != oldPassword)
+                {
+                    ViewBag.ErrorMessage = "Mật khẩu cũ không đúng.";
+                    return View("Account");
+                }
+                user.PassWord = newPassword;
+                db.SaveChanges();
+
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
+
+        public ActionResult login2()
+        {
 
 
-       
+           
+            Session["UserName"] = "Khách";
+
+
+
+            return RedirectToAction("Library", "Library");
+        }
+
 
 
     }

@@ -1,13 +1,185 @@
-﻿làm đổi mk ở đây
-<br />
+﻿@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .divCenter {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-UserName : Tung
-<br />
+    .login.container {
+        background: #fff;
+        width: 400px;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-Mk cũ :
-<br />
+    .login__title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
 
-Mk mới :
-<br />
+    .login__box {
+        position: relative;
+        margin-bottom: 20px;
+    }
 
-Lưu
+    .login__input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 16px;
+        transition: border 0.3s ease-in-out;
+    }
+
+        .login__input:focus {
+            border-color: #007bff;
+        }
+
+    /* Nhãn Input */
+    .login__label {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        font-size: 14px;
+        color: #888;
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Tạo hiệu ứng label nổi lên khi có nội dung */
+    .login__input:focus + .login__label,
+    .login__input:not(:placeholder-shown) + .login__label {
+        top: -10px;
+        left: 10px;
+        font-size: 12px;
+        color: #007bff;
+        background: #fff;
+        padding: 0 5px;
+    }
+
+    /* Icon cho input */
+    .login__icon {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #aaa;
+        cursor: pointer;
+    }
+
+        .login__icon:hover {
+            color: #007bff;
+        }
+
+    /* Nút Submit */
+    .login__button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+
+        .login__button:hover {
+            background-color: #0056b3;
+        }
+
+    /* Cảnh báo */
+    .alert.alert-danger {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    /* Liên kết Đăng nhập */
+    .login__switch {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+        .login__switch a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+            .login__switch a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+</style>
+<div class="divCenter">
+    <div class="login container grid">
+        <div class="login__access">
+            <h1 class="login__title">Đổi mật khẩu.</h1>
+            <div class="login__area">
+                <form action="/Account/ChangePasswordHandle" method="post" class="login__form">
+                    <div class="login__content grid">
+                        <div class="login__box">
+                            <input type="text" id="UserName" name="UserName" required placeholder=" " class="login__input">
+                            <label for="UserName" class="login__label">Tên đăng nhập</label>
+                            <i class="ri-user-fill login__icon"></i>
+                        </div>
+
+
+                        <div class="login__box">
+                            <input type="password" id="oldPassword" name="oldPassword" required placeholder=" " class="login__input">
+                            <label for="oldPassword" class="login__label">Mật khẩu cũ</label>
+                            <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
+                        </div>
+
+                        <div class="login__box">
+                            <input type="password" id="newPassword" name="newPassword" required placeholder=" " class="login__input">
+                            <label for="newPassword" class="login__label">Mật khẩu mới</label>
+                            <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
+                        </div>
+
+                        <div class="login__box">
+                            <input type="password" id="cfmPassword" name="cfmPassword" required placeholder=" " class="login__input">
+                            <label for="cfmPassword" class="login__label">Nhập lại mật khẩu</label>
+                            <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
+                        </div>
+                    </div>
+                    <div id="alert" class="alert alert-danger" style="display: none;">
+                        Đăng nhập không thành công
+                    </div>
+
+
+
+                    <button type="submit" class="login__button">Đổi mật khẩu</button>
+                </form>
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+                <p class="login__switch">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
