@@ -86,22 +86,7 @@ namespace Test1.Controllers
                             .ToList();
             var singersiDs = singers.Select(s => s.ID_Singer).ToList();
 
-            var songsFromSingers = db.Songs
-                             .Where(s => singersiDs.Contains(s.ID_Singer.Value))
-                             .Select(s => new SongSearch
-                             {
-                                 ID_Song = s.ID_Song,
-                                 NAME = s.NAME,
-                                 ID_Type = s.ID_Type.Value,
-                                 Path_BackGround = s.Path_BackGround,
-                                 Path_Song = s.Path_Song,
-                                 Plays = s.Plays.Value,
-                                 ID_Singer = s.ID_Singer.Value,
-                                 Singers = db.Singers
-                        .Where(si => si.ID_Singer == s.ID_Singer)
-                        .FirstOrDefault()
-                             })
-                             .ToList();
+          
 
           
 
@@ -111,28 +96,11 @@ namespace Test1.Controllers
 
             var typeIds = types.Select(t => t.ID_Type).ToList();
 
-            var songsFromTypes = db.Songs
-                           .Where(song => typeIds.Contains(song.ID_Type.Value))
-                           .Select(s => new SongSearch
-                           {
-                               ID_Song = s.ID_Song,
-                               NAME = s.NAME,
-                               ID_Type = s.ID_Type.Value,
-                               Path_BackGround = s.Path_BackGround,
-                               Path_Song = s.Path_Song,
-                               Plays = s.Plays.Value,
-                               ID_Singer = s.ID_Singer.Value,
-                               Singers = db.Singers
-                        .Where(si => si.ID_Singer == s.ID_Singer)
-                        .FirstOrDefault()
-                           })
-                           .ToList();
+            
 
-            var songIDfromType = songsFromTypes.Select(s => s.ID_Singer).ToList();
+           
 
-            var singerFromTypes = db.Singers
-                            .Where(s => songIDfromType.Contains(s.ID_Singer)).ToList();
-
+          
 
 
             var allSongs = songs
