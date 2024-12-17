@@ -10,7 +10,7 @@
 <div class="appHeader" id="appHeader">
     <search>
         <br />
-        <form method="get" action="@Url.Action("Album", "Album")">
+        <form method="get" action="@Url.Action("Album", "Album")" >
             <input type="search" name="searchString" placeholder="Tìm kiếm album" class="form-control" />
             <button type="submit">Tìm kiếm</button>
         </form>
@@ -27,7 +27,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h3>Thêm album</h3>
-        <form action="@Url.Action("CreateAlbum", "Album")" method="post">
+        <form action="@Url.Action("CreateAlbum", "Album")" method="post" enctype="multipart/form-data">
             <label>Tên album</label>
             <input type="text" name="typeName" class="form-control" required /><br /><br />
             <label>Chọn ảnh:</label><br />

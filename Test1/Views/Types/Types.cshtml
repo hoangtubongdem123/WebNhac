@@ -26,7 +26,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h3>Thêm thể loại</h3>
-        <form action="@Url.Action("CreateType", "Types")" method="post">
+        <form action="@Url.Action("CreateType", "Types")" method="post" enctype="multipart/form-data">
             <label>Tên thể loại</label>
             <input type="text" name="typeName" class="form-control" required /><br /><br />
             <label>Chọn ảnh:</label><br />

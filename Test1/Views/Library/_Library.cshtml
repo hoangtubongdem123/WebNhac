@@ -249,19 +249,22 @@
 
 <script>
 
-   $.ajax({
+ $.ajax({
     url: '@Url.Action("getAllType", "Home")',
     type: 'GET',
     dataType: 'json',
     success: function (data) {
-        console.log(data)
+        console.log(data);
         var $container1 = $('.gallerContainer').eq(0);
         var $container2 = $('.gallerContainer').eq(1);
 
+        
         $container1.empty();
         $container2.empty();
 
-        data.Types.forEach(function (type, index) {
+        var limitedTypes = data.Types.slice(0, 4);
+
+        limitedTypes.forEach(function (type, index) {
             var galleryItem = `
                 <div class="gallerryItem">
                     <a href="#" class="gallerryLink">
@@ -287,14 +290,13 @@
                 });
             });
 
-            // Thêm gallery item vào container
+          
             if (index % 2 === 0) {
                 $container1.append($galleyItem);
             } else {
                 $container2.append($galleyItem);
             }
         });
-
     },
     error: function (error) {
         alert("Lỗi load");
