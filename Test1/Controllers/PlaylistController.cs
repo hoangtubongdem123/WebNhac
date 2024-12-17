@@ -205,5 +205,50 @@ namespace Test1.Controllers
 
         }
 
+
+        public ActionResult DeleteSongInPlaylist(int playlistId, int songId)
+        {
+            using (WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
+            {
+                try
+                {
+                    
+                    var playlist = db.Playlists.FirstOrDefault(p => p.ID_Playlist == playlistId);
+                    var song = db.Songs.FirstOrDefault(s => s.ID_Song == songId);
+
+                    if (playlist == null)
+                    {
+                        return Json(new { success = false, message = "Playlist không tồn tại." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    if (song == null)
+                    {
+                        return Json(new { success = false, message = "Bài hát không tồn tại." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                   
+                    if (!song.Playlists.Any(p => p.ID_Playlist == playlistId))
+                    {
+                        return Json(new { success = false, message = $"Bài hát '{song.NAME}' không có trong Playlist '{playlist.Name_Playlist}'." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                  
+                    song.Playlists.Remove(playlist);
+                    db.SaveChanges();
+
+                    return Json(new { success = true, message = $"Bài hát '{song.NAME}' đã được xóa khỏi Playlist '{playlist.Name_Playlist}'." }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                   
+
+
+                    return Json(new { success = false, message = "Đã xảy ra lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+
+
     }
 }

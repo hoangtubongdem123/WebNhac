@@ -2,6 +2,8 @@
 @using Newtonsoft.Json
 
 
+
+
 <div class="detailTypes-wrapper">
     <div class="div-detail-types">
         <div class="detail-left">
@@ -9,11 +11,16 @@
             <img id="vcc" src="/img/vinyl.jpg" />
             <span class="detail-type-name">@Model.Name_Playlist</span>
             <div class="detail-left-action">
-                <button class="detail-left-btn">
-                    <i class="pause fa-solid fa-pause"></i>
-                    <i class="play fa-solid fa-play"></i>
-                    Tiếp tục phát
-                </button>
+
+            </div>
+
+
+            <div id="contextMenu2" class="context-menu" style="display: none;">
+                <ul>
+                    
+                    <li  id ="ca3" onclick="deleteSonginPlaylist()">Xóa</li>
+
+                </ul>
             </div>
         </div>
 
@@ -29,12 +36,13 @@
                     <span>Lượt nghe</span>
                 </div>
             </div>
+          
 
             <div class="select-list">
                 <!-- Lặp qua danh sách bài hát -->
                 @foreach (var song in Model.Songs)
                 {
-                    <div class="select-item">
+                    <div class="select-item" oncontextmenu="showContextMenucay(event, @song.ID_Song,@Model.ID_Playlist )">
                         <div class="selec-item-left">
                             <img src="/@song.Path_BackGround" />
                             <span>@song.NAME</span>
@@ -46,6 +54,7 @@
                             <span>@song.Plays</span>
                         </div>
                     </div>
+
                 }
             </div>
         </div>
@@ -210,6 +219,31 @@
     .select-item:hover .selec-item-left img {
         transform: scale(1.1); /* Phóng to hình ảnh khi hover */
     }
+
+
+
+
+
+
+    .context-menu li {
+        width: 75%;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        background-color: #9024c4;
+        border-radius: 5px;
+        margin: 5px 0;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+            .context-menu li:hover {
+                background-color: #0056b3;
+            }
+
+
+
 </style>
 
 <script>
@@ -244,14 +278,14 @@
 
     listsong = songsArray;
 
-    
+
 
     $(".select-item").click(function () {
 
 
-        var index = $(this).index(); 
+        var index = $(this).index();
         lengthPlaylist = listsong.length;
-           
+
         console.log(listsong);
         console.log(lengthPlaylist)
 
@@ -260,6 +294,71 @@
 
 
                 });
+
+
+
+
+var currentPlaylistId = @Model.ID_Playlist;
+
+    var ca1 = 0;
+    var ca2 = 0;
+function showContextMenucay(event,songId ,playlistId) {
+    event.preventDefault();
+    console.log(songId)
+    console.log(playlistId)
+
+    const contextMenu2 = document.getElementById('contextMenu2');
+    ca1=songId;
+    ca2=playlistId;
+
+    contextMenu2.style.display = 'block';
+
+
+
+
+}
+
+$(document).click(function () {
+    $("#contextMenu2").hide();
+});
+
+
+    function deleteSonginPlaylist() {
+
+        console.log(ca1)
+        console.log(ca2)
+
+        $.ajax({
+            url: '/Playlist/DeleteSongInPlaylist',
+            type: 'GET',
+            data: { songId: ca1, playlistId: ca2 },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+
+ $.ajax({
+     url: '@Url.Action("DetailPlaylist", "Playlist")',
+     type: 'GET',
+     data: { id_playlist: ca2 },
+     success: function (response) {
+         $('#divBodyContent').html(response);
+         history.pushState(null, '', '/Playlist/' + playlist.Name_Playlist);
+     },
+     error: function () {
+         alert('Lỗi khi tải chi tiết playlist.');
+     }
+ });
+
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi trong quá trình xóa bài hát.");
+            }
+        });
+
+    }
 
 
 
