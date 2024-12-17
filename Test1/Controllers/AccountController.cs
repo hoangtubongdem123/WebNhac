@@ -72,7 +72,7 @@ namespace Test1.Controllers
 
 
 
-
+        [HttpPost]
         public ActionResult Register(string username, string password)
         {
             using (WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
