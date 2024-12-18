@@ -331,6 +331,7 @@
     <Content Include="Views\Songs\Delete.cshtml" />
     <Content Include="Views\Songs\Edit.cshtml" />
     <Content Include="Views\Home\_Noresult.cshtml" />
+    <Content Include="Views\Account\Viewdangnhaploi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

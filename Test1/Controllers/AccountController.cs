@@ -67,6 +67,7 @@ namespace Test1.Controllers
 
         public ActionResult Account()
         {
+           
             return View();
         }
 
@@ -109,7 +110,12 @@ namespace Test1.Controllers
 
         public ActionResult ChangePasswordHandle(string UserName, string oldPassword, string newPassword, string cfmPassword)
         {
+            if (Session["UserId"] == null)
+            {
 
+                ViewBag.ErrorMessage = "vui long dang nhap";
+                return View("Account");
+            }
             using (WebNgheNhacEntities1 db = new WebNgheNhacEntities1())
             {
                 if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(cfmPassword))
